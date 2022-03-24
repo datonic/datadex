@@ -1,2 +1,3 @@
-# datadex
-Gotta model 'em all
+# Datadex
+
+Gotta model 'em all.
