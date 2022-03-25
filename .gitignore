@@ -135,4 +135,4 @@ logs/
 # Local data
 local_database.db
 database
-seeds/*
+seeds/*.csv
