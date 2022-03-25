@@ -1,6 +1,6 @@
 # Datadex
 
-Gotta model 'em all.
+Experimental project with the goal of modleing open source data collaboratively. 
 
 ## Setup
 
