@@ -14,7 +14,7 @@ Check it out! You should be able to run the following query in [DuckDB WASM onli
 select * from 'https://bafybeialyc26ms4ollzkqxi54mdu5u4zcfecbfw4dfwuhfi25zu3k5iqpu.ipfs.dweb.link/2_join.parquet';
 ```
 
-All automated, all open source.
+Thats it! Versioned models that give versioned datasets on IPFS. All automated, all open source.
 
 ## Setup
 
