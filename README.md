@@ -11,7 +11,9 @@ Check it out! You should be able to run a query on the final tables executing th
 
 
 ```sql
-select * from 'https://bafybeialyc26ms4ollzkqxi54mdu5u4zcfecbfw4dfwuhfi25zu3k5iqpu.ipfs.dweb.link/2_join.parquet';
+select 
+    * 
+from 'https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link/2_join.parquet';
 ```
 
 This gives us versioned data models that produce versioned datasets on IPFS. All automated, all open source.
@@ -28,3 +30,8 @@ You can get started by opening this repository with VSCode Remote Containers.
 Once inside, you can start playing around with things like `dbt run`!
 
 You can also run this in your browser thanks to GitHub Codespaces.
+
+Oh! And is also possible to visualize the models in VSCode!
+
+![1648245902](https://user-images.githubusercontent.com/1682202/160208641-0cf3e7c5-6339-408c-a08a-b5d164d1ed64.png)
+
