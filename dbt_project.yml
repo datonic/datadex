@@ -12,4 +12,5 @@ clean-targets:
 
 models:
   datadex:
-    +materialized: view
+    +materialized: table
+    +post-hook: export database 'database' (format parquet);
