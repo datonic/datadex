@@ -30,6 +30,6 @@ jobs:
           branch: gh-pages
           folder: docs
       - name: Publish to IPFS
-        uses: aquiladev/ipfs-action@v1
+        uses: aquiladev/ipfs-action@v0.2.0
         with:
           path: ./database/1_test.parquet
