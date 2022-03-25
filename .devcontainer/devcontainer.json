@@ -21,7 +21,7 @@
 		"GitHub.copilot",
 		"visualstudioexptteam.vscodeintellicode",
 		"bastienboutonnet.vscode-dbt",
-		"dvirtz.parquet-viewer"
+		"RandomFractalsInc.vscode-data-preview"
 	],
 	"remoteUser": "vscode",
 	"containerUser": "vscode"
