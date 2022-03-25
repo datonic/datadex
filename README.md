@@ -1,11 +1,17 @@
 # Datadex
 
-Experimental project with the goal of modeling open source data collaboratively.
+Experimental project with the goal of modeling open source data collaboratively. This is how this MVP it works:
 
-Currently, Datadex is pushing all the dbt modeled tables to IPFS. You can query a sample running the following query in [DuckDB WASM online shell](https://shell.duckdb.org/):
+- It takes open datasets provided by Our World in Data.
+- Adds them to a DuckDB database and runs a simple join.
+- One a model is commited, a GitHub Action pushed the final database as a set of parquet files to IPFS.
+- These files are now available for anyone to query using [DuckDB WASM online shell](https://shell.duckdb.org/).
+
+Check it out! You should be able to run the following query in [DuckDB WASM online shell](https://shell.duckdb.org/)
+
 
 ```sql
-select * from 'https://bafybeidypzimyqyqjqkpciyoycdu4kfxdcha4pk24vxfmf2g5yxuvxybc4.ipfs.dweb.link/0_test.parquet';
+select * from 'https://bafybeialyc26ms4ollzkqxi54mdu5u4zcfecbfw4dfwuhfi25zu3k5iqpu.ipfs.dweb.link/2_join.parquet';
 ```
 
 All automated, all open source.
