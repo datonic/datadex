@@ -8,6 +8,7 @@ target-path: "target"
 clean-targets:
   - "logs"
   - "target"
+  - "database"
   - "dbt_packages"
 
 models:

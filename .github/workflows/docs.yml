@@ -29,3 +29,9 @@ jobs:
         with:
           branch: gh-pages
           folder: docs
+      - name: Upload to IPFS
+        uses: web3-storage/add-to-web3@v2
+        id: web3
+        with:
+          web3_token: ${{ secrets.WEB3_STORAGE_TOKEN }}
+          path_to_add: "database"
