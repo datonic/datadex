@@ -20,7 +20,8 @@
 		"eamodio.gitlens",
 		"GitHub.copilot",
 		"visualstudioexptteam.vscodeintellicode",
-		"bastienboutonnet.vscode-dbt"
+		"bastienboutonnet.vscode-dbt",
+		"dvirtz.parquet-viewer"
 	],
 	"remoteUser": "vscode",
 	"containerUser": "vscode"

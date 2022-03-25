@@ -1,25 +1,25 @@
 with yearly_co2_concentrations as (
     select
-        Year as year,
-        avg("CO2 concentrations (NOAA, 2018)") as average_CO2_concentrations
+        year,
+        avg(CO2_concentrations) as average_CO2_concentrations
     from {{ ref('raw_co2_concentrations') }}
-    where Year > 2000 and Year < 2010
+    where year > 2000 and year < 2010
     group by 1
 ),
 
 yearly_literate_population as (
     select
-        Year as year,
-        avg("Literacy rate (CIA Factbook (2016))") as average_literate_population
+        year,
+        avg(literacy_rate) as average_literacy_rate
     from {{ ref('raw_literate_population') }}
-    where Year > 2000 and Year < 2010
+    where year > 2000 and year < 2010
     group by 1
 )
 
 select
-    a.year,
-    a.average_CO2_concentrations,
-    b.average_literate_population
-from yearly_co2_concentrations as a
-left join yearly_literate_population as b
-    on a.year = b.year
+    co2.year,
+    co2.average_CO2_concentrations,
+    lp.average_literacy_rate
+from yearly_co2_concentrations as co2
+left join yearly_literate_population as lp
+    on co2.year = lp.year
