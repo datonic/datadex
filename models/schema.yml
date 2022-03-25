@@ -9,3 +9,8 @@ models:
         tests:
           - unique
           - not_null
+      - name: other
+        description: Test
+        tests:
+          - unique
+          - not_null
