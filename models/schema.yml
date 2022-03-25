@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: test
+    description: Test
+    columns:
+      - name: id
+        description: Test
+        tests:
+          - unique
+          - not_null
