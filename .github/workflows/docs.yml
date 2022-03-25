@@ -15,13 +15,13 @@ jobs:
       - name: Build Docker
         run: docker build -t dbt .
       - name: Get Dependencies
-        run: docker run -t --entrypoint dbt -v $PWD:/dbt dbt deps
+        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt deps
       - name: Check freshness
-        run: docker run -t --entrypoint dbt -v $PWD:/dbt dbt source snapshot-freshness
+        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt source snapshot-freshness
       - name: Run dbt
-        run: docker run -t --entrypoint dbt -v $PWD:/dbt dbt run
+        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt run
       - name: Generate Docs
-        run: docker run -t --entrypoint dbt -v $PWD:/dbt dbt docs generate
+        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt docs generate
       - run: mkdir -p docs
       - run: cp target/*.json target/index.html target/graph.gpickle docs/
       - name: Publish Docs
