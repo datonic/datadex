@@ -15,7 +15,7 @@ jobs:
       - name: Build Docker
         run: docker build -t dbt .
       - name: Get Data
-        run: docker run -t -v $PWD:/workspaces/datadex make data
+        run: docker run -t --entrypoint make -v $PWD:/workspaces/datadex dbt data
       - name: Seed data
         run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt seed
       - name: Get Dependencies
