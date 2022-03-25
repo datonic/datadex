@@ -1,6 +1,6 @@
 # Datadex
 
-Experimental project with the goal of modleing open source data collaboratively.
+Experimental project with the goal of modeling open source data collaboratively.
 
 Currently, Datadex is pushing all the dbt modeled tables to IPFS. You can query a sample running the following query in [DuckDB WASM online shell](https://shell.duckdb.org/):
 
