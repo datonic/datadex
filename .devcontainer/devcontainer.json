@@ -22,6 +22,6 @@
 		"visualstudioexptteam.vscodeintellicode",
 		"bastienboutonnet.vscode-dbt"
 	],
-	// "remoteUser": "vscode",
-	// "containerUser": "vscode"
+	"remoteUser": "vscode",
+	"containerUser": "vscode"
 }
