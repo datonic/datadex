@@ -1,20 +1,25 @@
 # Datadex
 
-Experimental project with the goal of modeling open source data collaboratively. This is how this MVP it works:
+Experimental project making possible to collaborate on the curation/modeling of open source datasets with `dbt` and DuckDB. This is how this MVP it works:
 
-- It takes open datasets provided by Our World in Data.
-- Adds them to a DuckDB database and runs a simple join.
-- One a model is commited, a GitHub Action pushed the final database as a set of parquet files to IPFS.
-- These files are now available for anyone to query using [DuckDB WASM online shell](https://shell.duckdb.org/).
+1. [Downloads a couple of open datasets locally](Makefile).
+2. Loads them into a DuckDB Database.
+3. Executes `dbt run` against it. [Currently it is only joining the two datasets](models/join.sql).
+4. After any changes are pushed, [a GitHub Action triggers and pushes the final database as a set of parquet files to IPFS](https://github.com/davidgasquez/datadex/actions/workflows/docs.yml).
 
-Check it out! You should be able to run the following query in [DuckDB WASM online shell](https://shell.duckdb.org/)
+Check it out! You should be able to run a query on the final tables executing the following query on [DuckDB WASM online shell](https://shell.duckdb.org/)
 
 
 ```sql
 select * from 'https://bafybeialyc26ms4ollzkqxi54mdu5u4zcfecbfw4dfwuhfi25zu3k5iqpu.ipfs.dweb.link/2_join.parquet';
 ```
 
-Thats it! Versioned models that give versioned datasets on IPFS. All automated, all open source.
+This gives us versioned data models that produce versioned datasets on IPFS. All automated, all open source.
+
+## Future
+
+Once DuckDB ships HTTPFS in their Python package, _dbt_ models could be built without having to run `dbt seed` using remote files.
+Then, other projects could build on top of this project by importing it as a _dbt_ package.
 
 ## Setup
 
