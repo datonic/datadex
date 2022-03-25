@@ -29,8 +29,3 @@ jobs:
         with:
           branch: gh-pages
           folder: docs
-      - run: ls
-      - uses: actions/upload-artifact@v3
-        with:
-          name: test.parquet
-          path: ./database/
