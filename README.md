@@ -8,17 +8,28 @@ Datadex is gluing together different technologies. This is how it works:
 
 1. [Downloads some open datasets locally](Makefile). This won't be neccesary once the next `duckdb` Python release is out ([with HTTPFS enabled](https://github.com/duckdb/duckdb/issues/3243)). It'll be possible to query remote datasets from the [`sources` directory](models/sources).
 2. Then, it loads them into a DuckDB Database.
-3. Executes `dbt run` to build all the defined models. [Currently it is only computing some averages and joining the two datasets](models/join.sql).
+3. Executes `dbt run` to build all the defined models.
 4. Finally, after any changes are pushed to the `main` branch, [a GitHub Action triggers and pushes the final database as a set of parquet files to IPFS](https://github.com/davidgasquez/datadex/actions/workflows/docs.yml).
 
 Check it out! You should be able to run a query on the final tables executing the following query on [DuckDB WASM online shell](https://shell.duckdb.org/)
 
+This query shows the result of the [`taxi_vendors`](models/taxi_vendors.sql) model:
 
 ```sql
 select
     *
-from 'https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link/2_join.parquet';
+from 'https://bafybeie4xkvoskx2uh6gin636htlufm7wecqagomodg5pcsvweysoryonq.ipfs.dweb.link/4_taxi_vendors.parquet';
 ```
+
+You can also query the full [`raw_taxi_tripdata`](models/sources/raw_taxi_tripdata.sql) dataset using the following query:
+
+```sql
+select
+    count(*)
+from 'https://bafybeie4xkvoskx2uh6gin636htlufm7wecqagomodg5pcsvweysoryonq.ipfs.dweb.link/2_raw_taxi_tripdata.parquet';
+```
+
+And, [explore the final database parquet files on IPFS](https://bafybeie4xkvoskx2uh6gin636htlufm7wecqagomodg5pcsvweysoryonq.ipfs.dweb.link/).
 
 This gives us **versioned data models** that produce **versioned datasets** on IPFS. **All automated, all open source**.
 
@@ -28,7 +39,7 @@ This gives us **versioned data models** that produce **versioned datasets** on I
 - Once the next version of `duckdb` Python is released, there won't be a need to get the CSV/Parquet files locally. This also mean that it'll be possible for anyone to import similar projects [as Git dbt packages](https://docs.getdbt.com/docs/building-a-dbt-project/package-management#git-packages) and build on top of them. Someone importing this repository could build a new model like this `select * from {{ ref('join') }}`.
 - Have I mention a [ready to use DuckDB database is exported with each tag to IPFS](https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link/)? You can recreate the same database in any computer or browser by running `import database https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link`. Useful if you have complex views and want to start playing with them without having to copy paste a lot!
 - Every release will push a new version of the database to IPFS, effectively versioning the data. A bit wasteful but might be useful if you want to keep track of all the changes and not break other projects reading from old versions.
-- All the other awesome dbt features like `tests` and `docs`. Docs are automatically generated and published on GitHub Pages. E.g: [`join.sql` documentation](https://davidgasquez.github.io/datadex/#!/model/model.datadex.join).
+- All the other awesome dbt features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex). E.g: [`join.sql` documentation](https://davidgasquez.github.io/datadex/#!/model/model.datadex.join).
 - As the data is on IPFS... it should be possible to mint these datasets as NFT? Not saying is a great idea, but I feel there is something that can be done there to align incentives!
 
 ## Future
