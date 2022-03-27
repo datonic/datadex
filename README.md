@@ -29,6 +29,7 @@ This gives us **versioned data models** that produce **versioned datasets** on I
 - Have I mention a [ready to use DuckDB database is exported with each tag to IPFS](https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link/)? You can recreate the same database in any computer or browser by running `import database https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link`. Useful if you have complex views and want to start playing with them without having to copy paste a lot!
 - Every release will push a new version of the database to IPFS, effectively versioning the data. A bit wasteful but might be useful if you want to keep track of all the changes and not break other projects reading from old versions.
 - All the other awesome dbt features like `tests` and `docs`. Docs are automatically generated and published on GitHub Pages. E.g: [`join.sql` documentation](https://davidgasquez.github.io/datadex/#!/model/model.datadex.join).
+- As the data is on IPFS... it should be possible to mint these datasets as NFT? Not saying is a great idea, but I feel there is something that can be done there to align incentives!
 
 ## Future
 
