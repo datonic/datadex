@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: join
+    description: "Example"
+    columns:
+      - name: year
+        description: "Year"
+        tests:
+          - unique
+          - not_null
+      - name: average_co2_concentrations
+        description: "Average CO2 Concentrations for the year"
+      - name: average_literacy_rate
+        description: "Average Literacy Rate for the year"

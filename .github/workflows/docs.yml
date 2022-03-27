@@ -20,6 +20,8 @@ jobs:
         run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt deps
       - name: Run dbt
         run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt run
+      - name: Run dbt tests
+        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt test
       - name: Generate Docs
         run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt docs generate
       - run: mkdir -p docs
