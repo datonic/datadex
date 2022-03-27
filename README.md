@@ -28,6 +28,7 @@ This gives us **versioned data models** that produce **versioned datasets** on I
 - Once the next version of `duckdb` Python is released, there won't be a need to get the CSV/Parquet files locally. This also mean that it'll be possible for anyone to import similar projects [as Git dbt packages](https://docs.getdbt.com/docs/building-a-dbt-project/package-management#git-packages) and build on top of them. Someone importing this repository could build a new model like this `select * from {{ ref('join') }}`.
 - Have I mention a [ready to use DuckDB database is exported with each tag to IPFS](https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link/)? You can recreate the same database in any computer or browser by running `import database https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link`. Useful if you have complex views and want to start playing with them without having to copy paste a lot!
 - Every release will push a new version of the database to IPFS, effectively versioning the data. A bit wasteful but might be useful if you want to keep track of all the changes and not break other projects reading from old versions.
+- All the other awesome dbt features like `tests` and `docs`. Docs are automatically generated and published on GitHub Pages. E.g: [`join.sql` documentation](https://davidgasquez.github.io/datadex/#!/model/model.datadex.join).
 
 ## Future
 
@@ -44,3 +45,7 @@ You can also run this in your browser thanks to GitHub Codespaces.
 Oh! And is also possible to run visualizations on the parquet files in VSCode or Codespaces!
 
 ![1648245902](https://user-images.githubusercontent.com/1682202/160208641-0cf3e7c5-6339-408c-a08a-b5d164d1ed64.png)
+
+## Motivation
+
+This small project was created after [thinking how an Open Data Protocol could look like](https://publish.obsidian.md/davidgasquez/Open+Data+Protocol)! I just wanted to stitch together a few open source technologies and see what could they do.
