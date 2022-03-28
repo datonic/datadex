@@ -1,15 +1,16 @@
 version: 2
 
 models:
-  - name: join
-    description: "Example"
+  - name: yellow_taxi_vendors
+    description: "Some stats at the vendor level."
     columns:
-      - name: year
-        description: "Year"
-        tests:
-          - unique
-          - not_null
-      - name: average_co2_concentrations
-        description: "Average CO2 Concentrations for the year"
-      - name: average_literacy_rate
-        description: "Average Literacy Rate for the year"
+      - name: vendor_id
+        description: "A code indicating the TPEP provider."
+      - name: first_trip
+        description: "First trip timestamp."
+      - name: last_trip
+        description: "Last trip timestamp."
+      - name: avg_passenger_count
+        description: "Average passenger count per trip."
+      - name: avg_trip_distance
+        description: "Average trip distance per trip."
