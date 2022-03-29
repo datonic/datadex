@@ -1,6 +1,9 @@
-# Datadex
+<p align="center">
+   <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557212-c23c2bea-4179-4223-abfe-90f4a92e8aaa.png#gh-light-mode-only"/ width="400">
+   <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557880-ebd4d53f-5ed8-40d2-b20c-7da90443f389.png#gh-dark-mode-only"/ width="400">
+</p>
 
-Experimental project making possible to collaborate on the curation/modeling of open source datasets with `dbt` and DuckDB.
+<h3 align="center"> Model Open Data collaboratively using dbt and DuckDB. </h3>
 
 ## How does it work?
 
