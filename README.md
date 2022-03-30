@@ -17,7 +17,7 @@ Datadex is a proof of concept project to explore how people could model Open Tab
 
 ## Usage
 
-1. Add the [relevant sources](/workspaces/datadex/models/sources.yml) to the project.
+1. Add the [relevant sources](models/sources.yml) to the project.
 2. Execute `dbt run` to build your models.
 3. Push changes to GitHub `main` branch and [a GitHub Action will trigger. It'll push the final database as a set of parquet files to IPFS](https://github.com/davidgasquez/datadex/actions/workflows/docs.yml).
 4. Query and share the data! E.g: you can use [DuckDB WASM online shell](https://shell.duckdb.org/) to query the models.
