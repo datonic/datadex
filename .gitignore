@@ -133,6 +133,5 @@ dbt_packages/
 logs/
 
 # Local data
-local_database.*
 database
 seeds/*.csv
