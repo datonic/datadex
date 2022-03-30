@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: main
+    tables:
+      - name: energy_data
+        external:
+          location: "seeds/owid_energy_data.csv"
+      - name: fifa_countries
+        external:
+          location: "https://raw.githubusercontent.com/fivethirtyeight/data/master/fifa/fifa_countries_audience.csv"

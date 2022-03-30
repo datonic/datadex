@@ -1,0 +1,1 @@
+select count(*) from {{ source('main', 'fifa_countries') }}
