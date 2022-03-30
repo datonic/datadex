@@ -14,4 +14,9 @@ clean-targets:
 models:
   datadex:
     +materialized: table
-    +post-hook: export database 'database' (format parquet);
+    +pre-hook:
+      - install 'httpfs'
+      - load 'httpfs'
+      - "{{ dbt_external_tables.stage_external_sources() }}"
+    +post-hook:
+      - export database 'database' (format parquet);

@@ -1,3 +1,5 @@
 packages:
   - package: dbt-labs/codegen
     version: 0.6.0
+  - git: "https://github.com/jwills/dbt-external-tables.git"
+    revision: a132739298851179eb1517b4db485dab91325d69
