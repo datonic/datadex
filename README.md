@@ -44,7 +44,7 @@ The [entire DuckDB exported database](https://bafybeicpvjjjtl4x7yg46wbfjqde5v75w
 - Run visualizations on the exported parquet files thanks to the [Data Preview VS Code extension](https://github.com/RandomFractals/vscode-data-preview).
 - Explore and query your models and DuckDB tables using [Rill Developer as your IDE](https://github.com/rilldata/rill-developer) (locally or via Codespaces).
 
-| ![1](https://user-images.githubusercontent.com/1682202/160208641-0cf3e7c5-6339-408c-a08a-b5d164d1ed64.png) | ![2](https://user-images.githubusercontent.com/1682202/161080067-14da939f-3b2a-4fb3-b4ff-162c179959c4.png) |
+| ![1](https://user-images.githubusercontent.com/1682202/160208641-0cf3e7c5-6339-408c-a08a-b5d164d1ed64.png) | ![2](https://user-images.githubusercontent.com/1682202/161124461-68864cfd-eb3a-4e4b-92f7-869d6ebcdc04.png) |
 | :---:        |     :---:      |
 | Data Preview Extension   | Rill Developer IDE     |
 
