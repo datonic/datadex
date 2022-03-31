@@ -11,6 +11,7 @@ Datadex is a proof of concept project to explore how people could model Open Tab
 
 ### Features
 
+- Open Data Warehouse. Run fast OLAP queries across datasets from many places ([even from your browser](https://shell.duckdb.org/)).
 - Data as code. Version your SQL models and datasets.
 - Package management. Publish and share your models for other people to build on top of them!
 - Fully Open Source. Run everything locally.
