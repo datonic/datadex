@@ -2,7 +2,7 @@ default:
   outputs:
     dev:
       type: duckdb
-      path: local_database.db
+      path: target/local.db
 
   target: dev
 

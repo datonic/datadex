@@ -14,4 +14,7 @@ clean-targets:
 models:
   datadex:
     +materialized: table
-    +post-hook: export database 'database' (format parquet);
+    +pre-hook:
+      - load 'httpfs'
+    +post-hook:
+      - export database 'database' (format parquet);
