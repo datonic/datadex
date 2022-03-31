@@ -10,6 +10,10 @@ RUN cd /duckdb/tools/pythonpkg && python setup.py sdist && pip install -e .
 
 USER vscode
 
+RUN sudo apt-get update && sudo apt-get install -y nodejs npm
+RUN curl -fsSL https://deb.nodesource.com/setup_current.x | sudo bash - && sudo apt-get install -y nodejs
+RUN git clone https://github.com/rilldata/rill-developer.git /home/vscode/rill-developer && cd /home/vscode/rill-developer && npm install && npm run build
+
 RUN pip install dbt-duckdb
 RUN echo "$(echo -n 'import sys, os; sys.setdlopenflags(os.RTLD_GLOBAL | os.RTLD_NOW);'; cat /home/vscode/.local/lib/python3.9/site-packages/dbt/adapters/duckdb/connections.py)" > /home/vscode/.local/lib/python3.9/site-packages/dbt/adapters/duckdb/connections.py
 
