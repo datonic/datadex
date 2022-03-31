@@ -25,6 +25,16 @@ Datadex is a proof of concept project to explore how people could model Open Tab
 
 This gives us **versioned data models** that produce **versioned datasets** on IPFS. **All automated, all open source**.
 
+You can [query the `energy_yearly_averages.sql` model](https://github.com/davidgasquez/datadex/blob/main/models/energy_yearly_averages.sql) on IPFS with this query:
+
+```sql
+select 
+   count(*) 
+from 'https://bafybeicpvjjjtl4x7yg46wbfjqde5v75wmggihqizxom76g7abkzi3nnia.ipfs.dweb.link/energy_yearly_averages.parquet';
+```
+
+The [entire DuckDB exported database](https://bafybeicpvjjjtl4x7yg46wbfjqde5v75wmggihqizxom76g7abkzi3nnia.ipfs.dweb.link/) is available on IPFS too!
+
 ## What can you do with Datadex?
 
 - Model local and online datasets (`csv` or `parquet`) with `dbt`.
