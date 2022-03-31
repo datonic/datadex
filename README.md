@@ -49,7 +49,12 @@ This gives us **versioned data models** that produce **versioned datasets** on I
 
 ## Setup
 
-The fastest way to start using Datadex is via [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers). Once inside the develpment environment, you can start playing around (e.g: `dbt run`)! The development environment can also run in your browser thanks to GitHub Codespaces.
+The fastest way to start using Datadex is via [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers). Once inside the develpment environment, you'll need to run the following commands:
+   1. `dbt deps` to download the required `dbt` packages.
+   2. `dbt run-operation stage_external_sources` to instantiate views for the remote files.
+   3. `dbt run` to generate your models.
+
+PS: The development environment can also run in your browser thanks to GitHub Codespaces.
 
 ## Motivation
 
