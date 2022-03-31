@@ -61,6 +61,7 @@ This gives us **versioned data models** that produce **versioned datasets** on I
     - Also, if someone is not building on top of a large model, it doens't make sense to instantiate it locally.
 - Provide a clean URL for the versioned parquet files. Quering them should be easy. E.g: `select * from user.repo.ipfs.dweb/filename.parquet`.
 - Not sure how but would be awesome to have a way to list/explore all the datasets created this way and all their versions.
+- Have common packages like `dbt-countries` or `dbt-years` to enrich any datasets that have a `country_code` or `year` column.
 
 ## Setup
 
