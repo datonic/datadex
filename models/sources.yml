@@ -3,6 +3,9 @@ version: 2
 sources:
   - name: main
     tables:
-      - name: fifa_countries
+      - name: energy
         external:
-          location: "https://raw.githubusercontent.com/fivethirtyeight/data/master/fifa/fifa_countries_audience.csv"
+          location: "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv"
+        columns:
+          - name: iso_code
+            description: ISO 3166-1 alpha-3 three-letter country codes
