@@ -33,8 +33,9 @@ This gives us **versioned data models** that produce **versioned datasets** on I
 - Every tagged release will push a new version of the database to IPFS, effectively versioning the data. A bit wasteful but might be useful if you want to keep track of all the changes and not break other projects reading from old versions.
 - All the other awesome dbt features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex). E.g: [`yellow_taxi_trips.sql` documentation](https://davidgasquez.github.io/datadex/#!/model/model.datadex.yellow_taxi_trips).
 - As the data is on IPFS... it should be possible to mint these datasets as NFT? Not saying is a great idea, but I feel there is something that can be done there to align incentives!
+- You can use Rill Developer as your IDE (locally or via Codespaces).
+![1648735748](https://user-images.githubusercontent.com/1682202/161080067-14da939f-3b2a-4fb3-b4ff-162c179959c4.png)
 - Oh! And is also possible to run visualizations on the parquet files in VSCode or Codespaces!
-
 ![1648245902](https://user-images.githubusercontent.com/1682202/160208641-0cf3e7c5-6339-408c-a08a-b5d164d1ed64.png)
 
 ## Future
