@@ -1,4 +1,4 @@
-name: Documentation
+name: CI
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   docs:
-    name: Publish Documentation 🚀
+    name: Run 🚀
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
