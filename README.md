@@ -5,8 +5,6 @@
    <h4 align="center"> Model Open Data collaboratively using dbt and DuckDB </h4>
 </p>
 
-[![CI](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml/badge.svg)](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml)
-
 ## What is Datadex?
 
 Datadex is a proof of concept project to explore how people could model Open Tabular Datasets using SQL.
@@ -30,7 +28,7 @@ This gives us **versioned data models** that produce **versioned datasets** on I
 ## What can you do with Datadex?
 
 - Model local and online datasets (`csv` or `parquet`) with `dbt`.
-- Push models as parquet or csv files to IPFS ([example](https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link/))
+- Push models as parquet or csv files to IPFS ([example](https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link/)).
 - Generate a `schema.sql` with all the models as views. You can paste that on [DuckDB WASM online shell](https://shell.duckdb.org/) and start using the generated views.
 - Use any of the other awesome `dbt` features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex).
 - Run visualizations on the exported parquet files thanks to the [Data Preview VS Code extension](https://github.com/RandomFractals/vscode-data-preview).
