@@ -18,6 +18,8 @@ jobs:
         run: docker run -t --entrypoint make -v $PWD:/workspaces/datadex dbt data
       - name: Get Dependencies
         run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt deps
+      - name: Stage external tables
+        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt run-operation stage_external_sources
       - name: Run dbt
         run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt run
       - name: Run dbt tests

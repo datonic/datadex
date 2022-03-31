@@ -15,8 +15,6 @@ models:
   datadex:
     +materialized: table
     +pre-hook:
-      - install 'httpfs'
       - load 'httpfs'
-      - "{{ dbt_external_tables.stage_external_sources() }}"
     +post-hook:
       - export database 'database' (format parquet);
