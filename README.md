@@ -23,24 +23,6 @@ Datadex is a proof of concept project to explore how people could model Open Tab
 3. Push changes to GitHub `main` branch and [a GitHub Action will trigger. It'll push the final database as a set of parquet files to IPFS](https://github.com/davidgasquez/datadex/actions/workflows/docs.yml).
 4. Query and share the data! E.g: you can use [DuckDB WASM online shell](https://shell.duckdb.org/) to query the models.
 
-This SQL gets the [`taxi_vendors`](models/taxi_vendors.sql) model:
-
-```sql
-select
-    *
-from 'https://bafybeie4xkvoskx2uh6gin636htlufm7wecqagomodg5pcsvweysoryonq.ipfs.dweb.link/4_taxi_vendors.parquet';
-```
-
-You can also query the full [`raw_taxi_tripdata`](models/sources/raw_taxi_tripdata.sql) dataset using the following query:
-
-```sql
-select
-    count(*)
-from 'https://bafybeie4xkvoskx2uh6gin636htlufm7wecqagomodg5pcsvweysoryonq.ipfs.dweb.link/2_raw_taxi_tripdata.parquet';
-```
-
-And, [explore the final database parquet files on IPFS](https://bafybeie4xkvoskx2uh6gin636htlufm7wecqagomodg5pcsvweysoryonq.ipfs.dweb.link/).
-
 This gives us **versioned data models** that produce **versioned datasets** on IPFS. **All automated, all open source**.
 
 ## What Works?
