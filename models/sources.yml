@@ -5,7 +5,253 @@ sources:
     tables:
       - name: energy
         external:
-          location: "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv"
+          location: https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv
         columns:
           - name: iso_code
             description: ISO 3166-1 alpha-3 three-letter country codes
+          - name: country
+            description: Geographic location,Our World in Data
+          - name: year
+            description: Year of observation,Our World in Data
+          - name: coal_prod_change_pct
+            description: Annual percentage change in coal production
+          - name: coal_prod_change_twh
+            description: Annual change in coal production, measured in terawatt-hours
+          - name: gas_prod_change_pct
+            description: Annual percentage change in gas production
+          - name: gas_prod_change_twh
+            description: Annual change in gas production, measured in terawatt-hours
+          - name: oil_prod_change_pct
+            description: Annual percentage change in oil production
+          - name: oil_prod_change_twh
+            description: Annual change in oil production, measured in terawatt-hours
+          - name: energy_cons_change_pct
+            description: Annual percentage change in primary energy consumption
+          - name: energy_cons_change_twh
+            description: Annual change in primary energy consumption, measured in terawatt-hours
+          - name: biofuel_share_elec
+            description: Share of electricity generation that comes from biofuels
+          - name: biofuel_cons_change_pct
+            description: Annual percentage change in biofuel consumption
+          - name: biofuel_share_energy
+            description: Share of primary energy consumption that comes from biofuels
+          - name: biofuel_cons_change_twh
+            description: Annual change in biofuel consumption, measured in terawatt-hours
+          - name: biofuel_consumption
+            description: Primary energy consumption from biofuels, measured in terawatt-hours
+          - name: biofuel_elec_per_capita
+            description: Per capita electricity generation from biofuels, measured in kilowatt-hours
+          - name: biofuel_cons_per_capita
+            description: Per capita primary energy consumption from biofuels, measured in kilowatt-hours
+          - name: carbon_intensity_elec
+            description: Carbon intensity of electricity production, measured in grams of carbon dioxide emitted per kilowatt-hour
+          - name: coal_share_elec
+            description: Share of electricity generation that comes from coal
+          - name: coal_cons_change_pct
+            description: Annual percentage change in coal consumption
+          - name: coal_share_energy
+            description: Share of primary energy consumption that comes from coal
+          - name: coal_cons_change_twh
+            description: Annual change in coal consumption, measured in terawatt-hours
+          - name: coal_consumption
+            description: Primary energy consumption from coal, measured in terawatt-hours
+          - name: coal_elec_per_capita
+            description: Per capita electricity generation from coal, measured in kilowatt-hours
+          - name: coal_cons_per_capita
+            description: Per capita primary energy consumption from coal, measured in kilowatt-hours
+          - name: coal_production
+            description: Coal production, measured in terawatt-hours
+          - name: coal_prod_per_capita
+            description: Per capita coal production, measured in kilowatt-hours
+          - name: electricity_generation
+            description: Electricity generation, measured in terawatt-hours
+          - name: biofuel_electricity
+            description: Electricity generation from biofuels, measured in terawatt-hours
+          - name: coal_electricity
+            description: Electricity generation from coal, measured in terawatt-hours
+          - name: fossil_electricity
+            description: Electricity generation from fossil fuels, measured in terawatt-hours. This is the sum of electricity generation from coal, oil and gas.
+          - name: gas_electricity
+            description: Electricity generation from gas, measured in terawatt-hours
+          - name: hydro_electricity
+            description: Electricity generation from hydropower, measured in terawatt-hours
+          - name: nuclear_electricity
+            description: Electricity generation from nuclear power, measured in terawatt-hours
+          - name: oil_electricity
+            description: Electricity generation from oil, measured in terawatt-hours
+          - name: other_renewable_electricity
+            description: Electricity generation from other renewable sources including biofuels, measured in terawatt-hours
+          - name: other_renewable_exc_biofuel_electricity
+            description: Electricity generation from other renewable sources excluding biofuels, measured in terawatt-hours
+          - name: renewables_electricity
+            description: Electricity generation from renewables, measured in terawatt-hours
+          - name: solar_electricity
+            description: Electricity generation from solar, measured in terawatt-hours
+          - name: wind_electricity
+            description: Electricity generation from wind, measured in terawatt-hours
+          - name: energy_per_gdp
+            description: Energy consumption per unit of GDP. This is measured in kilowatt-hours per 2011 international-$.
+          - name: energy_per_capita
+            description: Primary energy consumption per capita, measured in kilowatt-hours
+          - name: fossil_cons_change_pct
+            description: Annual percentage change in fossil fuel consumption
+          - name: fossil_share_energy
+            description: Share of primary energy consumption that comes from fossil fuels
+          - name: fossil_cons_change_twh
+            description: Annual change in fossil fuel consumption, measured in terawatt-hours
+          - name: fossil_fuel_consumption
+            description: Fossil fuel consumption, measured in terawatt-hours. This is the sum of primary energy from coal, oil and gas.
+          - name: fossil_energy_per_capita
+            description: Per capita fossil fuel consumption, measured in kilowatt-hours. This is the sum of primary energy from coal, oil and gas.
+          - name: fossil_cons_per_capita
+            description: Per capita fossil fuel consumption, measured in kilowatt-hours. This is the sum of primary energy from coal, oil and gas.
+          - name: fossil_share_elec
+            description: Share of electricity generation that comes from fossil fuels (coal, oil and gas combined)
+          - name: gas_share_elec
+            description: Share of electricity generation that comes from gas
+          - name: gas_cons_change_pct
+            description: Annual percentage change in gas consumption
+          - name: gas_share_energy
+            description: Share of primary energy consumption that comes from gas
+          - name: gas_cons_change_twh
+            description: Annual change in gas consumption, measured in terawatt-hours
+          - name: gas_consumption
+            description: Primary energy consumption from gas, measured in terawatt-hours
+          - name: gas_elec_per_capita
+            description: Per capita electricity generation from gas, measured in kilowatt-hours
+          - name: gas_energy_per_capita
+            description: Per capita primary energy consumption from gas, measured in kilowatt-hours
+          - name: gas_production
+            description: Gas production, measured in terawatt-hours
+          - name: gas_prod_per_capita
+            description: Per capita gas production, measured in kilowatt-hours
+          - name: hydro_share_elec
+            description: Share of electricity generation that comes from hydropower
+          - name: hydro_cons_change_pct
+            description: Annual percentage change in hydropower consumption
+          - name: hydro_share_energy
+            description: Share of primary energy consumption that comes from hydropower
+          - name: hydro_cons_change_twh
+            description: Annual change in hydropower consumption, measured in terawatt-hours
+          - name: hydro_consumption
+            description: Primary energy consumption from hydropower, measured in terawatt-hours
+          - name: hydro_elec_per_capita
+            description: Per capita electricity generation from hydropower, measured in kilowatt-hours
+          - name: hydro_energy_per_capita
+            description: Per capita primary energy consumption from hydropower, measured in kilowatt-hours
+          - name: low_carbon_share_elec
+            description: Share of electricity generation that comes from low-carbon sources. This is the sum of electricity from renewables and nuclear
+          - name: low_carbon_electricity
+            description: Electricity generation from low-carbon sources, measured in terawatt-hours. This is the sum of electricity generation from renewables and nuclear power
+          - name: low_carbon_elec_per_capita
+            description: Per capita electricity generation from low-carbon sources, measured in kilowatt-hours
+          - name: low_carbon_cons_change_pct
+            description: Annual percentage change in low-carbon energy consumption
+          - name: low_carbon_share_energy
+            description: Share of primary energy consumption that comes from low-carbon sources. This is the sum of primary energy from renewables and nuclear
+          - name: low_carbon_cons_change_twh
+            description: Annual change in low-carbon energy consumption, measured in terawatt-hours
+          - name: low_carbon_consumption
+            description: Primary energy consumption from low-carbon sources, measured in terawatt-hours
+          - name: low_carbon_energy_per_capita
+            description: Per capita primary energy consumption from low-carbon sources, measured in kilowatt-hours
+          - name: nuclear_share_elec
+            description: Share of electricity generation that comes from nuclear power
+          - name: nuclear_cons_change_pct
+            description: Annual percentage change in nuclear consumption
+          - name: nuclear_share_energy
+            description: Share of primary energy consumption that comes from nuclear power
+          - name: nuclear_cons_change_twh
+            description: Annual change in nuclear consumption, measured in terawatt-hours
+          - name: nuclear_consumption
+            description: Primary energy consumption from nuclear power, measured in terawatt-hours
+          - name: nuclear_elec_per_capita
+            description: Per capita electricity generation from nuclear power, measured in kilowatt-hours
+          - name: nuclear_energy_per_capita
+            description: Per capita primary energy consumption from nuclear, measured in kilowatt-hours
+          - name: oil_share_elec
+            description: Share of electricity generation that comes from oil
+          - name: oil_cons_change_pct
+            description: Annual percentage change in oil consumption
+          - name: oil_share_energy
+            description: Share of primary energy consumption that comes from oil
+          - name: oil_cons_change_twh
+            description: Annual change in oil consumption, measured in terawatt-hours
+          - name: oil_consumption
+            description: Primary energy consumption from oil, measured in terawatt-hours
+          - name: oil_elec_per_capita
+            description: Per capita electricity generation from oil, measured in kilowatt-hours
+          - name: oil_energy_per_capita
+            description: Per capita primary energy consumption from oil, measured in kilowatt-hours
+          - name: oil_production
+            description: Oil production, measured in terawatt-hours
+          - name: oil_prod_per_capita
+            description: Per capita oil production, measured in kilowatt-hours
+          - name: other_renewables_elec_per_capita
+            description: Per capita electricity generation from other renewables including biofuels, measured in kilowatt-hours
+          - name: other_renewables_elec_per_capita_exc_biofuel
+            description: Per capita electricity generation from other renewables excluding biofuels, measured in kilowatt-hours
+          - name: other_renewables_share_elec
+            description: Share of electricity generation that comes from other renewables including biofuels
+          - name: other_renewables_share_elec_exc_biofuel
+            description: Share of electricity generation that comes from other renewables excluding biofuels
+          - name: other_renewables_cons_change_pct
+            description: Annual percentage change in energy consumption from other renewables
+          - name: other_renewables_share_energy
+            description: Share of primary energy consumption that comes from other renewables
+          - name: other_renewables_cons_change_twh
+            description: Annual change in other renewable consumption, measured in terawatt-hours
+          - name: other_renewable_consumption
+            description: Primary energy consumption from other renewables, measured in terawatt-hours
+          - name: other_renewables_energy_per_capita
+            description: Per capita primary energy consumption from other renewables, measured in kilowatt-hours
+          - name: per_capita_electricity
+            description: Electricity generation per capita, measured in kilowatt-hours
+          - name: population
+            description: Total population,Gapminder and UN Population estimates
+          - name: primary_energy_consumption
+            description: Primary energy consumption, measured in terawatt-hours
+          - name: renewables_elec_per_capita
+            description: Per capita electricity generation from renewables, measured in kilowatt-hours
+          - name: renewables_share_elec
+            description: Share of electricity generation that comes from renewables
+          - name: renewables_cons_change_pct
+            description: Annual percentage change in renewable energy consumption
+          - name: renewables_share_energy
+            description: Share of primary energy consumption that comes from renewables
+          - name: renewables_cons_change_twh
+            description: Annual change in renewable energy consumption, measured in terawatt-hours
+          - name: renewables_consumption
+            description: Primary energy consumption from renewables, measured in terawatt-hours
+          - name: renewables_energy_per_capita
+            description: Per capita primary energy consumption from renewables, measured in kilowatt-hours
+          - name: solar_share_elec
+            description: Share of electricity generation that comes from solar
+          - name: solar_cons_change_pct
+            description: Annual percentage change in solar consumption
+          - name: solar_share_energy
+            description: Share of primary energy consumption that comes from solar
+          - name: solar_cons_change_twh
+            description: Annual change in solar consumption, measured in terawatt-hours
+          - name: solar_consumption
+            description: Primary energy consumption from solar, measured in terawatt-hours
+          - name: solar_elec_per_capita
+            description: Per capita electricity generation from solar, measured in kilowatt-hours
+          - name: solar_energy_per_capita
+            description: Per capita primary energy consumption from solar, measured in kilowatt-hours
+          - name: gdp
+            description: Total real gross domestic product, inflation-adjusted,Maddison Project Database
+          - name: wind_share_elec
+            description: Share of electricity generation that comes from wind
+          - name: wind_cons_change_pct
+            description: Annual percentage change in wind consumption
+          - name: wind_share_energy
+            description: Share of primary energy consumption that comes from wind
+          - name: wind_cons_change_twh
+            description: Annual change in wind consumption, measured in terawatt-hours
+          - name: wind_consumption
+            description: Primary energy consumption from wind, measured in terawatt-hours
+          - name: wind_elec_per_capita
+            description: Per capita electricity generation from wind, measured in kilowatt-hours
+          - name: wind_energy_per_capita
+            description: Per capita primary energy consumption from wind, measured in kilowatt-hours
