@@ -5,8 +5,6 @@
    <h4 align="center"> Model Open Data collaboratively using dbt and DuckDB </h4>
 </p>
 
-[![CI](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml/badge.svg)](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml)
-
 ## What is Datadex?
 
 Datadex is a proof of concept project to explore how people could model Open Tabular Datasets using SQL.
