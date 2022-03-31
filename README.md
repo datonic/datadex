@@ -5,6 +5,8 @@
    <h4 align="center"> Model Open Data collaboratively using dbt and DuckDB </h4>
 </p>
 
+[![CI](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml/badge.svg)](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml)
+
 ## What is Datadex?
 
 Datadex is a proof of concept project to explore how people could model Open Tabular Datasets using SQL.
@@ -25,26 +27,25 @@ Datadex is a proof of concept project to explore how people could model Open Tab
 
 This gives us **versioned data models** that produce **versioned datasets** on IPFS. **All automated, all open source**.
 
-## What Works?
+## What can you do with Datadex?
 
-- Since DuckDB can read CSV/Parquet files. It's possible to query them directly with a view. That gives you something similar to streaming data. Say that something (Airbyte/Singer/Meltano) is writting parquet files every hour. You can query then like this: `select * from 'data/*.parquet';`.
-    - A similar thing could be done with a GitHub action crawling some data every hour and writting it to parquet files somewhere.
-- Have I mention a [ready to use DuckDB database is exported with each tag to IPFS](https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link/)? You can recreate the same database in any computer or browser by running `import database https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link`. Useful if you have complex views and want to start playing with them without having to copy paste a lot!
-- Every tagged release will push a new version of the database to IPFS, effectively versioning the data. A bit wasteful but might be useful if you want to keep track of all the changes and not break other projects reading from old versions.
-- All the other awesome dbt features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex). E.g: [`yellow_taxi_trips.sql` documentation](https://davidgasquez.github.io/datadex/#!/model/model.datadex.yellow_taxi_trips).
-- As the data is on IPFS... it should be possible to mint these datasets as NFT? Not saying is a great idea, but I feel there is something that can be done there to align incentives!
-- You can use Rill Developer as your IDE (locally or via Codespaces).
-![1648735748](https://user-images.githubusercontent.com/1682202/161080067-14da939f-3b2a-4fb3-b4ff-162c179959c4.png)
-- Oh! And is also possible to run visualizations on the parquet files in VSCode or Codespaces!
-![1648245902](https://user-images.githubusercontent.com/1682202/160208641-0cf3e7c5-6339-408c-a08a-b5d164d1ed64.png)
+- Model local and online datasets (`csv` or `parquet`) with `dbt`.
+- Push models as parquet or csv files to IPFS ([example](https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link/))
+- Generate a `schema.sql` with all the models as views. You can paste that on [DuckDB WASM online shell](https://shell.duckdb.org/) and start using the generated views.
+- Use any of the other awesome `dbt` features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex).
+- Run visualizations on the exported parquet files thanks to the [Data Preview VS Code extension](https://github.com/RandomFractals/vscode-data-preview).
+- Explore and query your models and DuckDB tables using [Rill Developer as your IDE](https://github.com/rilldata/rill-developer) (locally or via Codespaces).
+
+| ![1](https://user-images.githubusercontent.com/1682202/160208641-0cf3e7c5-6339-408c-a08a-b5d164d1ed64.png) | ![2](https://user-images.githubusercontent.com/1682202/161080067-14da939f-3b2a-4fb3-b4ff-162c179959c4.png) |
+| :---:        |     :---:      |
+| Data Preview Extension   | Rill Developer IDE     |
 
 ## Future
 
-- Figure out how to best handle and export bigger datasets (IPLD?).
-    - Also, if someone is not building on top of a large model, it doens't make sense to instantiate it locally.
-- Provide a clean URL for the versioned parquet files. Quering them should be easy. E.g: `select * from user.repo.ipfs.dweb/filename.parquet`.
-- Not sure how but would be awesome to have a way to list/explore all the datasets created this way and all their versions.
-- Have common packages like `dbt-countries` or `dbt-years` to enrich any datasets that have a `country_code` or `year` column.
+- Writting the exported `parquet` files to IPFS with each release is not very efficient. There might be smarter ways to handle bigger datasets (perhaps something on top of IPLD?).
+- Provide a clean URL for the versioned parquet files instead of the IPFS `cid`. Quering the remote models should be something simple like `select * from user.repo.ipfs.dweb/filename.parquet`.
+- Figure out a way to index datasets created this way and their versions.
+- Have common packages like `dbt-countries` or `dbt-years` to enrich datasets that have a `country_code` or `year` column.
 
 ## Setup
 
