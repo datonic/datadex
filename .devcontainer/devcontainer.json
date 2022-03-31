@@ -2,7 +2,7 @@
 	"name": "Datadex",
 	"build": {
 		"dockerfile": "../Dockerfile",
-		"context": "..",
+		"context": ".."
 	},
 	"settings": {
 		"files.associations": {
