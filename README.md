@@ -19,17 +19,19 @@ Datadex is a proof of concept project to explore how people could model Open Tab
 ## Usage
 
 1. Add the [relevant sources](models/sources.yml) to the project.
-2. Execute `dbt run` to build your models.
-3. Push changes to GitHub `main` branch and [a GitHub Action will trigger. It'll push the final database as a set of parquet files to IPFS](https://github.com/davidgasquez/datadex/actions/workflows/docs.yml).
-4. Query and share the data! E.g: you can use [DuckDB WASM online shell](https://shell.duckdb.org/) to query the models.
+2. Download `dbt` packages: `dbt deps`.
+3. Stage external sources: `dbt run-operation stage_external_sources`
+4. Execute `dbt run` to build your models.
+5. Push changes to GitHub `main` branch and [a GitHub Action will trigger. It'll push the final database as a set of parquet files to IPFS](https://github.com/davidgasquez/datadex/actions/workflows/docs.yml).
+6. Query and share the data! E.g: you can use [DuckDB WASM online shell](https://shell.duckdb.org/) to query the models.
 
 This gives us **versioned data models** that produce **versioned datasets** on IPFS. **All automated, all open source**.
 
 You can [query the `energy_yearly_averages.sql` model](https://github.com/davidgasquez/datadex/blob/main/models/energy_yearly_averages.sql) on IPFS with this query:
 
 ```sql
-select 
-   count(*) 
+select
+   count(*)
 from 'https://bafybeicpvjjjtl4x7yg46wbfjqde5v75wmggihqizxom76g7abkzi3nnia.ipfs.dweb.link/energy_yearly_averages.parquet';
 ```
 
@@ -45,8 +47,8 @@ The [entire DuckDB exported database](https://bafybeicpvjjjtl4x7yg46wbfjqde5v75w
 - Explore and query your models and DuckDB tables using [Rill Developer as your IDE](https://github.com/rilldata/rill-developer) (locally or via Codespaces).
 
 | ![1](https://user-images.githubusercontent.com/1682202/160208641-0cf3e7c5-6339-408c-a08a-b5d164d1ed64.png) | ![2](https://user-images.githubusercontent.com/1682202/161124461-68864cfd-eb3a-4e4b-92f7-869d6ebcdc04.png) |
-| :---:        |     :---:      |
-| Data Preview Extension   | Rill Developer IDE     |
+| :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
+|                                           Data Preview Extension                                           |                                             Rill Developer IDE                                             |
 
 ## Future
 
