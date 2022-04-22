@@ -8,7 +8,9 @@ RUN pip3 --disable-pip-version-check --no-cache-dir install duckdb dbt-duckdb \
 ENV DBT_PROFILES_DIR=/workspaces/datadex
 WORKDIR /workspaces/datadex
 
-RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && apt-get install -y nodejs
+USER vscode
+
+RUN curl -fsSL https://deb.nodesource.com/setup_current.x | sudo bash - && sudo apt-get install -y nodejs
 RUN git clone https://github.com/rilldata/rill-developer.git /home/vscode/rill-developer && cd /home/vscode/rill-developer && npm install && npm run build
 
 ENTRYPOINT "/bin/bash"
