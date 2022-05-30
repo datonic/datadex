@@ -1,6 +1,6 @@
 select
     year,
-    avg(gdp) as avg_gdp
+    avg(gdp) as avg_gdp,
     avg(electricity_generation) as avg_electricity_generation,
     avg(biofuel_electricity) as avg_biofuel_electricity,
     avg(coal_electricity) as avg_coal_electricity,
