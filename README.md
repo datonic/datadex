@@ -11,7 +11,7 @@ Datadex is a proof of concept project to explore how people could model Open Tab
 
 ### Features
 
-- Open Data Warehouse. Run fast OLAP queries across datasets from many places ([even from your browser](https://shell.duckdb.org/)).
+- Open Data Warehouse. Run fast OLAP queries across datasets from many places (laptop, EC2, Lamdba, ...).
 - Data as code. Version your SQL models and datasets.
 - Package management. Publish and share your models for other people to build on top of them!
 - Fully Open Source. Run everything locally.
@@ -19,11 +19,10 @@ Datadex is a proof of concept project to explore how people could model Open Tab
 ## Usage
 
 1. Add the [relevant sources](models/sources.yml) to the project.
-2. Download `dbt` packages: `dbt deps`.
-3. Stage external sources: `dbt run-operation stage_external_sources`
-4. Execute `dbt run` to build your models.
-5. Push changes to GitHub `main` branch and [a GitHub Action will trigger. It'll push the final database as a set of parquet files to IPFS](https://github.com/davidgasquez/datadex/actions/workflows/docs.yml).
-6. Query and share the data! E.g: you can use [DuckDB WASM online shell](https://shell.duckdb.org/) to query the models.
+1. Setup dependencies: `make deps`.
+1. Execute `dbt run` to build your models.
+1. Push changes to GitHub `main` branch and [a GitHub Action will trigger. It'll push the final database as a set of parquet files to IPFS](https://github.com/davidgasquez/datadex/actions/workflows/docs.yml).
+1. Query and share the data! E.g: you can use [DuckDB WASM online shell](https://shell.duckdb.org/) to query the models.
 
 This gives us **versioned data models** that produce **versioned datasets** on IPFS. **All automated, all open source**.
 
@@ -32,16 +31,15 @@ You can [query the `energy_yearly_averages.sql` model](https://github.com/davidg
 ```sql
 select
    count(*)
-from 'https://bafybeicpvjjjtl4x7yg46wbfjqde5v75wmggihqizxom76g7abkzi3nnia.ipfs.dweb.link/energy_yearly_averages.parquet';
+from 'https://bafybeieif2oj4qb4oipicjnfby555qurt4qkgy5zi57ijcsizqomfxs3gu.ipfs.dweb.link/energy_yearly_averages.parquet';
 ```
 
-The [entire DuckDB exported database](https://bafybeicpvjjjtl4x7yg46wbfjqde5v75wmggihqizxom76g7abkzi3nnia.ipfs.dweb.link/) is available on IPFS too!
+All [DuckDB tables are exported](https://bafybeieif2oj4qb4oipicjnfby555qurt4qkgy5zi57ijcsizqomfxs3gu.ipfs.dweb.link/) to IPFS as Parquet files too.
 
 ## What can you do with Datadex?
 
-- Model local and online datasets (`csv` or `parquet`) with `dbt`.
-- Push models as parquet or csv files to IPFS ([example](https://bafybeibeqezzvmxyesrub47hsacrnb3h6weghemwhlssegsvzhc7g3lere.ipfs.dweb.link/)).
-- Generate a `schema.sql` with all the models as views. You can paste that on [DuckDB WASM online shell](https://shell.duckdb.org/) and start using the generated views.
+- Model local and remote datasets (`csv` or `parquet`) with `dbt`.
+- Publish DuckDB database tables on IPFS ([example](https://bafybeieif2oj4qb4oipicjnfby555qurt4qkgy5zi57ijcsizqomfxs3gu.ipfs.dweb.link/)).
 - Use any of the other awesome `dbt` features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex).
 - Run visualizations on the exported parquet files thanks to the [Data Preview VS Code extension](https://github.com/RandomFractals/vscode-data-preview).
 - Explore and query your models and DuckDB tables using [Rill Developer as your IDE](https://github.com/rilldata/rill-developer) (locally or via Codespaces).
