@@ -5,3 +5,8 @@ deps:
 
 run:
 	@dbt run
+
+rill: run
+	@mkdir -p ~/rill
+	@rill init --project ~/rill --db target/local.db --copy
+	@rill start --project ~/rill
