@@ -22,7 +22,7 @@ Datadex is a proof of concept project to explore how people could model Open Tab
 1. Setup dependencies: `make deps`.
 1. Execute `dbt run` to build your models.
 1. Push changes to GitHub `main` branch and [a GitHub Action will trigger. It'll push the final database as a set of parquet files to IPFS](https://github.com/davidgasquez/datadex/actions/workflows/docs.yml).
-1. Query and share the data! E.g: you can use [DuckDB WASM online shell](https://shell.duckdb.org/) to query the models.
+1. Query and share the data! Locally, you can use Rill Developer (`make rill`). For remote data, you can use [DuckDB WASM online shell](https://shell.duckdb.org/).
 
 This gives us **versioned data models** that produce **versioned datasets** on IPFS. **All automated, all open source**.
 
