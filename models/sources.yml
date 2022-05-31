@@ -3,6 +3,9 @@ version: 2
 sources:
   - name: main
     tables:
+      - name: yellow_taxi_trips
+        external:
+          location: https://ba:cfybeiejgmdpwlfgo3dzfxfv3cn55qgnxmghyv7vcarqe3onmtzczohwaq.ipfs.dweb.link/0_yellow_taxi_trips.parquet
       - name: energy
         external:
           location: https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv

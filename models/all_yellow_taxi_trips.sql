@@ -1,0 +1,1 @@
+select * from {{ source('main', 'yellow_taxi_trips') }}:c
