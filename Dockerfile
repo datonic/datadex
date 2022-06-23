@@ -11,8 +11,9 @@ ENV DBT_PROFILES_DIR=/workspaces/datadex
 WORKDIR /workspaces/datadex
 
 # Install Rill Developer
-RUN curl -fsSL https://deb.nodesource.com/setup_current.x | sudo bash - && sudo apt-get install -y nodejs
-RUN npm install -g @rilldata/rill
+RUN wget https://github.com/rilldata/rill-developer/releases/download/v0.4.0/rill-linux-x64 && \
+    chmod +x rill-linux-x64 && \
+    mv rill-linux-x64 /usr/local/bin/rill
 
 # Setup IPFS
 RUN cd /tmp && wget https://dist.ipfs.io/go-ipfs/v0.12.2/go-ipfs_v0.12.2_linux-amd64.tar.gz \
