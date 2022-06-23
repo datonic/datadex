@@ -26,6 +26,7 @@ renamed as (
         total_amount,
         pickup_time,
         pickup_date,
+        timestamp_extract('dayofweek', pickup_date) as pickup_day_of_week
         dropoff_time,
         dropoff_date
     from source
