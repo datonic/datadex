@@ -6,9 +6,6 @@ sources:
       - name: yellow_taxi_trips
         external:
           location: https://raw.githubusercontent.com/pablobarbera/data-science-workshop/master/modeling-viz/taxi-trips.csv
-      # - name: local_gateway_large_parquet
-      #   external:
-      #     location: http://127.0.0.1:8080/ipfs/bafybeiejgmdpwlfgo3dzfxfv3cn55qgnxmghyv7vcarqe3onmtzczohwaq/0_yellow_taxi_trips.parquet
       - name: energy
         external:
           location: https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv
