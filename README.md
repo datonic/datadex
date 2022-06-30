@@ -2,12 +2,12 @@
    <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557212-c23c2bea-4179-4223-abfe-90f4a92e8aaa.png#gh-light-mode-only"/ width="400">
    <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557880-ebd4d53f-5ed8-40d2-b20c-7da90443f389.png#gh-dark-mode-only"/ width="400">
 
-   <h4 align="center"> Model Open Data collaboratively using dbt and DuckDB </h4>
+   <h4 align="center"> Model Open Data collaboratively using [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) </h4>
 </p>
 
 ## What is Datadex?
 
-Datadex is a proof of concept project to explore how people could model Open Tabular Datasets using SQL.
+Datadex is a proof of concept project to explore how people could model Open Tabular Datasets using SQL. Thanks to [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) you can transform data by simply writing select statements.
 
 ### Features
 
