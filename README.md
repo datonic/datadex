@@ -2,7 +2,7 @@
    <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557212-c23c2bea-4179-4223-abfe-90f4a92e8aaa.png#gh-light-mode-only"/ width="400">
    <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557880-ebd4d53f-5ed8-40d2-b20c-7da90443f389.png#gh-dark-mode-only"/ width="400">
 
-   <h4 align="center"> Model Open Data collaboratively using [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) </h4>
+   <h4 align="center"> Model Open Data collaboratively using <a href="https://docs.getdbt.com/docs/introduction">dbt</a> and <a href="https://duckdb.org">DuckDB</a> </h4>
 </p>
 
 ## What is Datadex?
