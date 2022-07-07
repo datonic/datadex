@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/python:3.9
 RUN apt-get update && apt-get install -y nodejs npm g++
 
 # Install dbt
-RUN pip3 --disable-pip-version-check --no-cache-dir install duckdb==0.3.4 dbt-duckdb \
+RUN pip3 --disable-pip-version-check --no-cache-dir install duckdb==0.4.0 dbt-duckdb==1.1.4 \
     && rm -rf /tmp/pip-tmp
 
 # Configure Workspace
@@ -11,7 +11,7 @@ ENV DBT_PROFILES_DIR=/workspaces/datadex
 WORKDIR /workspaces/datadex
 
 # Install Rill Developer
-RUN wget https://github.com/rilldata/rill-developer/releases/download/v0.4.0/rill-linux-x64 && \
+RUN wget https://github.com/rilldata/rill-developer/releases/download/v0.5.0/rill-linux-x64 && \
     chmod +x rill-linux-x64 && \
     mv rill-linux-x64 /usr/local/bin/rill
 
