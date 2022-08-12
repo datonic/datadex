@@ -1,3 +1,7 @@
+.DEFAULT_GOAL := run
+
+IMAGE_NAME := davidgasquez/datadex:v0.3.0
+
 deps:
 	@dbt clean
 	@dbt deps
@@ -13,3 +17,9 @@ rill: run
 	@mkdir -p ~/rill
 	@rill init --project ~/rill --db target/local.db
 	@rill start --project ~/rill
+
+build:
+	docker build -t $(IMAGE_NAME) .
+
+push:
+	docker push $(IMAGE_NAME)
