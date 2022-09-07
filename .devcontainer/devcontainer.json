@@ -1,29 +1,28 @@
 {
-	"name": "Datadex",
-	"build": {
-		"dockerfile": "../Dockerfile",
-		"context": ".."
-	},
-	"settings": {
-		"files.associations": {
-			"*.sql": "jinja-sql"
-		}
-	},
-	"extensions": [
-		"ms-python.python",
-		"ms-python.vscode-pylance",
-		"editorconfig.editorconfig",
-		"samuelcolvin.jinjahtml",
-		"redhat.vscode-yaml",
-		"innoverio.vscode-dbt-power-user",
-		"github.vscode-pull-request-github",
-		"eamodio.gitlens",
-		"seatonjiang.gitmoji-vscode",
-		"GitHub.copilot",
-		"visualstudioexptteam.vscodeintellicode",
-		"bastienboutonnet.vscode-dbt",
-		"RandomFractalsInc.vscode-data-preview"
-	],
-	"remoteUser": "vscode",
-	"containerUser": "vscode"
+    "name": "Datadex",
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "context": ".."
+    },
+    "settings": {
+        "files.associations": {
+            "*.sql": "jinja-sql"
+        }
+    },
+    "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "EditorConfig.EditorConfig",
+        "samuelcolvin.jinjahtml",
+        "redhat.vscode-yaml",
+        "innoverio.vscode-dbt-power-user",
+        "github.vscode-pull-request-github",
+        "eamodio.gitlens",
+        "GitHub.copilot",
+        "visualstudioexptteam.vscodeintellicode",
+        "bastienboutonnet.vscode-dbt",
+        "vivaxy.vscode-conventional-commits"
+    ],
+    "remoteUser": "vscode",
+    "containerUser": "vscode"
 }
