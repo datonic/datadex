@@ -2,15 +2,14 @@
 
 IMAGE_NAME := davidgasquez/datadex:v0.3.0
 
-deps:
-	@dbt clean
+deps: clean
 	@dbt deps
 	@dbt run-operation stage_external_sources
 
-run: deps
+run:
 	@dbt run
 
-clean: deps
+clean:
 	@dbt clean
 
 rill: run
