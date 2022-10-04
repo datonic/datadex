@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/python:3.10
 RUN apt-get update && apt-get install -y nodejs npm g++
 
 # Install dbt
-RUN pip3 --disable-pip-version-check --no-cache-dir install duckdb==0.5.0 dbt-duckdb==1.2.0 \
+RUN pip3 --disable-pip-version-check --no-cache-dir install duckdb==0.5.0 dbt-duckdb==1.2.1 \
     && rm -rf /tmp/pip-tmp
 
 # Install duckdb cli

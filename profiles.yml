@@ -3,7 +3,7 @@ default:
     dev:
       type: duckdb
       path: target/local.db
-      threads: 1
+      threads: 8
 
   target: dev
 
