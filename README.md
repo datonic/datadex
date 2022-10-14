@@ -26,7 +26,7 @@ This is an example of how you can use Datadex to model data. Is already configur
 ## What can you do with Datadex?
 
 - Model local and remote datasets (`csv` or `parquet`) with `dbt`.
-- Use any of the other awesome `dbt` features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex).                       |
+- Use any of the other awesome `dbt` features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex).
 
 ## Setup
 
