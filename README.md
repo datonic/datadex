@@ -40,7 +40,7 @@ PS: The development environment can also run in your browser thanks to GitHub Co
 
 ## Motivation
 
-This small project was created after [thinking how an Open Data Protocol could look like](https://publish.obsidian.md/davidgasquez/Open+Data+Protocol)! I just wanted to stitch together a few open source technologies and see what could they do.
+This small project was created after [thinking how an Open Data Protocol could look like](https://publish.obsidian.md/davidgasquez/Open+Data)! I just wanted to stitch together a few open source technologies and see what could they do.
 
 ## Acknowledgements
 
