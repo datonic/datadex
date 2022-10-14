@@ -14,7 +14,7 @@ clean:
 
 rill: run
 	@mkdir -p ~/rill
-	@rill init --project ~/rill --db target/local.db
+	@rill init --project ~/rill
 	@rill start --project ~/rill
 
 build:

@@ -2,8 +2,8 @@ name: CI
 
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - main
 
 jobs:
   docs:
@@ -31,11 +31,3 @@ jobs:
         with:
           branch: gh-pages
           folder: docs
-      - run: mv target/*.db database
-      - name: Upload to IPFS
-        uses: web3-storage/add-to-web3@v2
-        id: web3
-        with:
-          web3_token: ${{ secrets.WEB3_STORAGE_TOKEN }}
-          path_to_add: "database"
-      - run: echo ${{ steps.web3.outputs.url }}

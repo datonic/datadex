@@ -4,26 +4,30 @@
         "dockerfile": "../Dockerfile",
         "context": ".."
     },
-    "settings": {
-        "files.associations": {
-            "*.sql": "jinja-sql"
-        },
-        "dbt.profilesDirOverride": "/workspaces/datadex/"
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "files.associations": {
+                    "*.sql": "jinja-sql"
+                },
+                "dbt.profilesDirOverride": "/workspaces/datadex/"
+            },
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "EditorConfig.EditorConfig",
+                "samuelcolvin.jinjahtml",
+                "redhat.vscode-yaml",
+                "innoverio.vscode-dbt-power-user",
+                "github.vscode-pull-request-github",
+                "eamodio.gitlens",
+                "GitHub.copilot",
+                "visualstudioexptteam.vscodeintellicode",
+                "bastienboutonnet.vscode-dbt",
+                "vivaxy.vscode-conventional-commits"
+            ]
+        }
     },
-    "extensions": [
-        "ms-python.python",
-        "ms-python.vscode-pylance",
-        "EditorConfig.EditorConfig",
-        "samuelcolvin.jinjahtml",
-        "redhat.vscode-yaml",
-        "innoverio.vscode-dbt-power-user",
-        "github.vscode-pull-request-github",
-        "eamodio.gitlens",
-        "GitHub.copilot",
-        "visualstudioexptteam.vscodeintellicode",
-        "bastienboutonnet.vscode-dbt",
-        "vivaxy.vscode-conventional-commits"
-    ],
     "remoteUser": "vscode",
     "containerUser": "vscode"
 }
