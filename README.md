@@ -23,6 +23,8 @@ This is an example of how you can use Datadex to model data. Is already configur
 1. Build your dbt models and save them to Parquet files with `make run`.
 1. Explore the data with `make rill`.
 
+![rill](https://user-images.githubusercontent.com/1682202/195888267-ab119222-9269-4e00-98a9-8cf3a6405252.png)
+
 ## What can you do with Datadex?
 
 - Model local and remote datasets (`csv` or `parquet`) with `dbt`.
