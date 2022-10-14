@@ -30,6 +30,8 @@ This is an example of how you can use Datadex to model data. Is already configur
 - Model local and remote datasets (`csv` or `parquet`) with `dbt`.
 - Use any of the other awesome `dbt` features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex).
 
+![docs](https://user-images.githubusercontent.com/1682202/195890290-a27498dd-1d7b-4613-ba9a-4848fb3001be.png)
+
 ## Setup
 
 The fastest way to start using Datadex is via [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers). Once inside the develpment environment, you'll only need to run `make deps`.
