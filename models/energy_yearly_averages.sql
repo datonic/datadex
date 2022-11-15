@@ -14,6 +14,6 @@ select
     avg(wind_electricity) as avg_wind_electricity,
     avg(energy_per_gdp) as avg_energy_per_gdp,
     avg(energy_per_capita) as avg_energy_per_capita,
-from {{ source('main', 'energy') }}
+from {{ source('github', 'energy') }}
 group by 1
 order by 1 desc

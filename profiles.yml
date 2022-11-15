@@ -4,7 +4,10 @@ default:
       type: duckdb
       path: target/local.db
       threads: 8
-
+      extensions:
+        - httpfs
+        - parquet
+      external_root: ./target/
   target: dev
 
 config:

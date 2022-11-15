@@ -1,10 +1,9 @@
 .DEFAULT_GOAL := run
 
-IMAGE_NAME := davidgasquez/datadex:v0.3.0
+IMAGE_NAME := davidgasquez/datadex:v0.4.0
 
 deps: clean
 	@dbt deps
-	@dbt run-operation stage_external_sources
 
 run:
 	@dbt run

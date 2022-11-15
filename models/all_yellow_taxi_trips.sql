@@ -1,6 +1,6 @@
 with source as (
 
-    select * from {{ source('main', 'yellow_taxi_trips') }}
+    select * from {{ source('github', 'yellow_taxi_trips') }}
 
 ),
 

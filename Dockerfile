@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y nodejs npm g++
 
 # Install dbt
 RUN pip3 --disable-pip-version-check --no-cache-dir install \
-    duckdb==0.5.1 dbt-duckdb==1.2.2 dbt-osmosis==0.7.16 \
+    duckdb==0.5.1 dbt-duckdb==1.3.1 dbt-osmosis==0.9.7 \
     && rm -rf /tmp/pip-tmp
 
 # Configure Workspace
