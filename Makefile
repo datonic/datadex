@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := run
 
-IMAGE_NAME := davidgasquez/datadex:v0.4.0
+IMAGE_NAME := davidgasquez/datadex:v0.5.0
 
 deps: clean
 	@dbt deps
