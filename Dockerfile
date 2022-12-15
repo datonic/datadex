@@ -12,4 +12,7 @@ WORKDIR /workspaces/datadex
 ENV DBT_PROFILES_DIR=/workspaces/datadex
 
 # Install Rill Developer
-RUN curl -s https://cdn.rilldata.com/install.sh | bash
+RUN wget https://github.com/rilldata/rill-developer/releases/download/v0.16.0/rill_linux_amd64.zip -O /tmp/rill_linux_amd64.zip \
+    && unzip /tmp/rill_linux_amd64.zip rill -d /usr/local/bin \
+    && chmod +x /usr/local/bin/rill \
+    && rm /tmp/rill_linux_amd64.zip
