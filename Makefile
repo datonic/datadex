@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := run
 
-IMAGE_NAME := davidgasquez/datadex:v0.5.1
+IMAGE_NAME := davidgasquez/datadex:v0.5.5
 
 deps: clean
 	@dbt deps
@@ -12,7 +12,6 @@ clean:
 	@dbt clean
 
 rill: run
-	@rill init --project rill
 	@rill start --project rill
 
 build:

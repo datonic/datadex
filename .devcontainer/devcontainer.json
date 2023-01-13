@@ -15,19 +15,21 @@
             "extensions": [
                 "ms-python.python",
                 "ms-python.vscode-pylance",
-                "EditorConfig.EditorConfig",
                 "samuelcolvin.jinjahtml",
                 "redhat.vscode-yaml",
                 "innoverio.vscode-dbt-power-user",
-                "github.vscode-pull-request-github",
-                "eamodio.gitlens",
-                "GitHub.copilot",
                 "visualstudioexptteam.vscodeintellicode",
-                "bastienboutonnet.vscode-dbt",
-                "vivaxy.vscode-conventional-commits"
+                "bastienboutonnet.vscode-dbt"
             ]
         }
     },
+    "features": {
+        "ghcr.io/stuartleeks/dev-container-features/shell-history:latest": {}
+    },
     "remoteUser": "vscode",
-    "containerUser": "vscode"
+    "portsAttributes": {
+        "9009": {
+            "label": "Rill"
+        }
+    }
 }

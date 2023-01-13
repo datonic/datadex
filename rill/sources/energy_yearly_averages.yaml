@@ -1,0 +1,4 @@
+# Visit https://docs.rilldata.com/ to learn more about Rill code artifacts.
+
+type: "local_file"
+path: "../target/energy_yearly_averages.parquet"
