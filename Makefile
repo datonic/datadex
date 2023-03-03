@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := run
 
-IMAGE_NAME := davidgasquez/datadex:v0.6.0
+IMAGE_NAME := davidgasquez/datadex:v0.7.0
 
 deps: clean
 	@dbt deps
@@ -15,7 +15,7 @@ rill: run
 	@rill start --project rill
 
 build:
-	docker build -t $(IMAGE_NAME) .
+	docker build --no-cache -t $(IMAGE_NAME) .
 
 push:
 	docker push $(IMAGE_NAME)
