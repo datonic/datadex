@@ -9,3 +9,14 @@ sources:
       - name: energy
         meta:
           external_location: https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv
+  - name: carbon_intensity
+    tables:
+      - name: entry
+        meta:
+          external_location: read_json_auto("output/carbon_intensity/entry-*.jsonl")
+      - name: generationmix
+        meta:
+          external_location: read_json_auto("output/carbon_intensity/generationmix-*.jsonl")
+      - name: region
+        meta:
+          external_location: read_json_auto("output/carbon_intensity/region-*.jsonl")

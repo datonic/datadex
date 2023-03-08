@@ -135,3 +135,4 @@ logs/
 # Local data
 database
 seeds/*.csv
+.alto/
