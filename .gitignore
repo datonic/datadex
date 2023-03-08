@@ -136,3 +136,7 @@ logs/
 database
 seeds/*.csv
 .alto/
+
+# Can remove this if you want
+# to version control data
+output/
