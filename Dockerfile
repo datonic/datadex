@@ -2,6 +2,9 @@ FROM mcr.microsoft.com/devcontainers/python:3.10
 
 RUN apt-get update && apt-get install -y make
 
+# Install npm
+RUN su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install 16 2>&1"
+
 # Install dbt
 RUN pip3 --disable-pip-version-check --no-cache-dir install \
     duckdb==0.7.1 dbt-duckdb==1.4.0 dbt-osmosis==0.9.8 \
