@@ -14,6 +14,10 @@ clean:
 rill:
 	@rill start --project rill
 
+evidence: run
+	@npm --prefix ./reports install
+	@npm --prefix ./reports run dev
+
 build:
 	docker build --no-cache -t $(IMAGE_NAME) .
 
