@@ -5,13 +5,13 @@ IMAGE_NAME := davidgasquez/datadex:v0.7.1
 deps: clean
 	@dbt deps
 
-run:
+run: deps
 	@dbt run
 
 clean:
-	@dbt clean
+	@git clean -fdx
 
-rill: run
+rill:
 	@rill start --project rill
 
 build:

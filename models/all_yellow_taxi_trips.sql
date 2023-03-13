@@ -1,11 +1,8 @@
 with source as (
-
     select * from {{ source('github', 'yellow_taxi_trips') }}
-
 ),
 
 renamed as (
-
     select
         vendorid as vendor_id,
         passenger_count,
@@ -13,7 +10,6 @@ renamed as (
         pickup_longitude,
         pickup_latitude,
         ratecodeid as ratecode_id,
-        store_and_fwd_flag,
         dropoff_longitude,
         dropoff_latitude,
         payment_type,
@@ -29,7 +25,6 @@ renamed as (
         dropoff_time,
         dropoff_date
     from source
-
 )
 
 select * from renamed
