@@ -1,6 +1,8 @@
 .evidence/template
+!.evidence/template/evidence.settings.json
 .svelte-kit
 build
+package-lock.json
 node_modules
 .DS_Store
 
