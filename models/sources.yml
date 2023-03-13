@@ -9,3 +9,7 @@ sources:
       - name: energy
         meta:
           external_location: https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv
+      - name: co2_trend_gl
+        alias: co2_trend
+        meta:
+          external_location: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv
