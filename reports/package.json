@@ -1,5 +1,5 @@
 {
-    "name": "my-evidence-project",
+    "name": "datadex-evidence",
     "version": "0.0.1",
     "scripts": {
         "build": "evidence build",
