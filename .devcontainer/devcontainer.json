@@ -19,7 +19,8 @@
                 "redhat.vscode-yaml",
                 "innoverio.vscode-dbt-power-user",
                 "visualstudioexptteam.vscodeintellicode",
-                "bastienboutonnet.vscode-dbt"
+                "bastienboutonnet.vscode-dbt",
+                "RandomFractalsInc.vscode-data-preview"
             ]
         }
     },
