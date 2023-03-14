@@ -9,7 +9,7 @@ sources:
       - name: energy
         meta:
           external_location: https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv
-      - name: co2_trend_gl
-        alias: co2_trend
+      - name: co2_global_trend
+        description: "Trends in Atmospheric Carbon Dioxide"
         meta:
           external_location: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv

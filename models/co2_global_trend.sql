@@ -1,5 +1,5 @@
 with source as (
-      select * from {{ source('github', 'co2_trend_gl') }}
+      select * from {{ source('github', 'co2_global_trend') }}
 ),
 
 renamed as (
