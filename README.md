@@ -7,7 +7,7 @@
 
 ## What is Datadex?
 
-Datadex is a proof of concept project to explore how people could model Open Tabular Datasets using SQL. Thanks to [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) you can transform data by simply writing select statements or import someone else's model and build on it!
+Datadex is a proof of concept project to explore how people could collaborate on Open Data using the principles and tooling from the Modern Data Stack. Using tools like [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) you can transform data by simply writing select statements or import someone else's model and build on top of it!
 
 ### Features
 
