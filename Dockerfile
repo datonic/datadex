@@ -7,7 +7,7 @@ RUN su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install 16 
 
 # Install dbt
 RUN pip3 --disable-pip-version-check --no-cache-dir install \
-    duckdb==0.7.1 dbt-duckdb==1.4.0 dbt-osmosis==0.9.8 \
+    duckdb==0.7.1 dbt-duckdb==1.4.1 dbt-osmosis==0.9.8 \
     && rm -rf /tmp/pip-tmp
 
 # Configure Workspace
