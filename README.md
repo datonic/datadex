@@ -13,7 +13,7 @@ Datadex explores how people could collaborate on Open Data using the principles 
 
 - **Modular**: Each tool can be replaced and extended (adapters). Works well in many environments.
 - **Flexible**. Run it from your laptop, in a cluster, or from the browser.
-- **Data as code**. Version your data as code thanks to `dbt`! Publish and share your models for other people to build on top of them.
+- **Data as Code**. Version your data as code thanks to `dbt`! Publish and share your models for other people to build on top of them.
 
 ## 💻 Usage
 
