@@ -10,17 +10,21 @@
                 "files.associations": {
                     "*.sql": "jinja-sql"
                 },
-                "dbt.profilesDirOverride": "/workspaces/datadex/"
+                "dbt.profilesDirOverride": "/workspaces/datadex/",
+                "python.analysis.typeCheckingMode": "basic"
             },
             "extensions": [
+                "bastienboutonnet.vscode-dbt",
+                "charliermarsh.ruff",
+                "dorzey.vscode-sqlfluff",
+                "EditorConfig.EditorConfig",
+                "innoverio.vscode-dbt-power-user",
                 "ms-python.python",
                 "ms-python.vscode-pylance",
-                "samuelcolvin.jinjahtml",
+                "RandomFractalsInc.vscode-data-preview",
                 "redhat.vscode-yaml",
-                "innoverio.vscode-dbt-power-user",
-                "visualstudioexptteam.vscodeintellicode",
-                "bastienboutonnet.vscode-dbt",
-                "RandomFractalsInc.vscode-data-preview"
+                "samuelcolvin.jinjahtml",
+                "visualstudioexptteam.vscodeintellicode"
             ]
         }
     },
