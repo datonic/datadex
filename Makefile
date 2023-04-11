@@ -1,25 +1,25 @@
 .DEFAULT_GOAL := run
 
-IMAGE_NAME := davidgasquez/datadex:v0.7.1
+IMAGE_NAME := davidgasquez/datadex:v0.8.0
 
 deps: clean
-	@dbt deps
+	@cd dbt && dbt deps
 
 run: deps
-	@dbt run
+	@dagster asset materialize -m datadex --select "*"
 
 clean:
-	@git clean -fdx
+	@cd dbt && dbt clean
 
 rill:
-	@rill start --project rill
+	@rill start --project ~/rill
 
 evidence: run
 	@npm --prefix ./reports install
 	@npm --prefix ./reports run dev
 
 build:
-	docker build -t $(IMAGE_NAME) -t davidgasquez/datadex:latest .
+	docker build -t $(IMAGE_NAME) .
 
 push:
 	docker push $(IMAGE_NAME)

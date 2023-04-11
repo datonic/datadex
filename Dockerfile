@@ -1,18 +1,21 @@
 FROM mcr.microsoft.com/devcontainers/python:3.10
 
-RUN apt-get update && apt-get install -y make
+# Install system dependencies
+RUN apt-get update && apt-get -y install --no-install-recommends \
+    build-essential
 
-# Install dbt
-RUN pip3 --disable-pip-version-check --no-cache-dir install \
-    duckdb==0.7.1 dbt-duckdb==1.4.1 dbt-osmosis==0.11.17 \
-    && rm -rf /tmp/pip-tmp
+# Install npm
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y nodejs
 
 # Configure Workspace
 WORKDIR /workspaces/datadex
-ENV DBT_PROFILES_DIR=/workspaces/datadex
+ENV DBT_PROFILES_DIR=/workspaces/datadex/dbt
+ENV DAGSTER_HOME=/home/vscode/
+
+# Install Python Dependencies
+COPY . /workspaces/datadex
+RUN pip install -e ".[dev]"
 
 # Install Rill Developer
-RUN wget https://github.com/rilldata/rill-developer/releases/download/v0.23.1/rill_linux_amd64.zip -O /tmp/rill_linux_amd64.zip \
-    && unzip /tmp/rill_linux_amd64.zip rill -d /usr/local/bin \
-    && chmod +x /usr/local/bin/rill \
-    && rm /tmp/rill_linux_amd64.zip
+RUN curl -s https://cdn.rilldata.com/install.sh | bash
