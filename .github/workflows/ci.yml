@@ -13,15 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build Docker
-        run: docker build -t dbt .
+        run: make build
       - name: Get Dependencies
-        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt deps
+        run: docker run -t -v $PWD/:/workspaces/datadex/ davidgasquez/datadex:latest make deps
       - name: Run dbt
-        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt run
-      - name: Run dbt tests
-        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt test
+        run: docker run -t -v $PWD/:/workspaces/datadex/ davidgasquez/datadex:latest make run
       - name: Generate Docs
-        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt docs generate
+        run: docker run -t -v $PWD/:/workspaces/datadex/ davidgasquez/datadex:latest dbt docs generate --project-dir dbt
       - run: mkdir -p docs
       - run: cp target/*.json target/index.html target/graph.gpickle docs/
       - name: Publish Docs

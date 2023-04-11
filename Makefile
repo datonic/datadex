@@ -19,7 +19,7 @@ evidence: run
 	@npm --prefix ./reports run dev
 
 build:
-	docker build --no-cache -t $(IMAGE_NAME) .
+	docker build -t $(IMAGE_NAME) -t davidgasquez/datadex:latest .
 
 push:
 	docker push $(IMAGE_NAME)
