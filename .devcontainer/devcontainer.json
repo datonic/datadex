@@ -15,7 +15,6 @@
             "extensions": [
                 "bastienboutonnet.vscode-dbt",
                 "charliermarsh.ruff",
-                "dorzey.vscode-sqlfluff",
                 "EditorConfig.EditorConfig",
                 "innoverio.vscode-dbt-power-user",
                 "ms-python.python",
