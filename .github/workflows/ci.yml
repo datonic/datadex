@@ -15,15 +15,15 @@ jobs:
       - name: Build Docker
         run: docker build -t dbt .
       - name: Get Dependencies
-        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt deps
+        run: docker run -t --entrypoint dbt -v $PWD/dbt:/workspaces/datadex/dbt dbt deps
       - name: Run dbt
-        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt run
+        run: docker run -t --entrypoint dbt -v $PWD/dbt:/workspaces/datadex/dbt dbt run
       - name: Run dbt tests
-        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt test
+        run: docker run -t --entrypoint dbt -v $PWD/dbt:/workspaces/datadex/dbt dbt test
       - name: Generate Docs
-        run: docker run -t --entrypoint dbt -v $PWD:/workspaces/datadex dbt docs generate
+        run: docker run -t --entrypoint dbt -v $PWD/dbt:/workspaces/datadex/dbt dbt docs generate
       - run: mkdir -p docs
-      - run: cp target/*.json target/index.html target/graph.gpickle docs/
+      - run: cp dbt/target/*.json dbt/target/index.html target/graph.gpickle docs/
       - name: Publish Docs
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:

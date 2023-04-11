@@ -133,5 +133,6 @@ dbt_packages/
 logs/
 
 # Local data
-database
-seeds/*.csv
+!data/.gitkeep
+data/*.csv
+data/*.parquet

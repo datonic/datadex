@@ -10,7 +10,6 @@
                 "files.associations": {
                     "*.sql": "jinja-sql"
                 },
-                "dbt.profilesDirOverride": "/workspaces/datadex/",
                 "python.analysis.typeCheckingMode": "basic"
             },
             "extensions": [

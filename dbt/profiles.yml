@@ -7,7 +7,7 @@ default:
       extensions:
         - httpfs
         - parquet
-      external_root: ./target/
+      external_root: ../data/
   target: dev
 
 config:
