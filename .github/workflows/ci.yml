@@ -21,7 +21,7 @@ jobs:
       - name: Generate Docs
         run: docker run -t -v $PWD/:/workspaces/datadex/ davidgasquez/datadex:latest dbt docs generate --project-dir dbt
       - run: mkdir -p docs
-      - run: cp dbt/target/*.json dbt/target/index.html target/graph.gpickle docs/
+      - run: cp dbt/target/*.json dbt/target/index.html dbt/target/graph.gpickle docs/
       - name: Publish Docs
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
