@@ -13,8 +13,3 @@ sources:
         description: "Trends in Atmospheric Carbon Dioxide"
         meta:
           external_location: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv
-  - name: ethereum
-    tables:
-      - name: blocks
-        meta:
-          external_location: "parquet_scan('s3://aws-public-blockchain/v1.0/eth/blocks/*.parquet', HIVE_PARTITIONING=1)"

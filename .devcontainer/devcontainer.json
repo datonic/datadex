@@ -22,7 +22,8 @@
                 "RandomFractalsInc.vscode-data-preview",
                 "redhat.vscode-yaml",
                 "samuelcolvin.jinjahtml",
-                "visualstudioexptteam.vscodeintellicode"
+                "visualstudioexptteam.vscodeintellicode",
+                "tamasfe.even-better-toml"
             ]
         }
     },
@@ -31,8 +32,8 @@
     },
     "remoteUser": "vscode",
     "portsAttributes": {
-        "9009": {
-            "label": "Rill"
+        "3000": {
+            "label": "Dagster"
         }
     }
 }

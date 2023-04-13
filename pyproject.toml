@@ -1,6 +1,28 @@
+[project]
+name = "datadex"
+version = "0.1.0"
+dependencies = [
+    "dagster",
+    "dbt-core",
+    "dagster_dbt",
+    "duckdb",
+    "dbt-duckdb",
+    "dbt-osmosis",
+    "frictionless",
+]
+requires-python = ">=3.10, <3.12"
+readme = "README.md"
+license = { text = "MIT" }
+
+[project.optional-dependencies]
+dev = ["dagit"]
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["datadex"]
 
 [tool.dagster]
 module_name = "datadex"

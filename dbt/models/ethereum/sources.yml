@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: ethereum
+    tables:
+      - name: blocks
+        meta:
+          external_location: "parquet_scan('s3://aws-public-blockchain/v1.0/eth/blocks/*.parquet', HIVE_PARTITIONING=1)"
