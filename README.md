@@ -14,8 +14,8 @@ Datadex explores how people could collaborate on Open Data using the principles 
 - **Open**: Play well with the rest of the ecosystem.
 - **Modular**: Each tool can be replaced and extended (adapters). Works well in many environments.
 - **Flexible**. Run it from your laptop, in a cluster, or from the browser.
-- **Data as Code**. Version your data as code thanks to `dbt`! Publish and share your models for other people to build on top of them.
-- **Modern**: Supports types, tests, materialized views, and more.
+- **Data as Code**. Version your data as code thanks to `dbt`! Publish and share your models for other people to build on top of them. Data, reproducible and accessible!
+- **Modern**: Supports types, tests, materialized views, and more. Don't build new tools to work with Open Data, build bridges with the existing ones.
 
 ## 💻 Usage
 
