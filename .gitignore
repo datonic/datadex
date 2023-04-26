@@ -136,3 +136,4 @@ logs/
 !data/.gitkeep
 data/*.csv
 data/*.parquet
+data/*.db*
