@@ -23,7 +23,8 @@
                 "redhat.vscode-yaml",
                 "samuelcolvin.jinjahtml",
                 "visualstudioexptteam.vscodeintellicode",
-                "tamasfe.even-better-toml"
+                "tamasfe.even-better-toml",
+                "ms-python.isort"
             ]
         }
     },

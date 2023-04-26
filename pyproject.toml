@@ -8,7 +8,7 @@ dependencies = [
     "duckdb",
     "dbt-duckdb",
     "dbt-osmosis",
-    "frictionless",
+    "pyarrow",
 ]
 requires-python = ">=3.10, <3.12"
 readme = "README.md"
