@@ -1,15 +1,15 @@
 version: 2
 
 sources:
-  - name: github
+  - name: web
     tables:
-      - name: yellow_taxi_trips
-        meta:
-          external_location: https://raw.githubusercontent.com/pablobarbera/data-science-workshop/master/modeling-viz/taxi-trips.csv
       - name: energy
+        description: Key energy metrics maintained by Our World in Data
         meta:
+          source: https://ourworldindata.org/energy
           external_location: https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv
       - name: co2_global_trend
-        description: "Trends in Atmospheric Carbon Dioxide"
+        description: Trends in Atmospheric Carbon Dioxide
         meta:
+          source: https://gml.noaa.gov
           external_location: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv

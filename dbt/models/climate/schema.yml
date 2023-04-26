@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: energy_yearly_averages
-    description: "Yearly Energy Averages."
+    description: Yearly Energy Averages.
     columns:
       - name: year
         description: "Year"
