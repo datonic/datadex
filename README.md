@@ -4,7 +4,7 @@
 
   <h4 align="center"> Collaborate on Open Data using moderns tools like <a href="https://docs.getdbt.com/docs/introduction">dbt</a> and <a href="https://duckdb.org">DuckDB</a> </h4>
 
-  <div style="text-align: center;">
+  <div align="center">
     <a href='https://codespaces.new/davidgasquez/datadex'><img src='https://github.com/codespaces/badge.svg' alt='Open in GitHub Codespaces' style='max-width: 100%;'></a>
     <a href="https://github.com/davidgasquez/datadex/actions/workflows/ci.yml"><img src="https://github.com/davidgasquez/datadex/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   </div>
