@@ -1,7 +1,11 @@
 from dagster import Definitions
+from dagster import load_assets_from_modules
 
 from dagster_dbt import dbt_cli_resource
 from dagster_dbt import load_assets_from_dbt_project
+from . import assets
+
+all_custom_assets = load_assets_from_modules([assets])
 
 DBT_PROJECT_DIR = "dbt/"
 
@@ -15,4 +19,4 @@ resources = {
     "dbt": dbt_resource,
 }
 
-defs = Definitions(assets=[*dbt_assets], resources=resources)
+defs = Definitions(assets=[*dbt_assets, *all_custom_assets], resources=resources)

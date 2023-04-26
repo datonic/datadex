@@ -7,6 +7,7 @@ default:
       extensions:
         - httpfs
         - parquet
+        - sqlite_scanner
       external_root: ../data/
   target: dev
 
