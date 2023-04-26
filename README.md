@@ -1,8 +1,13 @@
 <p align="center">
-   <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557212-c23c2bea-4179-4223-abfe-90f4a92e8aaa.png#gh-light-mode-only"/ width="400">
-   <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557880-ebd4d53f-5ed8-40d2-b20c-7da90443f389.png#gh-dark-mode-only"/ width="400">
+  <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557212-c23c2bea-4179-4223-abfe-90f4a92e8aaa.png#gh-light-mode-only"/ width="400">
+  <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557880-ebd4d53f-5ed8-40d2-b20c-7da90443f389.png#gh-dark-mode-only"/ width="400">
 
-   <h4 align="center"> Collaborate on Open Data using moderns tools like <a href="https://docs.getdbt.com/docs/introduction">dbt</a> and <a href="https://duckdb.org">DuckDB</a> </h4>
+  <h4 align="center"> Collaborate on Open Data using moderns tools like <a href="https://docs.getdbt.com/docs/introduction">dbt</a> and <a href="https://duckdb.org">DuckDB</a> </h4>
+
+  <div style="text-align: center;">
+    <a href='https://codespaces.new/davidgasquez/datadex'><img src='https://github.com/codespaces/badge.svg' alt='Open in GitHub Codespaces' style='max-width: 100%;'></a>
+    <a href="https://github.com/davidgasquez/datadex/actions/workflows/ci.yml"><img src="https://github.com/davidgasquez/datadex/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  </div>
 </p>
 
 ## 🤔 What is Datadex?
