@@ -6,6 +6,7 @@
 
   <div align="center">
     <a href='https://codespaces.new/davidgasquez/datadex'><img src='https://github.com/codespaces/badge.svg' alt='Open in GitHub Codespaces' style='max-width: 100%;'></a>
+    <br>
     <a href="https://github.com/davidgasquez/datadex/actions/workflows/ci.yml"><img src="https://github.com/davidgasquez/datadex/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   </div>
 </p>
