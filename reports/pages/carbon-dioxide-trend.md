@@ -1,7 +1,7 @@
 # Trends in Atmospheric Carbon Dioxide
 
 ```co2_global_trend
-select * from "../../../data/co2_global_trend.parquet"
+select * from "../../../data/climate_co2_global_trend.parquet"
 ```
 
 <LineChart
