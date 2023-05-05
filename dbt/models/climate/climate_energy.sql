@@ -1,3 +1,1 @@
-select
-    *
-from {{ source('web', 'energy') }}
+select * from {{ source("web", "energy") }}

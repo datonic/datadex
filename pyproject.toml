@@ -7,7 +7,7 @@ dependencies = [
     "dagster_dbt",
     "duckdb",
     "dbt-duckdb",
-    "dbt-osmosis",
+    # "dbt-osmosis",
     "pyarrow",
 ]
 requires-python = ">=3.10, <3.12"
@@ -15,7 +15,7 @@ readme = "README.md"
 license = { text = "MIT" }
 
 [project.optional-dependencies]
-dev = ["dagit"]
+dev = ["dagit", "shandy-sqlfmt[jinjafmt]"]
 
 [build-system]
 requires = ["setuptools"]

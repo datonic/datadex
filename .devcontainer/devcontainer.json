@@ -10,7 +10,11 @@
                 "files.associations": {
                     "*.sql": "jinja-sql"
                 },
-                "python.analysis.typeCheckingMode": "basic"
+                "python.analysis.typeCheckingMode": "basic",
+                "[jinja-sql]": {
+                    "editor.defaultFormatter": "innoverio.vscode-dbt-power-user",
+                    "editor.formatOnSave": true
+                }
             },
             "extensions": [
                 "bastienboutonnet.vscode-dbt",

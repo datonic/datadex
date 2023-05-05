@@ -6,13 +6,15 @@ deps: clean
 	@cd dbt && dbt deps
 
 run: deps
-	@dagster asset materialize -m datadex --select "*"
+	# @dagster asset materialize -m datadex --select "*"
+	@cd dbt && dbt run
 
 clean:
 	@cd dbt && dbt clean
+	@rm -rf data/*
 
 rill:
-	@rill start --project ~/rill
+	@rill start ~/rill
 
 evidence: run
 	@npm --prefix ./reports install
