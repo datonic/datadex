@@ -9,15 +9,11 @@ output-file: index
   <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557880-ebd4d53f-5ed8-40d2-b20c-7da90443f389.png#gh-dark-mode-only"/ width="400">
 
   <h4 align="center"> Collaborate on Open Data using moderns tools like <a href="https://docs.getdbt.com/docs/introduction">dbt</a> and <a href="https://duckdb.org">DuckDB</a> </h4>
-
-  <div align="center">
-    <a href='https://codespaces.new/davidgasquez/datadex'><img src='https://github.com/codespaces/badge.svg' alt='Open in GitHub Codespaces' style='max-width: 100%;'></a>
-    <br>
-    <a href="https://github.com/davidgasquez/datadex/actions/workflows/ci.yml"><img src="https://github.com/davidgasquez/datadex/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  </div>
 </p>
 
 ## 🤔 What is Datadex?
+
+[![CI](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml/badge.svg)](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml)
 
 Datadex explores how people could collaborate on Open Data using the principles and tooling from the Modern/Open Data Stack. Using tools like [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) you can transform data by simply writing `select` statements or importing someone else's `model.sql` and building on top of it!
 
@@ -49,6 +45,8 @@ This is an example of how you can use Datadex to model data. Is already configur
 ## ⚙️ Setup
 
 The fastest way to start using Datadex is via [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers). Once inside the develpment environment, you'll only need to run `make deps`.
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/davidgasquez/datadex)
 
 PS: The development environment can also run in your browser thanks to GitHub Codespaces.
 
