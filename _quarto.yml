@@ -1,0 +1,18 @@
+project:
+  type: website
+  output-dir: .quarto/output
+  render:
+    - README.md
+
+format:
+  html:
+    anchor-sections: true
+    smooth-scroll: true
+
+
+website:
+  title: "Datadex"
+  repo-url: https://github.com/davidgasquez/datadex
+  repo-actions: [edit, issue]
+  navbar:
+    search: true

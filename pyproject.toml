@@ -2,12 +2,27 @@
 name = "datadex"
 version = "0.1.0"
 dependencies = [
+    "altair",
+    "dagster_dbt",
     "dagster",
     "dbt-core",
-    "dagster_dbt",
-    "duckdb",
     "dbt-duckdb",
+    "deltalake",
+    "duckdb",
+    "frictionless",
+    "ipykernel",
+    "ipywidgets",
+    "matplotlib",
+    "nbclient",
+    "nbformat",
+    "numpy",
+    "pandas",
+    "polars",
     "pyarrow",
+    "pygwalker",
+    "regex",
+    "tqdm",
+    "zstandard",
 ]
 requires-python = ">=3.10, <3.12"
 readme = "README.md"

@@ -1,12 +1,12 @@
-FROM mcr.microsoft.com/devcontainers/python:3.10
+FROM mcr.microsoft.com/devcontainers/python:3.11
 
 # Install system dependencies
 RUN apt-get update && apt-get -y install --no-install-recommends \
-    build-essential
+    build-essential aria2 zstd
 
-# Install npm
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get install -y nodejs
+# Install npm (for Evidence)
+# RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
+#     && apt-get install -y nodejs
 
 # Configure Workspace
 WORKDIR /workspaces/datadex

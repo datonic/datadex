@@ -6,12 +6,14 @@ deps: clean
 	@cd dbt && dbt deps
 
 run: deps
-	# @dagster asset materialize -m datadex --select "*"
 	@cd dbt && dbt run
+
+dagster:
+	@dagster dev -m datadex.dagster
 
 clean:
 	@cd dbt && dbt clean
-	@rm -rf data/*
+	@rm -rf data/* output .quarto
 
 rill:
 	@rill start ~/rill

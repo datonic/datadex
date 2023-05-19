@@ -14,8 +14,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Build Docker
         run: make build
-      - name: Get Dependencies
-        run: docker run -t -v $PWD/:/workspaces/datadex/ davidgasquez/datadex:latest make deps
       - name: Run dbt
         run: docker run -t -v $PWD/:/workspaces/datadex/ davidgasquez/datadex:latest make run
       - name: Generate Docs

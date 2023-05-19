@@ -137,3 +137,5 @@ logs/
 data/*.csv
 data/*.parquet
 data/*.db*
+
+/.quarto/

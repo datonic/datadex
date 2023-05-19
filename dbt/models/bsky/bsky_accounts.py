@@ -6,10 +6,10 @@ import duckdb
 
 def model(dbt, session):
     # Download the database if it doesn't exist
-    if not os.path.exists("../data/bsky.db"):
+    if not os.path.exists("../data/bsky_accounts.db"):
         urllib.request.urlretrieve(
             "https://huggingface.co/datasets/andrewconner/bluesky_profiles/resolve/main/bsky.db",
-            "../data/bsky.db",
+            "../data/bsky_accounts.db",
         )
 
     duckdb.sql(
@@ -21,7 +21,7 @@ def model(dbt, session):
 
     q = duckdb.sql(
         """
-        select * from sqlite_scan('../data/bsky.db', 'accounts')
+        select * from sqlite_scan('../data/bsky_accounts.db', 'accounts')
         """
     )
 
