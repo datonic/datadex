@@ -3,17 +3,26 @@
 IMAGE_NAME := davidgasquez/datadex:v0.8.0
 
 deps: clean
-	@cd dbt && dbt deps
+	@dbt deps --project-dir dbt;
 
 run: deps
-	@cd dbt && dbt run
+	@dbt run --project-dir dbt;
 
 dagster:
 	@dagster dev -m datadex.dagster
 
+docs:
+	@dbt docs generate --project-dir dbt;
+	@mkdir -p dbt/target/docs
+	@cp target/*.json target/index.html target/graph.gpickle dbt/target/docs/
+
+quarto:
+	@quarto render
+	@cp -r dbt/target/docs/ .quarto/output/docs
+
 clean:
-	@cd dbt && dbt clean
-	@rm -rf data/* output .quarto
+	@dbt clean --project-dir dbt;
+	@rm -rf data/* output .quarto target
 
 rill:
 	@rill start ~/rill

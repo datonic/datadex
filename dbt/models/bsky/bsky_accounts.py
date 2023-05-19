@@ -9,7 +9,7 @@ def model(dbt, session):
     if not os.path.exists("../data/bsky.db"):
         urllib.request.urlretrieve(
             "https://huggingface.co/datasets/andrewconner/bluesky_profiles/resolve/main/bsky.db",
-            "../data/bsky.db",
+            "data/bsky.db",
         )
 
     duckdb.sql(
@@ -21,7 +21,7 @@ def model(dbt, session):
 
     q = duckdb.sql(
         """
-        select * from sqlite_scan('../data/bsky.db', 'accounts')
+        select * from sqlite_scan('data/bsky.db', 'accounts')
         """
     )
 

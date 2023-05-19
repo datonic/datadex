@@ -3,12 +3,12 @@ project:
   output-dir: .quarto/output
   render:
     - README.md
+    - notebooks
 
 format:
   html:
     anchor-sections: true
     smooth-scroll: true
-
 
 website:
   title: "Datadex"
@@ -16,3 +16,10 @@ website:
   repo-actions: [edit, issue]
   navbar:
     search: true
+    left:
+      - text: "Home"
+        file: README.md
+      - text: "Quarto Example"
+        file: notebooks/quarto.ipynb
+      - text: "dbt Docs"
+        file: docs
