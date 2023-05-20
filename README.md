@@ -14,7 +14,7 @@ output-file: index
 
 [![](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml/badge.svg)](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml)
 
-Datadex explores how people could collaborate on Open Data using the principles and tooling from the Modern/Open Data Stack. Using tools like [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) you can transform data by simply writing `select` statements or importing someone else's `model.sql` and building on top of it!
+Datadex is a set of tools and frameworks that allow everyone to collaborate on Open Data using principles from the Modern/Open Data Stack. With the help of tools like [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) you can transform data by writing `select` statements.
 
 ### 💡 Features
 
