@@ -12,7 +12,7 @@ output-file: index
 
 ## 🤔 What is Datadex?
 
-[![CI](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml/badge.svg)](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml)
+[![](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml/badge.svg)](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml)
 
 Datadex explores how people could collaborate on Open Data using the principles and tooling from the Modern/Open Data Stack. Using tools like [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) you can transform data by simply writing `select` statements or importing someone else's `model.sql` and building on top of it!
 
@@ -32,20 +32,20 @@ This is an example of how you can use Datadex to model data. Is already configur
 1. Build your dbt models and save them to Parquet files with `make run`.
 1. Explore the data with `make rill`.
 
-![rill](https://user-images.githubusercontent.com/1682202/195888267-ab119222-9269-4e00-98a9-8cf3a6405252.png)
+![](https://user-images.githubusercontent.com/1682202/195888267-ab119222-9269-4e00-98a9-8cf3a6405252.png)
 
 ## 🚀 What can you do with Datadex?
 
 - Model local and remote datasets with `dbt`.
 - Use any of the other awesome `dbt` features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex).
 
-![docs](https://user-images.githubusercontent.com/1682202/195890290-a27498dd-1d7b-4613-ba9a-4848fb3001be.png)
+![](https://user-images.githubusercontent.com/1682202/195890290-a27498dd-1d7b-4613-ba9a-4848fb3001be.png)
 
 ## ⚙️ Setup
 
 The fastest way to start using Datadex is via [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers). Once inside the develpment environment, you'll only need to run `make deps`.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/davidgasquez/datadex)
+[![](https://github.com/codespaces/badge.svg)](https://codespaces.new/davidgasquez/datadex)
 
 PS: The development environment can also run in your browser thanks to GitHub Codespaces.
 
