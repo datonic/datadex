@@ -5,8 +5,8 @@ output-file: index
 --->
 
 <p align="center">
-  <img alt="Logo" src="https://github-production-user-asset-6210df.s3.amazonaws.com/1682202/239682450-2b627ee1-a3df-4f15-94f1-90429743a4ea.png"/ width="600">
-  <h4 align="center"> Collaborate on Open Data using modern tools like <a href="https://docs.getdbt.com/docs/introduction">dbt</a> and <a href="https://duckdb.org">DuckDB</a> </h4>
+  <h1 style="font-size:300em;"  align="center">𝐃 𝐀 𝐓 𝐀 𝐃 𝐄 𝐗</h1>
+  <p align="center"> Collaborate on Open Data using modern tools like <a href="https://docs.getdbt.com/docs/introduction">dbt</a> and <a href="https://duckdb.org">DuckDB</a> </p>
 </p>
 
 
