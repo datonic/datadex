@@ -5,11 +5,10 @@ output-file: index
 --->
 
 <p align="center">
-  <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557212-c23c2bea-4179-4223-abfe-90f4a92e8aaa.png#gh-light-mode-only"/ width="400">
-  <img alt="Logo" src="https://user-images.githubusercontent.com/1682202/160557880-ebd4d53f-5ed8-40d2-b20c-7da90443f389.png#gh-dark-mode-only"/ width="400">
-
+  <img alt="Logo" src="https://github-production-user-asset-6210df.s3.amazonaws.com/1682202/239682450-2b627ee1-a3df-4f15-94f1-90429743a4ea.png"/ width="600">
   <h4 align="center"> Collaborate on Open Data using moderns tools like <a href="https://docs.getdbt.com/docs/introduction">dbt</a> and <a href="https://duckdb.org">DuckDB</a> </h4>
 </p>
+
 
 ## 🤔 What is Datadex?
 
