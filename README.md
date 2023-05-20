@@ -1,18 +1,15 @@
-<!---
----
-output-file: index
----
---->
-
 <p align="center">
-  <h1 style="font-size:300em;"  align="center">𝐃 𝐀 𝐓 𝐀 𝐃 𝐄 𝐗</h1>
+  <h1 style="font-size:80px; font-weight: 800;" align="center">D A T A D E X</h1>
   <p align="center"> Collaborate on Open Data using modern tools like <a href="https://docs.getdbt.com/docs/introduction">dbt</a> and <a href="https://duckdb.org">DuckDB</a> </p>
 </p>
 
+<div align="center">
+  <img alt="GitHub" src="https://img.shields.io/github/license/davidgasquez/datadex?style=flat-square">
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/davidgasquez/datadex/ci.yml?style=flat-square">
+  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/davidgasquez/datadex?style=flat-square">
+</div>
 
-## 🤔 What is Datadex?
-
-[![](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml/badge.svg)](https://github.com/davidgasquez/datadex/actions/workflows/ci.yml)
+<br>
 
 Datadex is a set of tools and frameworks that allow everyone to collaborate on Open Data using principles from the Modern/Open Data Stack. With the help of tools like [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) you can transform data by writing `select` statements.
 

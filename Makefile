@@ -18,7 +18,11 @@ docs:
 
 quarto:
 	@quarto render
+	@quarto render README.md -M output-file:index
 	@cp -r dbt/target/docs/ .quarto/output/docs
+
+preview:
+	@quarto preview
 
 clean:
 	@dbt clean --project-dir dbt;
@@ -27,9 +31,9 @@ clean:
 rill:
 	@rill start ~/rill
 
-evidence: run
-	@npm --prefix ./reports install
-	@npm --prefix ./reports run dev
+evidence:
+	@npm --prefix ./reports install;
+	@npm --prefix ./reports run dev;
 
 build:
 	docker build -t $(IMAGE_NAME) -t davidgasquez/datadex:latest .

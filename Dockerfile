@@ -9,10 +9,9 @@ RUN curl -sL $(curl https://quarto.org/docs/download/_prerelease.json | grep -oP
     && dpkg -i /tmp/quarto.deb \
     && rm /tmp/quarto.deb
 
-
 # Install npm (for Evidence)
-# RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-#     && apt-get install -y nodejs
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y nodejs
 
 # Configure Workspace
 WORKDIR /workspaces/datadex

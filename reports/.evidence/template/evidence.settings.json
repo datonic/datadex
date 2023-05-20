@@ -2,7 +2,7 @@
     "gitRepo": "git@github.com:davidgasquez/datadex.git",
     "database": "duckdb",
     "credentials": {
-        "filename": "../dbt/target/local.db",
+        "filename": "../target/local.db",
         "gitignoreDuckdb": null
     }
 }
