@@ -23,5 +23,7 @@ website:
         file: notebooks/quarto.ipynb
       - text: "Pyscript"
         file: notebooks/pyscript.ipynb
+      - text: "Climate"
+        file: notebooks/climate.ipynb
       - text: "dbt Docs"
         file: docs
