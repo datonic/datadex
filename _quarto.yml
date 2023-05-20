@@ -21,5 +21,7 @@ website:
         file: README.md
       - text: "Quarto Example"
         file: notebooks/quarto.ipynb
+      - text: "Pyscript"
+        file: notebooks/pyscript.ipynb
       - text: "dbt Docs"
         file: docs
