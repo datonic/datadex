@@ -29,5 +29,7 @@ website:
             file: notebooks/pyscript.ipynb
           - text: "Climate"
             file: notebooks/climate.ipynb
+          - text: "DuckDB and IPFS"
+            file: notebooks/duckdb-ipfs.ipynb
       - text: "dbt Docs"
         file: docs

@@ -23,4 +23,4 @@ COPY . /workspaces/datadex
 RUN pip install -e ".[dev]"
 
 # Install Rill Developer
-RUN curl -s https://cdn.rilldata.com/install.sh | bash
+# RUN curl -s https://cdn.rilldata.com/install.sh | bash
