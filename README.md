@@ -1,6 +1,6 @@
 <p align="center">
   <h1 style="font-size:80px; font-weight: 800;" align="center">D A T A D E X</h1>
-  <p align="center"> Collaborate on Open Data using modern tools like <a href="https://docs.getdbt.com/docs/introduction">dbt</a> and <a href="https://duckdb.org">DuckDB</a> </p>
+  <p align="center">Collaborate on Open Data using Open Source Tools</a> </p>
 </p>
 
 <div align="center">
@@ -11,19 +11,21 @@
 
 <br>
 
-Datadex is a set of tools and frameworks that allow everyone to collaborate on Open Data using principles from the Modern/Open Data Stack. With the help of tools like [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) you can transform data by writing `select` statements.
+Datadex links together tools and frameworks with the goal to allow everyone collaborate on Open Data like people collaborate on Open Source using the principles from the Open Data Stack. 
 
-### 💡 Features
+With Datadex and the help of tools like [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) you can start modeling data by writing simple `select` statements!
+
+### 💡 Principles
 
 - **Open**: Play well with the rest of the ecosystem.
-- **Modular**: Each tool can be replaced and extended (adapters). Works well in many environments.
-- **Flexible**. Run it from your laptop, in a cluster, or from the browser.
-- **Data as Code**. Version your data as code thanks to `dbt`! Publish and share your models for other people to build on top of them. Data, reproducible and accessible!
-- **Modern**: Supports types, tests, materialized views, and more. Don't build new tools to work with Open Data, build bridges with the existing ones.
+- **Modular**: Each tool can be replaced, extended, or removed. Works well in many environments ( your laptop, in a cluster, or from the browser).
+- **Permissionless**. Don't ask, fork it and improve the models!
+- **Data as Code**. Declarative stateless transformations tracked in `git`. Version your data as code! Publish and share your reusable models for others to build on top. Data, reproducible and accessible!
+- **Modern**: Supports types, tests, materialized views, and more. Datadex isn't a new tool, it is a bridge between existing ones.
 
 ## 💻 Usage
 
-This is an example of how you can use Datadex to model data. Is already configured with some sample datasets. Get things working end to end with the following steps:
+This is an example of how you can use Datadex to model data, which is already configured with some sample datasets. Get things working end to end with the following steps:
 
 1. Setup dependencies with `make deps`.
 1. Build your dbt models and save them to Parquet files with `make run`.
@@ -34,7 +36,7 @@ This is an example of how you can use Datadex to model data. Is already configur
 ## 🚀 What can you do with Datadex?
 
 - Model local and remote datasets with `dbt`.
-- Use any of the other awesome `dbt` features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex).
+- Use any of the other awesome `dbt` features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex/docs).
 
 ![](https://user-images.githubusercontent.com/1682202/195890290-a27498dd-1d7b-4613-ba9a-4848fb3001be.png)
 
