@@ -16,7 +16,7 @@ docs:
 	@mkdir -p dbt/target/docs
 	@cp target/*.json target/index.html target/graph.gpickle dbt/target/docs/
 
-quarto: docs evidence
+quarto: docs
 	@quarto render
 	@quarto render README.md -M output-file:index
 	@cp -r dbt/target/docs/ .quarto/output/docs
