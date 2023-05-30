@@ -13,7 +13,7 @@
     },
     "type": "module",
     "dependencies": {
-        "@evidence-dev/evidence": "17.0.2",
+        "@evidence-dev/evidence": "17.0.3",
         "@evidence-dev/preprocess": "2.4.0",
         "@evidence-dev/components": "2.4.0"
     }

@@ -33,3 +33,5 @@ website:
             file: notebooks/duckdb-ipfs.ipynb
       - text: "dbt Docs"
         file: docs
+      - text: "Evidence Reports"
+        file: reports

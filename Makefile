@@ -16,10 +16,11 @@ docs:
 	@mkdir -p dbt/target/docs
 	@cp target/*.json target/index.html target/graph.gpickle dbt/target/docs/
 
-quarto:
+quarto: docs evidence
 	@quarto render
 	@quarto render README.md -M output-file:index
 	@cp -r dbt/target/docs/ .quarto/output/docs
+	@cp -r reports/build/ .quarto/output/reports
 
 preview:
 	@quarto preview
@@ -33,7 +34,7 @@ rill:
 
 evidence:
 	@npm --prefix ./reports install;
-	@npm --prefix ./reports run dev;
+	@npm --prefix ./reports run build;
 
 build:
 	docker build -t $(IMAGE_NAME) -t davidgasquez/datadex:latest .
