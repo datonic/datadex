@@ -20,7 +20,7 @@ quarto: docs evidence
 	@quarto render
 	@quarto render README.md -M output-file:index
 	@cp -r dbt/target/docs/ .quarto/output/docs
-	@cp -r reports/build/ .quarto/output/reports
+	# @cp -r reports/build/ .quarto/output/reports # Failing due to wrong cache permissions
 
 preview:
 	@quarto preview
