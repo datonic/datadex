@@ -14,5 +14,3 @@ clean-targets:
 models:
   datadex:
     +materialized: external
-    ethereum:
-      +enabled: false
