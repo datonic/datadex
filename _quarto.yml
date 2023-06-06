@@ -23,7 +23,7 @@ website:
     left:
       - text: "Notebooks"
         menu:
-          - text: "Quarto Example"
+          - text: "Notebook Example"
             file: notebooks/quarto.ipynb
           - text: "Pyscript"
             file: notebooks/pyscript.ipynb
