@@ -16,11 +16,11 @@ docs:
 	@mkdir -p dbt/target/docs
 	@cp target/*.json target/index.html target/graph.gpickle dbt/target/docs/
 
-quarto: docs
+quarto: docs evidence
 	@quarto render
 	@quarto render README.md -M output-file:index
 	@cp -r dbt/target/docs/ .quarto/output/docs
-	# @cp -r reports/build/ .quarto/output/reports # Failing due to wrong cache permissions
+	@cp -r reports/build/ .quarto/output/reports
 
 preview:
 	@quarto preview
