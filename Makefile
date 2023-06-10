@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := run
 
-IMAGE_NAME := davidgasquez/datadex:v0.8.0
+IMAGE_NAME := davidgasquez/datadex:v0.9.0
 
 deps: clean
 	@dbt deps --project-dir dbt;
@@ -27,9 +27,10 @@ preview:
 
 clean:
 	@dbt clean --project-dir dbt;
-	@rm -rf data/* output .quarto target
+	@rm -rf data/* output .quarto target dbt_packages
 
 rill:
+	@curl -s https://cdn.rilldata.com/install.sh | bash
 	@rill start ~/rill
 
 evidence:

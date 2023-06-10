@@ -11,6 +11,7 @@ format:
   html:
     anchor-sections: true
     smooth-scroll: true
+    theme: litera
 
 website:
   title: "Datadex"
@@ -21,7 +22,11 @@ website:
     search: true
     logo: https://em-content.zobj.net/thumbs/120/google/350/package_1f4e6.png
     left:
-      - text: "Notebooks"
+      - text: "dbt Docs"
+        icon: sun
+        file: docs
+      - text: "Knowledge Base"
+        icon: book
         menu:
           - text: "Notebook Example"
             file: notebooks/quarto.ipynb
@@ -33,7 +38,14 @@ website:
             file: notebooks/duckdb-ipfs.ipynb
           - text: "BRLDA"
             file: notebooks/brlda.ipynb
-      - text: "dbt Docs"
-        file: docs
-      - text: "Evidence Reports"
-        file: reports
+          - text: "Evidence Report"
+            file: reports/carbon-dioxide-trend
+    tools:
+      - icon: twitter
+        href: https://twitter.com/davidgasquez
+      - icon: github
+        menu:
+          - text: Source Code
+            url:  https://github.com/davidgasquez/datadex
+          - text: Create an Issue
+            url:  https://github.com/davidgasquez/datadex/issues/new

@@ -9,7 +9,7 @@ RUN curl -sL $(curl https://quarto.org/docs/download/_prerelease.json | grep -oP
     && dpkg -i /tmp/quarto.deb \
     && rm /tmp/quarto.deb
 
-# Install npm (for Evidence)
+# Install Node LTS (for Evidence)
 RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash - \
     && apt-get install -y nodejs
 
@@ -21,6 +21,3 @@ ENV DAGSTER_HOME=/home/vscode/
 # Install Python Dependencies
 COPY . /workspaces/datadex
 RUN pip install -e ".[dev]"
-
-# Install Rill Developer
-# RUN curl -s https://cdn.rilldata.com/install.sh | bash

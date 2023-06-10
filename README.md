@@ -11,15 +11,15 @@
 
 <br>
 
-Datadex links together tools and frameworks with the goal to allow everyone collaborate on Open Data like people collaborate on Open Source using the principles from the Open Data Stack. 
+Datadex links together tools and frameworks with the goal to allow everyone collaborate on Open Data like people collaborate on Open Source using the principles from the Open Data Stack.
 
 With Datadex and the help of tools like [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) you can start modeling data by writing simple `select` statements!
 
 ### 💡 Principles
 
 - **Open**: Play well with the rest of the ecosystem.
-- **Modular**: Each tool can be replaced, extended, or removed. Works well in many environments ( your laptop, in a cluster, or from the browser).
-- **Permissionless**. Don't ask, fork it and improve the models!
+- **Modular**: Each component can be replaced, extended, or removed. Works well in many environments (your laptop, in a cluster, or from the browser), and with multiple tools (thanks to the Arrow ecosystem).
+- **Permissionless**. Don't ask, fork it and improve the models or scripts!
 - **Data as Code**. Declarative stateless transformations tracked in `git`. Version your data as code! Publish and share your reusable models for others to build on top. Data, reproducible and accessible!
 - **Modern**: Supports types, tests, materialized views, and more. Datadex isn't a new tool, it is a bridge between existing ones.
 
