@@ -2,7 +2,7 @@ default:
   outputs:
     dev:
       type: duckdb
-      path: target/local.db
+      path: data/local.duckdb
       threads: 8
       extensions:
         - httpfs

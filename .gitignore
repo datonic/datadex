@@ -132,10 +132,8 @@ dmypy.json
 dbt_packages/
 logs/
 
-# Local data
+# Ignore everything under data except .gitkeep
+data/**
 !data/.gitkeep
-data/*.csv
-data/*.parquet
-data/*.db*
 
 /.quarto/
