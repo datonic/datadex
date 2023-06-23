@@ -13,3 +13,11 @@ sources:
         meta:
           source: https://gml.noaa.gov
           external_location: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv
+
+  - name: threatened-animal-species
+    schema: main
+    config:
+      plugin: frictionless
+      package: https://raw.githubusercontent.com/datonic/threatened-animal-species/main/datapackage.yaml
+    tables:
+      - name: threatened_species
