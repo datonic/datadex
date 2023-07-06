@@ -14,7 +14,7 @@ dagster:
 docs:
 	@dbt docs generate --project-dir dbt;
 	@mkdir -p dbt/target/docs
-	@cp target/*.json target/index.html target/graph.gpickle dbt/target/docs/
+	@cp dbt/target/*.json dbt/target/index.html dbt/target/graph.gpickle dbt/target/docs/
 
 quarto: docs evidence
 	@quarto render

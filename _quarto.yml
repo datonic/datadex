@@ -36,8 +36,6 @@ website:
             file: notebooks/climate.ipynb
           - text: "DuckDB and IPFS"
             file: notebooks/duckdb-ipfs.ipynb
-          - text: "BRLDA"
-            file: notebooks/brlda.ipynb
           - text: "Evidence Report"
             file: reports/carbon-dioxide-trend
     tools:
