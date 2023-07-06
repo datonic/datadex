@@ -20,6 +20,7 @@ dependencies = [
     "pandas",
     "polars",
     "pyarrow",
+    "pyiceberg[pyarrow,duckdb]",
     "pygwalker",
     "regex",
     "tqdm",

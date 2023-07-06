@@ -11,34 +11,23 @@
 
 <br>
 
-Datadex links together tools and frameworks with the goal to allow everyone collaborate on Open Data like people collaborate on Open Source using the principles from the Open Data Stack.
-
-With Datadex and the help of tools like [dbt](https://docs.getdbt.com/docs/introduction) and [DuckDB](https://duckdb.org/) you can start modeling data by writing simple `select` statements!
+Datadex is a platform where people collaborate on Open Data using modern and open source tools and frameworks.
 
 ### 💡 Principles
 
-- **Open**: Play well with the rest of the ecosystem.
+- **Open**: Play well with the ecosystem. Use open standards and share data in open formats.
 - **Modular**: Each component can be replaced, extended, or removed. Works well in many environments (your laptop, in a cluster, or from the browser), and with multiple tools (thanks to the Arrow ecosystem).
-- **Permissionless**. Don't ask, fork it and improve the models or scripts!
-- **Data as Code**. Declarative stateless transformations tracked in `git`. Version your data as code! Publish and share your reusable models for others to build on top. Data, reproducible and accessible!
-- **Modern**: Supports types, tests, materialized views, and more. Datadex isn't a new tool, it is a bridge between existing ones.
+- **Permissionless**. Don't ask, fork it and improve the models, add a new source or update any script.
+- **Data as Code**. Declarative stateless transformations tracked in `git`. Version your data as code! Publish and share your reusable models for others to build on top.
+- **Modern**: Supports types, tests, materialized views, and more.
 
-## 💻 Usage
+Datadex isn't a new tool, it is an opinionated bridge between existing ones.
 
-This is an example of how you can use Datadex to model data, which is already configured with some sample datasets. Get things working end to end with the following steps:
+### 🚀 What can you do with Datadex?
 
-1. Setup dependencies with `make deps`.
-1. Build your dbt models and save them to Parquet files with `make run`.
-1. Explore the data with `make rill`.
-
-![](https://user-images.githubusercontent.com/1682202/195888267-ab119222-9269-4e00-98a9-8cf3a6405252.png)
-
-## 🚀 What can you do with Datadex?
-
-- Model local and remote datasets with `dbt`.
-- Use any of the other awesome `dbt` features like `tests` and `docs`. [Docs are automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex/docs).
-
-![](https://user-images.githubusercontent.com/1682202/195890290-a27498dd-1d7b-4613-ba9a-4848fb3001be.png)
+- Model [existing datasets using `dbt` and `SQL` like you would do in your company](dbt/models/climate/sources.yml). You can use and abuse any of the other awesome `dbt` features like `tests` and `docs` ([automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex/docs)).
+- Add new sources. Use Dagster, dbt Python models, or dbt Plugins to bring data locally and work with it.
+- Explore your data with Rill or Jupyter Notebooks. [Share your findings with others](https://davidgasquez.github.io/datadex/notebooks/quarto.html) by publishing your notebooks (Quarto) or using Evidence.
 
 ## ⚙️ Setup
 
@@ -46,11 +35,11 @@ The fastest way to start using Datadex is via [VSCode Remote Containers](https:/
 
 [![](https://github.com/codespaces/badge.svg)](https://codespaces.new/davidgasquez/datadex)
 
-PS: The development environment can also run in your browser thanks to GitHub Codespaces.
+PS: The development environment can also run in your browser thanks to GitHub Codespaces!
 
 ## 🎯 Motivation
 
-This small project was created after [thinking how an Open Data Protocol could look like](https://publish.obsidian.md/davidgasquez/Open+Data)! I just wanted to stitch together a few open source technologies and see what could they do.
+This small project was created after [thinking how an Open Data Protocol could look like](https://publish.obsidian.md/davidgasquez/Open+Data)!
 
 ## 👏 Acknowledgements
 
