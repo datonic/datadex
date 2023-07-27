@@ -14,7 +14,7 @@ format:
     theme: litera
 
 website:
-  title: "Datadex"
+  title: Datadex
   repo-url: https://github.com/davidgasquez/datadex
   repo-actions: [edit, issue]
   page-footer: Made with ❤️ by David Gasquez
@@ -22,22 +22,15 @@ website:
     search: true
     logo: https://em-content.zobj.net/thumbs/120/google/350/package_1f4e6.png
     left:
-      - text: "dbt Docs"
+      - text: dbt Docs
         icon: sun
         file: docs
-      - text: "Knowledge Base"
+      - text: Knowledge Base
         icon: book
-        menu:
-          - text: "Notebook Example"
-            file: notebooks/quarto.ipynb
-          - text: "Pyscript"
-            file: notebooks/pyscript.ipynb
-          - text: "Climate"
-            file: notebooks/climate.ipynb
-          - text: "DuckDB and IPFS"
-            file: notebooks/duckdb-ipfs.ipynb
-          - text: "Evidence Report"
-            file: reports/carbon-dioxide-trend
+        href: notebooks
+      - text: Evidence
+        icon: book
+        href: reports/build/
     tools:
       - icon: twitter
         href: https://twitter.com/davidgasquez
