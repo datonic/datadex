@@ -9,10 +9,6 @@ RUN curl -sL $(curl https://quarto.org/docs/download/_prerelease.json | grep -oP
     && dpkg -i /tmp/quarto.deb \
     && rm /tmp/quarto.deb
 
-# Install Node LTS (for Evidence)
-RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash - \
-    && apt-get install -y nodejs
-
 # Configure Workspace
 WORKDIR /workspaces/datadex
 ENV DBT_PROFILES_DIR=/workspaces/datadex/dbt

@@ -28,15 +28,12 @@ website:
       - text: Knowledge Base
         icon: book
         href: notebooks
-      - text: Evidence
-        icon: book
-        href: reports/build/
     tools:
       - icon: twitter
         href: https://twitter.com/davidgasquez
       - icon: github
         menu:
           - text: Source Code
-            url:  https://github.com/davidgasquez/datadex
+            url: https://github.com/davidgasquez/datadex
           - text: Create an Issue
-            url:  https://github.com/davidgasquez/datadex/issues/new
+            url: https://github.com/davidgasquez/datadex/issues/new

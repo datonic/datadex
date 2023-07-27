@@ -16,11 +16,10 @@ docs:
 	@mkdir -p dbt/target/docs
 	@cp dbt/target/*.json dbt/target/index.html dbt/target/graph.gpickle dbt/target/docs/
 
-quarto: docs evidence
+quarto: docs
 	@quarto render
 	@quarto render README.md -M output-file:index
 	@cp -r dbt/target/docs/ .quarto/output/docs
-	@cp -r reports/build/ .quarto/output/reports
 
 preview:
 	@quarto preview
@@ -32,10 +31,6 @@ clean:
 rill:
 	@curl -s https://cdn.rilldata.com/install.sh | bash
 	@rill start ~/rill
-
-evidence:
-	@npm --prefix ./reports install;
-	@npm --prefix ./reports run build;
 
 build:
 	docker build -t $(IMAGE_NAME) -t davidgasquez/datadex:latest .
