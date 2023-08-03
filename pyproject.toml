@@ -3,10 +3,10 @@ name = "datadex"
 version = "0.1.0"
 dependencies = [
     "altair",
-    "dagster_dbt",
+    "dagster-dbt",
     "dagster",
     "dbt-core",
-    "dbt-duckdb",
+    "dbt-duckdb==1.6.0",
     "deltalake",
     "duckdb",
     "frictionless",
@@ -20,8 +20,7 @@ dependencies = [
     "pandas",
     "polars",
     "pyarrow",
-    "pyiceberg[pyarrow,duckdb]",
-    "pygwalker",
+    "pygwalker[notebook]",
     "regex",
     "tqdm",
     "vegafusion[embed]",

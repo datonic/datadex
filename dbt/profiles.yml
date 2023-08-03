@@ -3,8 +3,9 @@ default:
     dev:
       type: duckdb
       path: data/local.duckdb
+      module_paths: ["dbt"]
       plugins:
-        - module: datadex.plugins.frictionless
+        - module: plugins.frictionless
       threads: 8
       extensions:
         - httpfs
