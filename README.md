@@ -27,7 +27,7 @@ Datadex isn't a new tool, it is an opinionated bridge between existing ones.
 
 - Model [existing datasets using `dbt` and `SQL` like you would do in your company](dbt/models/climate/sources.yml). You can use and abuse any of the other awesome `dbt` features like `tests` and `docs` ([automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex/docs)).
 - Add new sources. Use Dagster, dbt Python models, or dbt Plugins to bring data locally and work with it.
-- Explore your data with Rill or Jupyter Notebooks. [Share your findings with others](https://davidgasquez.github.io/datadex/notebooks/quarto.html) by publishing your notebooks (Quarto).
+- Explore your data with Rill or Jupyter Notebooks. [Share your findings with others](https://davidgasquez.github.io/datadex/notebooks/2023-05-06-quarto.html) by publishing your notebooks (Quarto).
 
 ## ⚙️ Setup
 
