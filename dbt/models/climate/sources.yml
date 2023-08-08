@@ -14,7 +14,7 @@ sources:
           source: https://gml.noaa.gov
           external_location: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv
 
-  - name: threatened-animal-species
+  - name: threatened_animal_species
     schema: main
     config:
       plugin: frictionless

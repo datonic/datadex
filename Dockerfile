@@ -13,7 +13,10 @@ RUN curl -sL $(curl https://quarto.org/docs/download/_prerelease.json | grep -oP
 WORKDIR /workspaces/datadex
 ENV DBT_PROFILES_DIR=/workspaces/datadex/dbt
 ENV DAGSTER_HOME=/home/vscode/
+ENV DATA_DIR=/workspaces/datadex/data
+
+# Add files to workspace
+COPY . /workspaces/datadex
 
 # Install Python Dependencies
-COPY . /workspaces/datadex
 RUN pip install -e ".[dev]"

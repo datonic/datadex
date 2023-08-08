@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := run
 
-IMAGE_NAME := davidgasquez/datadex:v0.9.0
+IMAGE_NAME := davidgasquez/datadex:v1.0.0
 
 deps: clean
 	@dbt deps --project-dir dbt;

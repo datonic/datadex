@@ -1,13 +1,12 @@
 [project]
 name = "datadex"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
     "altair",
-    "dagster-dbt",
     "dagster",
+    "dagster-dbt",
     "dbt-core",
-    "dbt-duckdb==1.6.0",
-    "deltalake",
+    "dbt-duckdb",
     "duckdb",
     "frictionless",
     "ipykernel",
@@ -20,12 +19,12 @@ dependencies = [
     "pandas",
     "polars",
     "pyarrow",
-    "pygwalker[notebook]",
     "regex",
     "tqdm",
     "vegafusion[embed]",
     "zstandard",
 ]
+
 requires-python = ">=3.10, <3.12"
 readme = "README.md"
 license = { text = "MIT" }

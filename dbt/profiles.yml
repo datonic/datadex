@@ -2,8 +2,8 @@ default:
   outputs:
     dev:
       type: duckdb
-      path: data/local.duckdb
-      module_paths: ["dbt"]
+      path: "{{ env_var('DATA_DIR') }}/local.duckdb"
+      module_paths: ["dbt"] # export PYTHONPATH="${PYTHONPATH}:/workspaces/datadex/dbt"
       plugins:
         - module: plugins.frictionless
       threads: 8
@@ -14,7 +14,7 @@ default:
       settings:
         enable_object_cache: true
         enable_http_metadata_cache: true
-      external_root: data
+      external_root: "{{ env_var('DATA_DIR') }}"
   target: dev
 
 config:
