@@ -5,7 +5,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
     build-essential aria2 zstd
 
 # Install Quarto
-RUN curl -sL $(curl https://quarto.org/docs/download/_prerelease.json | grep -oP "(?<=\"download_url\":\s\")https.*${ARCH}\.deb") --output /tmp/quarto.deb \
+RUN curl -sL $(curl https://quarto.org/docs/download/_download.json | grep -oP "(?<=\"download_url\":\s\")https.*${ARCH}\.deb") --output /tmp/quarto.deb \
     && dpkg -i /tmp/quarto.deb \
     && rm /tmp/quarto.deb
 
@@ -13,6 +13,7 @@ RUN curl -sL $(curl https://quarto.org/docs/download/_prerelease.json | grep -oP
 WORKDIR /workspaces/datadex
 ENV DBT_PROFILES_DIR=/workspaces/datadex/dbt
 ENV DAGSTER_HOME=/home/vscode/
+ENV PYTHONPATH="${PYTHONPATH}:/workspaces/datadex/dbt"
 ENV DATA_DIR=/workspaces/datadex/data
 
 # Add files to workspace

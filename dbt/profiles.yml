@@ -10,7 +10,6 @@ default:
       extensions:
         - httpfs
         - parquet
-        - sqlite
       settings:
         enable_object_cache: true
         enable_http_metadata_cache: true
