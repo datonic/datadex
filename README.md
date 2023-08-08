@@ -29,6 +29,8 @@ Datadex isn't a new tool, it is an opinionated bridge between existing ones.
 - Add new sources. Use Dagster, dbt Python models, or dbt Plugins to bring data locally and work with it.
 - Explore your data with Rill or Jupyter Notebooks. [Share your findings with others](https://davidgasquez.github.io/datadex/notebooks/2023-05-06-quarto.html) by publishing your notebooks (Quarto).
 
+![Dagster Asset_Group](https://github.com/davidgasquez/datadex/assets/1682202/90dcb749-d6bb-46bc-9b40-9d2741d31f5c)
+
 ## ⚙️ Setup
 
 The fastest way to start using Datadex is via [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers). Once inside the develpment environment, you'll only need to run `make deps`.
