@@ -5,7 +5,7 @@ project:
     port: 5000
   render:
     - README.md
-    - notebooks
+    - reports
 
 format:
   html:
@@ -27,7 +27,7 @@ website:
         file: docs
       - text: Knowledge Base
         icon: book
-        href: notebooks
+        href: reports
     tools:
       - icon: twitter
         href: https://twitter.com/davidgasquez
