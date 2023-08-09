@@ -29,7 +29,7 @@ Datadex isn't a new tool, it is an opinionated bridge between existing ones.
 - Explore your data with Rill or Jupyter Notebooks. [Share your findings with others](https://davidgasquez.github.io/datadex/notebooks/2023-05-06-quarto.html) by publishing your notebooks (Quarto).
 - Add new sources. Use Dagster, dbt Python models, or dbt Plugins to bring data locally and work with it.
 
-![Dagster Asset_Group](https://github.com/davidgasquez/datadex/assets/1682202/92984525-66bc-4410-8cb0-bd1b0cbfaf1d)
+![Dagster Asset_Group](https://user-images.githubusercontent.com/1682202/259458000-92984525-66bc-4410-8cb0-bd1b0cbfaf1d.png)
 
 
 ## ⚙️ Setup
