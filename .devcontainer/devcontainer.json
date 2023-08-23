@@ -20,38 +20,26 @@
                         "source.organizeImports": true
                     }
                 },
-                "notebook.formatOnSave.enabled": true,
-                "sqltools.useNodeRuntime": true,
-                "sqltools.connections": [
-                    {
-                        "name": "DuckDB",
-                        "accessMode": "Read Only",
-                        "previewLimit": 50,
-                        "driver": "DuckDB",
-                        "databaseFilePath": "data/local.duckdb"
-                    }
-                ]
+                "notebook.formatOnSave.enabled": true
             },
             "extensions": [
                 "charliermarsh.ruff",
                 "EditorConfig.EditorConfig",
                 "innoverio.vscode-dbt-power-user",
-                "ms-python.isort ",
+                "ms-python.isort",
                 "ms-python.python",
                 "ms-python.vscode-pylance",
                 "ms-toolsai.datawrangler",
                 "ms-toolsai.jupyter",
                 "redhat.vscode-yaml",
                 "tamasfe.even-better-toml",
-                "visualstudioexptteam.vscodeintellicode",
-                "Evidence.sqltools-duckdb-driver"
+                "visualstudioexptteam.vscodeintellicode"
             ]
         }
     },
     "features": {
         "ghcr.io/stuartleeks/dev-container-features/shell-history:latest": {},
         "ghcr.io/devcontainers/features/common-utils:2": {},
-        "ghcr.io/devcontainers/features/node:1": {},
         "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {}
     },
     "remoteUser": "vscode",
