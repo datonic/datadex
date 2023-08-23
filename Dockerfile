@@ -2,7 +2,8 @@ FROM mcr.microsoft.com/devcontainers/python:3.11
 
 # Install system dependencies
 RUN apt-get update && apt-get -y install --no-install-recommends \
-    build-essential aria2 zstd
+    build-essential aria2 zstd \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Quarto
 RUN curl -sL $(curl https://quarto.org/docs/download/_download.json | grep -oP "(?<=\"download_url\":\s\")https.*${ARCH}\.deb") --output /tmp/quarto.deb \
