@@ -15,12 +15,16 @@
                     "editor.formatOnSave": true
                 },
                 "[python]": {
+                    "editor.defaultFormatter": "charliermarsh.ruff",
                     "editor.codeActionsOnSave": {
                         "source.fixAll": true,
                         "source.organizeImports": true
                     }
                 },
-                "notebook.formatOnSave.enabled": true
+                "notebook.formatOnSave.enabled": true,
+                "python.analysis.typeCheckingMode": "basic",
+                "ruff.organizeImports": true,
+                "ruff.enableExperimentalFormatter": true
             },
             "extensions": [
                 "charliermarsh.ruff",

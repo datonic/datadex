@@ -5,6 +5,7 @@ dependencies = [
     "altair",
     "dagster",
     "dagster-dbt",
+    "dagster-duckdb-pandas",
     "dbt-core",
     "dbt-duckdb",
     "duckdb",
@@ -17,12 +18,8 @@ dependencies = [
     "nbformat",
     "numpy",
     "pandas",
-    "polars",
     "pyarrow",
     "regex",
-    "tqdm",
-    "vegafusion[embed]",
-    "zstandard",
 ]
 
 requires-python = ">=3.10, <3.12"
@@ -30,7 +27,7 @@ readme = "README.md"
 license = { text = "MIT" }
 
 [project.optional-dependencies]
-dev = ["dagit", "shandy-sqlfmt[jinjafmt]"]
+dev = ["dagit", "shandy-sqlfmt[jinjafmt]", "ruff"]
 
 [build-system]
 requires = ["setuptools"]

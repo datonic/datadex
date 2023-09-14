@@ -6,10 +6,10 @@ deps: clean
 	@dbt deps --project-dir dbt;
 
 run: deps
-	@dbt run --project-dir dbt;
+	@dagster asset materialize --select \* -m datadex;
 
-dagster:
-	@dagster dev -m datadex.dagster
+dev:
+	@dagster dev -m datadex
 
 docs:
 	@dbt docs generate --project-dir dbt;

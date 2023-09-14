@@ -3,9 +3,6 @@ default:
     dev:
       type: duckdb
       path: "{{ env_var('DATA_DIR') }}/local.duckdb"
-      module_paths: ["dbt"]
-      plugins:
-        - module: plugins.frictionless
       threads: 8
       extensions:
         - httpfs

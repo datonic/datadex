@@ -1,1 +1,1 @@
-select * from {{ source("threatened_animal_species", "threatened_species") }}
+select * from {{ source("public", "raw_threatened_animal_species") }}

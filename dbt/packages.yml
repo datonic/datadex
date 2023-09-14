@@ -1,3 +1,0 @@
-packages:
-  - package: dbt-labs/codegen
-    version: 0.10.0
