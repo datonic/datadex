@@ -11,7 +11,7 @@
 
 <br>
 
-Datadex is a platform where people collaborate on Open Data using modern and open source tools and frameworks.
+Open and local friendly data platform to make Open Data collaboration easier using modular tools and frameworks.
 
 ### 💡 Principles
 
@@ -21,13 +21,13 @@ Datadex is a platform where people collaborate on Open Data using modern and ope
 - **Data as Code**. Declarative stateless transformations tracked in `git`. Version your data as code! Publish and share your reusable models for others to build on top.
 - **Modern**: Supports types, tests, materialized views, and more.
 
-Datadex isn't a new tool, it is an opinionated bridge between existing ones.
+Datadex is not a new tool, it is an opinionated bridge between existing ones.
 
 ### 🚀 What can you do with Datadex?
 
-- Model [existing datasets using `dbt` and `SQL` like you would do in your company](dbt/models/climate/sources.yml). You can use and abuse any of the other awesome `dbt` features like `tests` and `docs` ([automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex/docs)).
-- Explore your data with Rill or Jupyter Notebooks. [Share your findings with others](https://davidgasquez.github.io/datadex/notebooks/2023-05-06-quarto.html) by publishing your notebooks online as beautiful static websites (thanks to Quarto).
-- Add new sources via Dagster, dbt Python models, or dbt Plugins. Bring data locally and work with it!
+- Model [existing datasets using `Python` and `SQL` like you would do in your company](dbt/models/climate/sources.yml). You can rely on awesome `dbt` features like `tests` and `docs` ([automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex/docs)) too.
+- Explore your data wherever you want. Use Jupyter Notebooks, BI Tools, Excel, .... [Share your findings with others](https://davidgasquez.github.io/datadex/notebooks/2023-05-06-quarto.html) by publishing them online as beautiful static websites (thanks to Quarto).
+- Add new data sources to the Datadex. The goal is simple; bring data locally and work with it!
 
 ![Dagster Asset_Group](https://user-images.githubusercontent.com/1682202/259458000-92984525-66bc-4410-8cb0-bd1b0cbfaf1d.png)
 
