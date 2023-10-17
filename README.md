@@ -15,7 +15,7 @@ Open and local friendly data platform to make Open Data collaboration easier usi
 
 ### 💡 Principles
 
-- **Open**: Play well with the ecosystem. Use open standards and share data in open formats.
+- **Open**: Play well with the ecosystem. [Use open standards and share data in open formats](https://voltrondata.com/codex/a-new-frontier).
 - **Modular**: Each component can be replaced, extended, or removed. Works well in many environments (your laptop, in a cluster, or from the browser), and with multiple tools (thanks to the Arrow ecosystem).
 - **Permissionless**. Don't ask, fork it and improve the models, add a new source or update any script.
 - **Data as Code**. Declarative stateless transformations tracked in `git`. Version your data as code! Publish and share your reusable models for others to build on top.
