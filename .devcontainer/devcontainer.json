@@ -43,8 +43,8 @@
     },
     "features": {
         "ghcr.io/stuartleeks/dev-container-features/shell-history:latest": {},
-        "ghcr.io/devcontainers/features/common-utils:2": {},
-        "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {}
+        "ghcr.io/devcontainers/features/common-utils:latest": {},
+        "ghcr.io/rocker-org/devcontainer-features/quarto-cli:latest": {}
     },
     "remoteUser": "vscode",
     "portsAttributes": {

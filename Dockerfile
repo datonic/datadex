@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/python:3
+FROM mcr.microsoft.com/devcontainers/python:3.11
 
 # Install base packages
 RUN apt-get update && apt-get -y install --no-install-recommends \
