@@ -10,12 +10,14 @@
                 "files.associations": {
                     "*.sql": "jinja-sql"
                 },
+                "quarto.render.previewType": "external",
                 "[jinja-sql]": {
                     "editor.defaultFormatter": "innoverio.vscode-dbt-power-user",
                     "editor.formatOnSave": true
                 },
                 "[python]": {
                     "editor.defaultFormatter": "charliermarsh.ruff",
+                    "editor.formatOnSave": true,
                     "editor.codeActionsOnSave": {
                         "source.fixAll": true,
                         "source.organizeImports": true
@@ -23,8 +25,7 @@
                 },
                 "notebook.formatOnSave.enabled": true,
                 "python.analysis.typeCheckingMode": "basic",
-                "ruff.organizeImports": true,
-                "ruff.enableExperimentalFormatter": true
+                "python.analysis.autoImportCompletions": true
             },
             "extensions": [
                 "charliermarsh.ruff",
@@ -35,6 +36,7 @@
                 "ms-python.vscode-pylance",
                 "ms-toolsai.datawrangler",
                 "ms-toolsai.jupyter",
+                "quarto.quarto",
                 "redhat.vscode-yaml",
                 "tamasfe.even-better-toml",
                 "visualstudioexptteam.vscodeintellicode"
@@ -43,8 +45,7 @@
     },
     "features": {
         "ghcr.io/stuartleeks/dev-container-features/shell-history:latest": {},
-        "ghcr.io/devcontainers/features/common-utils:latest": {},
-        "ghcr.io/rocker-org/devcontainer-features/quarto-cli:latest": {}
+        "ghcr.io/devcontainers/features/common-utils:latest": {}
     },
     "remoteUser": "vscode",
     "portsAttributes": {

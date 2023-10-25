@@ -2,10 +2,7 @@
 
 IMAGE_NAME := davidgasquez/datadex:v1.0.0
 
-deps: clean
-	@dbt deps --project-dir dbt;
-
-run: deps
+run:
 	@dagster asset materialize --select \* -m datadex;
 
 dev:
