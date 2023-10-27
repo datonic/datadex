@@ -11,17 +11,20 @@
 
 <br>
 
-Open and local friendly data platform to make Open Data collaboration easier using modular tools and frameworks.
+Open source, serverless, and local-first Data Platform that makes it easy to collaborate on Open Data! Built on top of [Dagster](https://dagster.io/), [dbt](https://www.getdbt.com/), [Quarto](https://quarto.org/), and [DuckDB](https://www.duckdb.org/). You can check two instances of Datadex working in the following repositories:
+
+- [Gitcoin Grants Data Portal](https://github.com/davidgasquez/gitcoin-grants-data-portal). Improve data access and empower data scientists to conduct research and guide community driven analysis and decisions around Gitcoin Grants.
+- [Filecoin Data Portal](https://github.com/davidgasquez/filecoin-data-portal/). Local-first data hub for Filecoin data! Like Dune, but in your laptop.
 
 ### 💡 Principles
 
-- **Open**: Play well with the ecosystem. [Use open standards and share data in open formats](https://voltrondata.com/codex/a-new-frontier).
+- **Open**: Code and data are fully open. [Use open standards and share data in accesible formats](https://voltrondata.com/codex/a-new-frontier).
 - **Modular**: Each component can be replaced, extended, or removed. Works well in many environments (your laptop, in a cluster, or from the browser), and with multiple tools (thanks to the Arrow ecosystem).
-- **Permissionless**. Don't ask, fork it and improve the models, add a new source or update any script.
+- **Permissionless**. Don't ask, fork it and improve the models, add a new source or update any script. No API limits, just plain files.
 - **Data as Code**. Declarative stateless transformations tracked in `git`. Version your data as code! Publish and share your reusable models for others to build on top.
 - **Modern**: Supports types, tests, materialized views, and more.
 
-Datadex is not a new tool, it is an opinionated bridge between existing ones.
+Datadex is not a new tool. **Datadex is a pattern showing an opinionated bridge between existing ones**.
 
 ### 🚀 What can you do with Datadex?
 
