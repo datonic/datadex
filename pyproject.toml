@@ -20,7 +20,7 @@ dependencies = [
     "regex",
 ]
 
-requires-python = ">=3.10, <=3.12"
+requires-python = ">=3.11, <=3.12"
 readme = "README.md"
 license = { text = "MIT" }
 
@@ -33,6 +33,9 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = ["datadex"]
+
+[tool.setuptools.package-data]
+"datadex" = ["../dbt/**"]
 
 [tool.dagster]
 module_name = "datadex"

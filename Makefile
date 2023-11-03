@@ -3,10 +3,10 @@
 IMAGE_NAME := davidgasquez/datadex:v1.0.0
 
 run:
-	@dagster asset materialize --select \* -m datadex;
+	@dagster asset materialize --select \* -m datadex.dag;
 
 dev:
-	@dagster dev -m datadex
+	@dagster dev -m datadex.dag
 
 docs:
 	@dbt docs generate --project-dir dbt;
