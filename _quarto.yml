@@ -6,6 +6,7 @@ project:
   render:
     - README.md
     - reports
+    - dashboard.qmd
 
 format:
   html:
@@ -25,6 +26,9 @@ website:
       - text: dbt Docs
         icon: sun
         file: docs
+      - text: Dashboard
+        icon: clipboard-data
+        href: dashboard.html
       - text: Knowledge Base
         icon: book
         href: reports

@@ -1,0 +1,232 @@
+---
+title: "GreyNoise Country Explorer"
+execute:
+  echo: false
+format:
+  dashboard:
+    scrolling: true
+    orientation: rows
+---
+
+This Dashboard was made by [Bob Rudis](https://dailyfinds.hrbrmstr.dev/p/drop-362-2023-10-27-weekend-project). I'm replicating it to learn how to use Quarto Dashboards!
+
+```{ojs}
+//| output: false
+jsonURL = "https://raw.githubusercontent.com/davidgasquez/datadex/gh-pages/country-data.json"
+countryData = await fetch(jsonURL).then(response => response.json())
+```
+
+
+```{ojs}
+//| output: asis
+viewof countrySelect = Inputs.select(Object.keys(countryData), {
+  label: "Select Country:"
+})
+```
+
+```{ojs}
+//| output: false
+abbrev = countryData[countrySelect].abbrev
+```
+
+# Geo-Attributed Attacks
+
+##
+
+:::{.card-header}
+Source Country Networks Attacking ${countrySelect}
+:::
+
+```{ojs}
+//| output: asis
+incomingPlot = {
+  const sortedCountries = countryData[countrySelect].incoming.stats.source_countries
+        .sort((a, b) => b.count - a.count)
+        .map((d) => d.country);
+
+  const result = Plot.plot({
+    width: width,
+    height: width * (1/2),
+    marginLeft: 150,
+    style: {
+      fontSize: "18px"
+    },
+    x: {
+      grid: true,
+      ticks: 5
+    },
+    y: {
+      label: null,
+      domain: sortedCountries
+    },
+    marks: [
+      Plot.barX(
+        countryData[countrySelect].incoming.stats.source_countries, {
+        x: "count",
+        y: "country",
+        fill: "#303d4e",
+        tip: true
+      })
+    ]
+  })
+  return(result);
+}
+```
+
+##
+
+:::{.card-header}
+Source Country Networks **Only** Attacking ${countrySelect}
+:::
+
+```{ojs}
+//| output: asis
+incomingOnlyPlot = {
+  const sortedCountries = countryData[countrySelect].incoming_only.stats.source_countries
+        .sort((a, b) => b.count - a.count)
+        .map((d) => d.country);
+
+  const result = Plot.plot({
+    width: width,
+    height: width * (1/2),
+    marginLeft: 150,
+    style: {
+      fontSize: "18px"
+    },
+    x: {
+      grid: true,
+      ticks: 5
+    },
+    y: {
+      label: null,
+      domain: sortedCountries
+    },
+    marks: [
+      Plot.barX(
+        countryData[countrySelect].incoming_only.stats.source_countries, {
+        x: "count",
+        y: "country",
+        fill: "#303d4e"
+      })
+    ]
+  })
+  return(result);
+}
+```
+
+# Malicious Activity
+
+##
+
+:::{.card-header}
+Attack Types Against ${countrySelect}
+:::
+
+```{ojs}
+//| output: asis
+incomingAttacksPlot = {
+  const sortedCountries = countryData[countrySelect].incoming.stats.tags
+        .sort((a, b) => b.count - a.count)
+        .map((d) => d.tag);
+
+  const result = Plot.plot({
+    width: width,
+    height: width * (1/2),
+    marginLeft: 400,
+    style: {
+      fontSize: "16px"
+    },
+    x: {
+      grid: true,
+      ticks: 5
+    },
+    y: {
+      label: null,
+      domain: sortedCountries
+    },
+    marks: [
+      Plot.barX(
+        countryData[countrySelect].incoming.stats.tags, {
+        x: "count",
+        y: "tag",
+        fill: "#303d4e",
+        tip: true
+      })
+    ]
+  })
+  return(result);
+}
+```
+
+##
+
+:::{.card-header}
+Attack Types **Only** Against ${countrySelect}
+:::
+
+```{ojs}
+//| output: asis
+incomingOnlyAttackPlot = {
+  const sortedCountries = countryData[countrySelect].incoming_only.stats.tags
+        .sort((a, b) => b.count - a.count)
+        .map((d) => d.tag);
+
+  const result = Plot.plot({
+    width: width,
+    height: width * (1/2),
+    marginLeft: 400,
+    style: {
+      fontSize: "16px"
+    },
+    x: {
+      grid: true,
+      ticks: 5
+    },
+    y: {
+      label: null,
+      domain: sortedCountries
+    },
+    marks: [
+      Plot.barX(
+        countryData[countrySelect].incoming_only.stats.tags, {
+        x: "count",
+        y: "tag",
+        fill: "#303d4e"
+      })
+    ]
+  })
+  return(result);
+}
+```
+
+# About
+
+##
+
+```{ojs}
+//| component: valuebox
+//| title: "Total Incoming Attacks"
+//| icon: shield-slash
+//| color: #303d4e
+md`${d3.format(",")(countryData[countrySelect].incoming.count)}`
+```
+
+```{ojs}
+//| component: valuebox
+//| title: "Total Directed Attacks"
+//| icon: shield-slash
+//| color: #303d4e
+md`${d3.format(",")(countryData[countrySelect].incoming_only.count)}`
+```
+
+```{ojs}
+//| component: valuebox
+//| title: "Total Outbound Attacks"
+//| icon: shield-slash
+//| color: #303d4e
+md`${d3.format(",")(countryData[countrySelect].outgoing.count)}`
+```
+
+##
+
+This is an example [Quarto Dashboard](https://quarto.org/docs/dashboards/) using data from the planetary scale honeypot sensor fleet run by [GreyNoise](https://viz.greynoise.io).
