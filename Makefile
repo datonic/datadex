@@ -9,7 +9,7 @@ dev:
 	@dagster dev -m datadex.dag
 
 docs:
-	@dbt docs generate --project-dir dbt;
+	@dbt docs generate --project-dir dbt --profiles-dir dbt;
 	@mkdir -p dbt/target/docs
 	@cp dbt/target/*.json dbt/target/index.html dbt/target/graph.gpickle dbt/target/docs/
 
