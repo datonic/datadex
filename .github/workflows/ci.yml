@@ -15,9 +15,9 @@ jobs:
       - name: Build Docker
         run: make build
       - name: Run dbt
-        run: docker run -t -v $PWD/:/workspaces/datadex/ davidgasquez/datadex:latest make run
+        run: docker run -t -v $PWD/:/workspaces/datadex/ --env-file .env davidgasquez/datadex:latest make run
       - name: Render Quarto
-        run: docker run -t -v $PWD/:/workspaces/datadex/ davidgasquez/datadex:latest make quarto
+        run: docker run -t -v $PWD/:/workspaces/datadex/ --env-file .env davidgasquez/datadex:latest make quarto
       - name: Publish Docs
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:

@@ -35,6 +35,7 @@ build:
 docker-run:
 	docker run -it --rm -u vscode -e DAGIT_HOST=0.0.0.0 -p 3000:3000 \
 		-v $(PWD):/workspaces/datadex \
+		--env-file .env \
 		$(IMAGE_NAME) /bin/bash
 
 push:
