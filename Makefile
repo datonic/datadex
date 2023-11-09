@@ -32,5 +32,10 @@ rill:
 build:
 	docker build -t $(IMAGE_NAME) -t davidgasquez/datadex:latest .
 
+docker-run:
+	docker run -it --rm -u vscode -e DAGIT_HOST=0.0.0.0 -p 3000:3000 \
+		-v $(PWD):/workspaces/datadex \
+		$(IMAGE_NAME) /bin/bash
+
 push:
 	docker push $(IMAGE_NAME)

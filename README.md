@@ -36,17 +36,43 @@ Datadex is not a new tool. **Datadex is a pattern showing an opinionated bridge 
 
 ## ⚙️ Setup
 
-The fastest way to start using Datadex is via [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers). Once inside the develpment environment, you'll only need to run `make deps`.
+Datadex consists of several components and requires some setup to get started.
+
+### 🐳 Docker / Dev Containers
+
+The fastest way to start using Datadex is via [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers). Once inside the develpment environment, you'll only need to run `make dev` to spin up the [Dagster UI locally](http://127.0.0.1:3000).
 
 [![](https://github.com/codespaces/badge.svg)](https://codespaces.new/davidgasquez/datadex)
 
-PS: The development environment can also run in your browser thanks to GitHub Codespaces!
+The development environment can also run in your browser thanks to GitHub Codespaces!
+
+You can also build the Docker image locally and run it with:
+
+```bash
+make build
+make docker-run
+```
+
+### 🐍 Python Virtual Environment
+
+Clone the repository and run the following commands from the root folder:
+
+```bash
+# Create a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Install the package and dependencies
+pip install -e .[dev]
+```
+
+Now, you should be able to spin up Dagster UI and [access it locally](http://127.0.0.1:3000).
 
 ## 🎯 Motivation
 
-This small project was created after [thinking how an Open Data Protocol could look like](https://publish.obsidian.md/davidgasquez/Open+Data)!
+This project started after [thinking how an Open Data Protocol could look like](https://publish.obsidian.md/davidgasquez/Open+Data)!
 
 ## 👏 Acknowledgements
 
-- This proof of concept was created thanks to open source projects like [DuckDB](https://www.duckdb.org/) and [dbt](https://getdbt.com).
-- Datadex name was inspired by [Juan Benet awesome `data` projects](https://juan.benet.ai/blog/2014-03-11-discussion-scienceexchange/).
+- This proof of concept was created thanks to open source projects like [DuckDB](https://www.duckdb.org/), [dbt](https://getdbt.com), [Dagster](https://dagster.io/), and [Quarto](https://quarto.org/).
+- Datadex name was inspired by [Juan Benet's `data` projects](https://juan.benet.ai/blog/2014-03-11-discussion-scienceexchange/).

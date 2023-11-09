@@ -18,7 +18,7 @@ python_assets = load_assets_from_modules([assets])
 
 resources = {
     "dbt": dbt_resource,
-    "io_manager": DuckDBPandasIOManager(database="data/local.duckdb"),
+    "io_manager": DuckDBPandasIOManager(database=f"{os.getenv('DATA_DIR')}/local.duckdb"),
 }
 
 defs = Definitions(assets=[*dbt_assets, *python_assets], resources=resources)

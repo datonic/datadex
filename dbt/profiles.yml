@@ -2,7 +2,7 @@ default:
   outputs:
     dev:
       type: duckdb
-      path: "{{ env_var('DATA_DIR') }}/local.duckdb"
+      path: "../{{ env_var('DATA_DIR') }}/local.duckdb"
       threads: 8
       extensions:
         - httpfs
@@ -10,7 +10,7 @@ default:
       settings:
         enable_object_cache: true
         enable_http_metadata_cache: true
-      external_root: "{{ env_var('DATA_DIR') }}"
+      external_root: "../{{ env_var('DATA_DIR') }}"
   target: dev
 
 config:
