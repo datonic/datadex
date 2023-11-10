@@ -20,3 +20,7 @@ sources:
         meta:
           dagster:
             asset_key: ["raw_threatened_animal_species"]
+      - name: raw_owid_co2_data
+        meta:
+          dagster:
+            asset_key: ["raw_owid_co2_data"]
