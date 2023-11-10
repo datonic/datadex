@@ -12,7 +12,7 @@ This Dashboard was made by [Bob Rudis](https://dailyfinds.hrbrmstr.dev/p/drop-36
 
 ```{ojs}
 //| output: false
-jsonURL = "https://raw.githubusercontent.com/davidgasquez/datadex/gh-pages/country-data.json"
+jsonURL = "https://bafybeihossdpesleq77dzptgtu23hfoayl4g73lvwjqxq65ngvzypz6rp4.ipfs.w3s.link/ipfs/bafybeihossdpesleq77dzptgtu23hfoayl4g73lvwjqxq65ngvzypz6rp4/country-data.json"
 countryData = await fetch(jsonURL).then(response => response.json())
 ```
 
