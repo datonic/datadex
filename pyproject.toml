@@ -1,6 +1,7 @@
 [project]
 name = "datadex"
 version = "1.0.0"
+authors = [{ name = "David Gasquez" }]
 dependencies = [
     "altair",
     "dagster-dbt",
@@ -24,6 +25,12 @@ requires-python = ">=3.11, <=3.12"
 readme = "README.md"
 license = { text = "MIT" }
 
+[project.urls]
+Homepage = "https://davidgasquez.github.io/datadex/"
+Changelog = "https://github.com/davidgasquez/datadex/commits/main/"
+Issues = "https://github.com/davidgasquez/datadex/issues"
+CI = "https://github.com/davidgasquez/datadex/actions"
+
 [project.optional-dependencies]
 dev = ["dagit", "shandy-sqlfmt[jinjafmt]", "ruff"]
 
@@ -31,11 +38,8 @@ dev = ["dagit", "shandy-sqlfmt[jinjafmt]", "ruff"]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-packages = ["datadex"]
-
 [tool.setuptools.package-data]
 "datadex" = ["../dbt/**"]
 
-[tool.dagster]
-module_name = "datadex"
+[tool.setuptools]
+packages = ["datadex"]

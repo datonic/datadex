@@ -20,11 +20,11 @@ This repository is an up to date toy implementation of the overall pattern. You 
 
 ### 💡 Principles
 
-- **Open**: Code and data are fully open. [Use open standards and share data in accesible formats](https://voltrondata.com/codex/a-new-frontier).
-- **Modular**: Each component can be replaced, extended, or removed. Works well in many environments (your laptop, in a cluster, or from the browser), and with multiple tools (thanks to the Arrow ecosystem).
+- **Open**: Code and data are fully open source.
+- **Modular and Interoperable**: Each component can be replaced, extended, or removed. Works well in many environments (your laptop, in a cluster, or from the browser), and with multiple tools (thanks to the Arrow ecosystem). [Use open standards and share data in accesible formats](https://voltrondata.com/codex/a-new-frontier).
 - **Permissionless**. Don't ask, fork it and improve the models, add a new source or update any script. No API limits, just plain files.
 - **Data as Code**. Declarative stateless transformations tracked in `git`. Version your data as code! Publish and share your reusable models for others to build on top.
-- **Modern**: Supports types, tests, materialized views, and more.
+- **Glue**: Be a bridge between tools and aproaches. E.g: Use software engineering good practices like types, tests, materialized views, and more.
 
 Datadex is not a new tool. **Datadex is a pattern showing an opinionated bridge between existing ones**.
 

@@ -1,16 +1,11 @@
-name: "datadex"
-version: "1.0.0"
+name: datadex
+version: 1.0.0
 config-version: 2
 
-profile: "default"
+profile: default
 
-target-path: "target"
-clean-targets:
-  - "logs"
-  - "target"
-  - "database"
-  - "dbt_packages"
+target-path: target
 
 models:
   datadex:
-    +materialized: external
+    +materialized: table

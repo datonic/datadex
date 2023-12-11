@@ -14,6 +14,8 @@ RUN curl -sL $(curl https://quarto.org/docs/download/_prerelease.json | grep -oP
     && dpkg -i /tmp/quarto.deb \
     && rm /tmp/quarto.deb
 
-# Workspace Folder
-ENV WORKSPACE_FOLDER=/workspaces/datadex
-WORKDIR $WORKSPACE_FOLDER
+# Environment Variables
+ENV DAGSTER_HOME "/home/vscode"
+
+# Working Directory
+WORKDIR /workspaces/datadex

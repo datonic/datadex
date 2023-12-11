@@ -7,10 +7,10 @@
     "customizations": {
         "vscode": {
             "settings": {
+                "quarto.render.previewType": "external",
                 "files.associations": {
                     "*.sql": "jinja-sql"
                 },
-                "quarto.render.previewType": "external",
                 "[jinja-sql]": {
                     "editor.defaultFormatter": "innoverio.vscode-dbt-power-user",
                     "editor.formatOnSave": true
@@ -48,12 +48,7 @@
             ]
         }
     },
-    "features": {
-        "ghcr.io/stuartleeks/dev-container-features/shell-history:latest": {},
-        "ghcr.io/devcontainers/features/common-utils:latest": {}
-    },
     "postCreateCommand": "pip install -e '.[dev]'",
-    "remoteUser": "vscode",
     "portsAttributes": {
         "3000": {
             "label": "Dagster"
