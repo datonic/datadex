@@ -26,7 +26,7 @@ website:
     left:
       - text: dbt Docs
         icon: sun
-        file: docs
+        file: dbt/docs
       - text: Dashboard
         icon: clipboard-data
         href: dashboard.html
