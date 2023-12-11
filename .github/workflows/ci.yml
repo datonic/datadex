@@ -4,22 +4,34 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: "0 10 * * 1"
+  workflow_dispatch:
 
 jobs:
-  docs:
-    name: Publish 🚀
+  run:
+    name: Run
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Build Docker
-        run: make build
-      - name: Run dbt
-        run: docker run -t -v $PWD/:/workspaces/datadex/ --env-file .env davidgasquez/datadex:latest make run
-      - name: Render Quarto
-        run: docker run -t -v $PWD/:/workspaces/datadex/ --env-file .env davidgasquez/datadex:latest make quarto
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+          cache: pip
+      - name: Install dependencies
+        run: |
+          pip install -e .
+      - name: Run
+        run: |
+          make run
+      - uses: quarto-dev/quarto-actions/setup@v2
+      - name: Render
+        run: |
+          make render
       - name: Publish Docs
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
           branch: gh-pages
-          folder: .quarto/output
+          folder: portal/.quarto/_site
