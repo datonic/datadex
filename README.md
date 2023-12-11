@@ -11,7 +11,9 @@
 
 <br>
 
-Open source, serverless, and local-first Data Platform that makes it easy to collaborate on Open Data! Built on top of [Dagster](https://dagster.io/), [dbt](https://www.getdbt.com/), [Quarto](https://quarto.org/), and [DuckDB](https://www.duckdb.org/). You can check two instances of Datadex working in the following repositories:
+Open source, serverless, and local-first Data Platform to collaborate on Open Data! Built on top of [Dagster](https://dagster.io/), [dbt](https://www.getdbt.com/), [Quarto](https://quarto.org/), [DuckDB](https://www.duckdb.org/), and [Evidence](https://evidence.dev/).
+
+This repository is an up to date toy implementation of the overall pattern. You can check two real world production instances of Datadex working in the following repositories:
 
 - [Gitcoin Grants Data Portal](https://github.com/davidgasquez/gitcoin-grants-data-portal). Improve data access and empower data scientists to conduct research and guide community driven analysis and decisions around Gitcoin Grants.
 - [Filecoin Data Portal](https://github.com/davidgasquez/filecoin-data-portal/). Local-first data hub for Filecoin data! Like Dune, but in your laptop.

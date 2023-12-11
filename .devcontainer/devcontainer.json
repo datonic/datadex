@@ -34,6 +34,7 @@
             "extensions": [
                 "charliermarsh.ruff",
                 "EditorConfig.EditorConfig",
+                "Evidence.evidence-vscode",
                 "innoverio.vscode-dbt-power-user",
                 "ms-python.isort",
                 "ms-python.python",
@@ -51,6 +52,7 @@
         "ghcr.io/stuartleeks/dev-container-features/shell-history:latest": {},
         "ghcr.io/devcontainers/features/common-utils:latest": {}
     },
+    "postCreateCommand": "pip install -e '.[dev]'",
     "remoteUser": "vscode",
     "portsAttributes": {
         "3000": {
