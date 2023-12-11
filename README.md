@@ -48,11 +48,11 @@ The fastest way to start using Datadex is via [VSCode Remote Containers](https:/
 
 The development environment can also run in your browser thanks to GitHub Codespaces!
 
-You can also build the Docker image locally and run it with:
+You can also build the [Dockerfile](Dockerfile) image locally and run it with:
 
 ```bash
-make build
-make docker-run
+docker build -t datadex .
+docker run -it -v $(pwd):/workspaces/datadex -p 3000:3000 datadex
 ```
 
 ### 🐍 Python Virtual Environment
