@@ -14,7 +14,7 @@ dbt-docs:
 	mkdir -p dbt/target/docs
 	cp dbt/target/*.json dbt/target/index.html dbt/target/graph.gpickle dbt/target/docs/
 
-render: run dbt-docs
+render: dbt-docs
 	cp README.md portal/README.md
 	quarto render portal
 	cd portal && quarto render README.md -M output-file:index
