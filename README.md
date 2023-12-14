@@ -30,8 +30,8 @@ Datadex is not a new tool. **Datadex is a pattern showing an opinionated bridge 
 
 ### 🚀 What can you do with Datadex?
 
-- Model [existing datasets using `Python` and `SQL` like you would do in your company](dbt/models/climate/sources.yml). You can rely on awesome `dbt` features like `tests` and `docs` ([automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex/docs)) too.
-- Explore your data wherever you want. Use Jupyter Notebooks, BI Tools, Excel, .... [Share your findings with others](https://davidgasquez.github.io/datadex/notebooks/2023-05-06-quarto.html) by publishing them online as beautiful static websites (thanks to Quarto).
+- Model [existing datasets using `Python` and `SQL` like you would do in your company](dbt/models/sources.yml). You can rely on awesome `dbt` features like `tests` and `docs` ([automatically generated and published on GitHub Pages](https://davidgasquez.github.io/datadex/dbt)) too.
+- Explore your data wherever you want. Use Jupyter Notebooks, BI Tools, Excel, .... [Share your findings with others](https://davidgasquez.github.io/datadex/reports/2023-01-01-Datadex.html) by publishing them online as beautiful static websites (thanks to Quarto).
 - Add new data sources to the Datadex. The goal is simple; bring data locally and work with it!
 
 ![Dagster Asset_Group](https://user-images.githubusercontent.com/1682202/259458000-92984525-66bc-4410-8cb0-bd1b0cbfaf1d.png)
