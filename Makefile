@@ -1,10 +1,10 @@
 .DEFAULT_GOAL := run
 
 run:
-	dagster asset materialize --select \* -m datadex.dag
+	dagster job  execute -j all_assets_job -m datadex
 
 dev:
-	dagster dev -m datadex.dag
+	dagster dev -m datadex
 
 preview:
 	quarto preview portal

@@ -4,7 +4,7 @@ from frictionless import Package
 
 
 @asset
-def raw_threatened_animal_species() -> pd.DataFrame:
+def threatened_animal_species() -> pd.DataFrame:
     p = Package(
         "https://raw.githubusercontent.com/datonic/threatened-animal-species/main/datapackage.yaml"
     )
@@ -12,7 +12,7 @@ def raw_threatened_animal_species() -> pd.DataFrame:
 
 
 @asset
-def raw_owid_co2_data() -> pd.DataFrame:
+def owid_co2_data() -> pd.DataFrame:
     co2_owid_url = (
         "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
     )

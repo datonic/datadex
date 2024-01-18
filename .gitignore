@@ -136,4 +136,8 @@ logs/
 data/**
 !data/datasets/.gitkeep
 
+# Quarto
 /.quarto/
+
+# Environment
+.env
