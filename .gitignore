@@ -132,8 +132,8 @@ dmypy.json
 dbt_packages/
 logs/
 
-# Ignore everything under data except .gitkeep
+# Ignore everything under data except datasets/.gitkeep
 data/**
-!data/.gitkeep
+!data/datasets/.gitkeep
 
 /.quarto/

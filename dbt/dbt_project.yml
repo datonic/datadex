@@ -8,4 +8,6 @@ target-path: target
 
 models:
   datadex:
-    +materialized: table
+    +materialized: external
+    +options:
+      codec: zstd
