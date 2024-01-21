@@ -29,7 +29,17 @@
                     "source.organizeImports.ruff": true
                 },
                 "python.analysis.typeCheckingMode": "basic",
-                "python.analysis.autoImportCompletions": true
+                "python.analysis.autoImportCompletions": true,
+                "sqltools.useNodeRuntime": true,
+                "sqltools.connections": [
+                    {
+                        "name": "DuckDB",
+                        "accessMode": "Read Only",
+                        "previewLimit": 50,
+                        "driver": "DuckDB",
+                        "databaseFilePath": "data/local.duckdb"
+                    }
+                ]
             },
             "extensions": [
                 "charliermarsh.ruff",
@@ -44,11 +54,12 @@
                 "quarto.quarto",
                 "redhat.vscode-yaml",
                 "tamasfe.even-better-toml",
-                "visualstudioexptteam.vscodeintellicode"
+                "visualstudioexptteam.vscodeintellicode",
+                "Evidence.sqltools-duckdb-driver"
             ]
         }
     },
-    "postCreateCommand": "pip install -e '.[dev]'",
+    "postCreateCommand": "pip install -e '.[dev]' && npm install duckdb-async@0.9.1 && exit 0",
     "portsAttributes": {
         "3000": {
             "label": "Dagster"

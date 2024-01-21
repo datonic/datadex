@@ -5,7 +5,7 @@ project:
     port: 5000
   render:
     - README.md
-    - reports
+    - notebooks
     - dashboard.qmd
     - docs
 
@@ -32,7 +32,7 @@ website:
         href: dashboard.html
       - text: Knowledge Base
         icon: book
-        href: reports
+        href: notebooks
       - text: Tutorial
         icon: bi-journal
         href: docs/tutorial.html
