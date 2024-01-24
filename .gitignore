@@ -134,7 +134,7 @@ logs/
 
 # Ignore everything under data except datasets/.gitkeep
 data/**
-!data/datasets/.gitkeep
+!data/.gitkeep
 
 # Quarto
 /.quarto/
