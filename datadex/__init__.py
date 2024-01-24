@@ -8,7 +8,6 @@ from . import assets, jobs
 from .resources import HuggingFaceResource
 
 DBT_PROJECT_DIR = os.path.dirname(os.path.abspath(__file__)) + "/../dbt/"
-DATA_DIR = os.path.dirname(os.path.abspath(__file__)) + "/../data/"
 
 dbt = DbtCliResource(project_dir=DBT_PROJECT_DIR, profiles_dir=DBT_PROJECT_DIR)
 
@@ -19,7 +18,7 @@ resources = {
     "hf": HuggingFaceResource(),
     "dbt": dbt,
     "io_manager": DuckDBPandasIOManager(
-        database=DATA_DIR + "local.duckdb",
+        database="data/local.duckdb",
         # connection_config={"pandas_analyze_sample": 0},
     ),
 }
