@@ -5,6 +5,8 @@ import pandas as pd
 import requests
 from dagster import AssetExecutionContext, asset
 
+from .resources import HuggingFaceResource
+
 
 @asset
 def threatened_animal_species(context: AssetExecutionContext) -> pd.DataFrame:
@@ -86,9 +88,9 @@ def wikidata_asteroids() -> pd.DataFrame:
     return pd.read_csv(io.StringIO(response.content.decode("utf-8")))
 
 
-# @asset
-# def hf_co2_data(co2_global_trend: pd.DataFrame, hf: HuggingFaceResource) -> None:
-#     """
-#     CO2 data from Our World in Data.
-#     """
-#     hf.upload_dataset(co2_global_trend, "co2_global_trend")
+@asset
+def hf_co2_data(co2_global_trend: pd.DataFrame, hf: HuggingFaceResource) -> None:
+    """
+    CO2 data from Our World in Data.
+    """
+    hf.upload_dataset(co2_global_trend, "co2_global_trend")
