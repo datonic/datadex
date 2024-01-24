@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := run
 
 run:
-	dagster job  execute -j all_assets_job -m datadex
+	dagster job execute -j all_assets_job -m datadex
 
 dev:
 	dagster dev -m datadex
