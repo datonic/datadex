@@ -84,3 +84,11 @@ def wikidata_asteroids() -> pd.DataFrame:
     )
 
     return pd.read_csv(io.StringIO(response.content.decode("utf-8")))
+
+
+# @asset
+# def hf_co2_data(co2_global_trend: pd.DataFrame, hf: HuggingFaceResource) -> None:
+#     """
+#     CO2 data from Our World in Data.
+#     """
+#     hf.upload_dataset(co2_global_trend, "co2_global_trend")

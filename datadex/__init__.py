@@ -5,6 +5,7 @@ from dagster_dbt import DbtCliResource, load_assets_from_dbt_project
 from dagster_duckdb_pandas import DuckDBPandasIOManager
 
 from . import assets, jobs
+from .resources import HuggingFaceResource
 
 DBT_PROJECT_DIR = os.path.dirname(os.path.abspath(__file__)) + "/../dbt/"
 DATA_DIR = os.path.dirname(os.path.abspath(__file__)) + "/../data/"
@@ -15,6 +16,7 @@ dbt_assets = load_assets_from_dbt_project(DBT_PROJECT_DIR, DBT_PROJECT_DIR)
 python_assets = load_assets_from_modules([assets])
 
 resources = {
+    "hf": HuggingFaceResource(),
     "dbt": dbt,
     "io_manager": DuckDBPandasIOManager(
         database=DATA_DIR + "local.duckdb",
