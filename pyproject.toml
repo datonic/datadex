@@ -10,6 +10,8 @@ dependencies = [
     "dbt-core",
     "dbt-duckdb",
     "duckdb",
+    "huggingface_hub",
+    "datasets",
     "frictionless",
     "ipykernel",
     "ipywidgets",
