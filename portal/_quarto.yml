@@ -27,9 +27,6 @@ website:
       - text: dbt Docs
         icon: sun
         file: dbt
-      - text: Dashboard
-        icon: clipboard-data
-        href: dashboard.html
       - text: Knowledge Base
         icon: book
         href: notebooks

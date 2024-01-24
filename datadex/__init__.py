@@ -16,7 +16,10 @@ python_assets = load_assets_from_modules([assets])
 
 resources = {
     "dbt": dbt,
-    "io_manager": DuckDBPandasIOManager(database=DATA_DIR + "local.duckdb"),
+    "io_manager": DuckDBPandasIOManager(
+        database=DATA_DIR + "local.duckdb",
+        # connection_config={"pandas_analyze_sample": 0},
+    ),
 }
 
 defs = Definitions(

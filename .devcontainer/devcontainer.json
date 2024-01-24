@@ -54,12 +54,11 @@
                 "quarto.quarto",
                 "redhat.vscode-yaml",
                 "tamasfe.even-better-toml",
-                "visualstudioexptteam.vscodeintellicode",
-                "Evidence.sqltools-duckdb-driver"
+                "visualstudioexptteam.vscodeintellicode"
             ]
         }
     },
-    "postCreateCommand": "pip install -e '.[dev]' && npm install duckdb-async@0.9.1 && exit 0",
+    "postCreateCommand": "pip install -e '.[dev]'",
     "portsAttributes": {
         "3000": {
             "label": "Dagster"
