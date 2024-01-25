@@ -28,7 +28,7 @@ jobs:
           pip install -e .
       - name: Run
         run: |
-          make run
+          make run && make hf
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:

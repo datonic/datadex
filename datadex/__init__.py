@@ -26,5 +26,5 @@ resources = {
 defs = Definitions(
     assets=[*dbt_assets, *python_assets],
     resources=resources,
-    jobs=[jobs.all_assets_job],
+    jobs=[jobs.data_assets_job, jobs.hf_assets_job],
 )
