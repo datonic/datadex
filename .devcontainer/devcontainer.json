@@ -62,6 +62,9 @@
     "portsAttributes": {
         "3000": {
             "label": "Dagster"
+        },
+        "4000": {
+            "label": "Evidence"
         }
     }
 }

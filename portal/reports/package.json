@@ -1,10 +1,10 @@
 {
-    "name": "my-evidence-project",
+    "name": "datadex",
     "version": "0.0.1",
     "scripts": {
         "build": "evidence build",
         "build:strict": "evidence build:strict",
-        "dev": "evidence dev --open /",
+        "dev": "evidence dev --port 4000",
         "test": "evidence build",
         "sources": "evidence sources"
     },
