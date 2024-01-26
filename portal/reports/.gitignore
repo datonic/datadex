@@ -1,0 +1,9 @@
+.evidence/template
+.evidence/customization/.profile.json
+.svelte-kit
+build
+node_modules
+.DS_Store
+static/data
+*.options.yaml
+.vscode/settings.json

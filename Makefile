@@ -17,11 +17,17 @@ dbt-docs:
 	mkdir -p dbt/target/docs
 	cp dbt/target/*.json dbt/target/index.html dbt/target/graph.gpickle dbt/target/docs/
 
-render: dbt-docs
+evidence:
+	npm --prefix ./portal/reports install
+	npm --prefix ./portal/reports run sources
+	npm --prefix ./portal/reports run build
+
+render: dbt-docs evidence
 	cp README.md portal/README.md
 	quarto render portal
 	cd portal && quarto render README.md -M output-file:index
 	cp -r dbt/target/docs/ portal/.quarto/output/dbt
+	cp -r portal/reports/build/ portal/.quarto/output/reports
 	rm portal/README.md
 
 clean:

@@ -33,6 +33,9 @@ website:
       - text: Tutorial
         icon: bi-journal
         href: docs/tutorial.html
+      - text: Reports
+        icon: bi-journalbi-bookmark-plus
+        href: reports
     tools:
       - icon: twitter
         href: https://twitter.com/davidgasquez
