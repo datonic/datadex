@@ -1,6 +1,6 @@
 <p align="center">
   <h1 style="font-size:80px; font-weight: 800;" align="center">D A T A D E X</h1>
-  <p align="center">Collaborate on Open Data using Open Source Tools</a> </p>
+  <p align="center">A Data Platform for your community Open Data</a> </p>
 </p>
 
 <div align="center">
@@ -11,12 +11,12 @@
 
 <br>
 
-Open source, serverless, and local-first Data Platform to collaborate on Open Data! Built on top of [Dagster](https://dagster.io/), [dbt](https://www.getdbt.com/), [Quarto](https://quarto.org/), [DuckDB](https://www.duckdb.org/), and [Evidence](https://evidence.dev/).
+Datadex is a fully open source, serverless, and local-first Data Platform that improves how communities collaborate on Open Data. Datadex is not a new tool, it is a pattern showing an opinionated bridge between existing ones.
 
-This repository is an up to date toy implementation of the overall pattern. You can check two real world production instances of Datadex working in the following repositories:
+You can check two real world production implementation of the Datadex pattern working in the following repositories:
 
-- [Gitcoin Grants Data Portal](https://github.com/davidgasquez/gitcoin-grants-data-portal). Improve data access and empower data scientists to conduct research and guide community driven analysis and decisions around Gitcoin Grants.
-- [Filecoin Data Portal](https://github.com/davidgasquez/filecoin-data-portal/). Local-first data hub for Filecoin data! Like Dune, but in your laptop.
+- [Gitcoin Grants Data Portal](https://github.com/davidgasquez/gitcoin-grants-data-portal). Data hub for Gitcoin Grants data. Improves data access and empower data scientists to conduct research and guide community driven analysis and decisions.
+- [Filecoin Data Portal](https://github.com/davidgasquez/filecoin-data-portal/). Data hub for Filecoin data! Like Dune, but in your laptop.
 
 ### 💡 Principles
 
@@ -25,8 +25,6 @@ This repository is an up to date toy implementation of the overall pattern. You 
 - **Permissionless**. Don't ask, fork it and improve the models, add a new source or update any script. No API limits, just plain files.
 - **Data as Code**. Declarative stateless transformations tracked in `git`. Version your data as code! Publish and share your reusable models for others to build on top. Datasets should be both reproducible and accessible!
 - **Glue**: Be a bridge between tools and aproaches. E.g: Use software engineering good practices like types, tests, materialized views, and more.
-
-Datadex is not a new tool. **Datadex is a pattern showing an opinionated bridge between existing ones**.
 
 ### 🚀 What can you do with Datadex?
 

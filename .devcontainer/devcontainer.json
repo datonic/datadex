@@ -43,10 +43,7 @@
             },
             "extensions": [
                 "charliermarsh.ruff",
-                "EditorConfig.EditorConfig",
-                "Evidence.evidence-vscode",
                 "innoverio.vscode-dbt-power-user",
-                "ms-python.isort",
                 "ms-python.python",
                 "ms-python.vscode-pylance",
                 "ms-toolsai.datawrangler",
@@ -58,13 +55,5 @@
             ]
         }
     },
-    "postCreateCommand": "pip install -e '.[dev]'",
-    "portsAttributes": {
-        "3000": {
-            "label": "Dagster"
-        },
-        "4000": {
-            "label": "Evidence"
-        }
-    }
+    "postCreateCommand": "make setup"
 }

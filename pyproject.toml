@@ -40,8 +40,16 @@ dev = ["dagit", "shandy-sqlfmt[jinjafmt]", "ruff"]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+packages = ["datadex"]
+
 [tool.setuptools.package-data]
 "datadex" = ["../dbt/**"]
 
-[tool.setuptools]
-packages = ["datadex"]
+[tool.dagster]
+module_name = "datadex"
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+combine-as-imports = true
+length-sort = true

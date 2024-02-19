@@ -12,6 +12,12 @@ dev:
 preview:
 	quarto preview portal
 
+setup:
+	@command -v uv >/dev/null 2>&1 || pip install -U uv
+	uv venv
+	uv pip install -U -e ".[dev]"
+	. .venv/bin/activate
+
 dbt-docs:
 	cd dbt && dbt docs generate --profiles-dir .
 	mkdir -p dbt/target/docs
