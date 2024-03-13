@@ -1,4 +1,0 @@
-name: local
-type: duckdb
-options:
-    filename: ../../../../data/local.duckdb

@@ -1,11 +1,8 @@
 FROM mcr.microsoft.com/devcontainers/python:3.11
 
-# Install Node.js
-RUN curl -sL https://deb.nodesource.com/setup_20.x | bash
-
 # Install base packages
 RUN apt-get update && apt-get -y install --no-install-recommends \
-    build-essential aria2 zstd nodejs \
+    build-essential aria2 zstd \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Quarto
