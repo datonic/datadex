@@ -28,7 +28,6 @@ render: dbt-docs
 	quarto render portal
 	cd portal && quarto render README.md -M output-file:index
 	cp -r dbt/target/docs/ portal/.quarto/output/dbt
-	cp -r portal/reports/build/ portal/.quarto/output/reports
 	rm portal/README.md
 
 clean:

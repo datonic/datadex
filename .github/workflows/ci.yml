@@ -36,8 +36,12 @@ jobs:
       - name: Render
         run: |
           make render
-      - name: Publish Docs
-        uses: JamesIves/github-pages-deploy-action@4.0.0
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
         with:
-          branch: gh-pages
-          folder: portal/.quarto/output
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: fbe814d4a37d3d3d7fcfeec0ab929ff6
+          projectName: datadex
+          directory: portal/.quarto/output
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
