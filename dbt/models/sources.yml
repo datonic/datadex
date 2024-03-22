@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: public
+  - name: main
     tables:
       - name: threatened_animal_species
         meta:
