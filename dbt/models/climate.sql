@@ -1,13 +1,13 @@
 with
     energy_data as (
         select year, sum(solar_electricity) as solar_electricity
-        from {{ source("public", "owid_energy_data") }}
+        from {{ source("main", "owid_energy_data") }}
         where iso_code is not null and solar_electricity is not null and year >= 2014
         group by year
     ),
     co2_global_trend as (
         select year, avg(trend) as co2_trend
-        from {{ source("public", "co2_global_trend") }}
+        from {{ source("main", "co2_global_trend") }}
         group by year
     )
 select
