@@ -1,30 +1,25 @@
 import os
 
-from dagster import Definitions, load_assets_from_modules
+from dagster import EnvVar, Definitions, load_assets_from_modules
 from dagster_dbt import DbtCliResource, load_assets_from_dbt_project
 from dagster_duckdb_pandas import DuckDBPandasIOManager
 
-from . import assets, jobs
-from .resources import HuggingFaceResource
+from .assets import energy, huggingface
+from .resources import IUCNRedListAPI, HuggingFaceResource
 
 DBT_PROJECT_DIR = os.path.dirname(os.path.abspath(__file__)) + "/../dbt/"
+DATABASE_PATH = os.getenv("DATABASE_PATH", "data/database.duckdb")
 
 dbt = DbtCliResource(project_dir=DBT_PROJECT_DIR, profiles_dir=DBT_PROJECT_DIR)
 
 dbt_assets = load_assets_from_dbt_project(DBT_PROJECT_DIR, DBT_PROJECT_DIR)
-python_assets = load_assets_from_modules([assets])
+all_assets = load_assets_from_modules([energy, huggingface])
 
 resources = {
-    "hf": HuggingFaceResource(),
+    "hf": HuggingFaceResource(token=EnvVar("HUGGINGFACE_TOKEN")),
     "dbt": dbt,
-    "io_manager": DuckDBPandasIOManager(
-        database="data/local.duckdb",
-        # connection_config={"pandas_analyze_sample": 0},
-    ),
+    "iucn_redlist_api": IUCNRedListAPI(token=EnvVar("IUCN_REDLIST_TOKEN")),
+    "io_manager": DuckDBPandasIOManager(database=DATABASE_PATH, schema="main"),
 }
 
-defs = Definitions(
-    assets=[*dbt_assets, *python_assets],
-    resources=resources,
-    jobs=[jobs.data_assets_job, jobs.hf_assets_job],
-)
+defs = Definitions(assets=[*dbt_assets, *all_assets], resources=resources)

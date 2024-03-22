@@ -1,27 +1,21 @@
 import io
-import os
 
 import pandas as pd
 import requests
 from dagster import AssetExecutionContext, asset
 
-from .resources import HuggingFaceResource
+from ..resources import IUCNRedListAPI
 
 
 @asset
-def threatened_animal_species(context: AssetExecutionContext) -> pd.DataFrame:
-    API_ENDPOINT = "https://apiv3.iucnredlist.org/api/v3"
-    TOKEN = os.getenv("IUCNREDLIST_TOKEN")
-
+def threatened_animal_species(iucn_redlist_api: IUCNRedListAPI) -> pd.DataFrame:
     page = 1
     all_results = []
 
     while True:
-        r = requests.get(f"{API_ENDPOINT}/species/page/{page}?token={TOKEN}")
-        context.log.info(f"Page {page} status code: {r.status_code}")
-        if r.status_code != 200 or r.json()["result"] == []:
+        results = iucn_redlist_api.get_species(page)
+        if results == []:
             break
-        results = r.json()["result"]
         all_results.extend(results)
         page += 1
 
@@ -126,59 +120,3 @@ def spain_energy_demand(context: AssetExecutionContext) -> pd.DataFrame:
         end_date_str = end_date.strftime("%Y-%m-%d")
 
     return df
-
-
-@asset(group_name="hf")
-def hf_co2_data(co2_global_trend: pd.DataFrame, hf: HuggingFaceResource) -> None:
-    """
-    Upload CO2 data to HuggingFace.
-    """
-    hf.upload_dataset(co2_global_trend, "co2_global_trend")
-
-
-@asset(group_name="hf")
-def hf_spain_energy_demand(
-    spain_energy_demand: pd.DataFrame, hf: HuggingFaceResource
-) -> None:
-    """
-    Upload Spain energy demand data to HuggingFace.
-    """
-    hf.upload_dataset(spain_energy_demand, "spain_energy_demand")
-
-
-@asset(group_name="hf")
-def hf_owid_energy_data(
-    owid_energy_data: pd.DataFrame, hf: HuggingFaceResource
-) -> None:
-    """
-    Upload Our World in Data energy data to HuggingFace.
-    """
-    hf.upload_dataset(owid_energy_data, "owid_energy_data")
-
-
-@asset(group_name="hf")
-def hf_owid_co2_data(owid_co2_data: pd.DataFrame, hf: HuggingFaceResource) -> None:
-    """
-    Upload Our World in Data CO2 data to HuggingFace.
-    """
-    hf.upload_dataset(owid_co2_data, "owid_co2_data")
-
-
-@asset(group_name="hf")
-def hf_wikidata_asteroids(
-    wikidata_asteroids: pd.DataFrame, hf: HuggingFaceResource
-) -> None:
-    """
-    Upload Wikidata asteroids data to HuggingFace.
-    """
-    hf.upload_dataset(wikidata_asteroids, "wikidata_asteroids")
-
-
-@asset(group_name="hf")
-def hf_threatened_animal_species(
-    threatened_animal_species: pd.DataFrame, hf: HuggingFaceResource
-) -> None:
-    """
-    Upload IUCN Red List threatened animal species data to HuggingFace.
-    """
-    hf.upload_dataset(threatened_animal_species, "threatened_animal_species")

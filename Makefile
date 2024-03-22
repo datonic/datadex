@@ -1,13 +1,10 @@
 .DEFAULT_GOAL := run
 
 run:
-	dagster job execute -j data_assets_job -m datadex
-
-hf:
-	dagster job execute -j hf_assets_job -m datadex
+	dagster asset materialize --select \* -m datadex
 
 dev:
-	dagster dev -m datadex
+	dagster dev
 
 preview:
 	quarto preview portal
@@ -24,11 +21,8 @@ dbt-docs:
 	cp dbt/target/*.json dbt/target/index.html dbt/target/graph.gpickle dbt/target/docs/
 
 render: dbt-docs
-	cp README.md portal/README.md
 	quarto render portal
-	cd portal && quarto render README.md -M output-file:index
 	cp -r dbt/target/docs/ portal/.quarto/output/dbt
-	rm portal/README.md
 
 clean:
 	rm -rf data/*.parquet data/*.duckdb

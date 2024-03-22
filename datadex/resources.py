@@ -1,10 +1,11 @@
+import requests
 import huggingface_hub as hf_hub
-from dagster import ConfigurableResource, EnvVar
+from dagster import ConfigurableResource
 from datasets import Dataset, NamedSplit
 
 
 class HuggingFaceResource(ConfigurableResource):
-    token: str = EnvVar("HUGGINGFACE_TOKEN")
+    token: str
 
     def login(self):
         hf_hub.login(token=self.token)
@@ -13,5 +14,15 @@ class HuggingFaceResource(ConfigurableResource):
         self.login()
         dataset = Dataset.from_pandas(dataset, split=NamedSplit("main"))
         r = dataset.push_to_hub("davidgasquez/" + name)
-        print(r)
         return r
+
+
+class IUCNRedListAPI(ConfigurableResource):
+    token: str
+
+    def get_species(self, page):
+        API_ENDPOINT = "https://apiv3.iucnredlist.org/api/v3"
+        r = requests.get(f"{API_ENDPOINT}/species/page/{page}?token={self.token}")
+        r.raise_for_status()
+
+        return r.json()["result"]

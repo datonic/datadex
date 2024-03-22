@@ -15,15 +15,7 @@ def raw_owid_co2_data() -> pd.DataFrame:
 
 This will make a new asset appear in the Dagster UI (available at [localhost:3000](http://127.0.0.1:3000/) after running `make dev`). You can now select it and click "Materialize selected" to run the function and save the resulting DataFrame to our local DuckDB database.
 
-Once the asset is materialized, you can start querying it.
-
-
-```python
->>> from datadex.utils import query
->>> query("select count(*) from public.raw_owid_co2_data")
-   count_star()
-0         50598
-```
+Once the asset is materialized, you can start querying it!
 
 ## 📊 Modeling Data
 
@@ -54,9 +46,11 @@ To run this model, we need to refresh the Dagster definitions on `Reload definit
 Finally, we can use the data in a notebook. Let's say we want to plot the CO2 emissions for a given country. We can use the `climate_owid_co2_by_country` table we just created:
 
 ```python
-from datadex.utils import query
+import duckdb
 
-df = query("select * from climate_owid_co2_by_country where country = 'World'")
+c = duckdb.connect("data/database.duckdb")
+
+df = c.sql("select * from climate_owid_co2_by_country where country = 'World'").df()
 _ = df.plot(x="year", y="co2", kind="line")
 ```
 

@@ -3,26 +3,21 @@ project:
   output-dir: .quarto/output
   preview:
     port: 5000
-  render:
-    - README.md
-    - notebooks
-    - dashboard.qmd
-    - docs
 
 format:
   html:
     anchor-sections: true
-    smooth-scroll: true
     theme: litera
 
 website:
   title: Datadex
+  favicon: logo.svg
   repo-url: https://github.com/davidgasquez/datadex
   repo-actions: [edit, issue]
   page-footer: Made with ❤️ by David Gasquez
+  search: false
   navbar:
-    search: true
-    logo: https://em-content.zobj.net/thumbs/120/google/350/package_1f4e6.png
+    logo: logo.svg
     left:
       - text: dbt Docs
         icon: sun
@@ -33,10 +28,9 @@ website:
       - text: Tutorial
         icon: bi-journal
         href: docs/tutorial.html
-      # - text: Reports
-      #   icon: bi-journalbi-bookmark-plus
-      #   href: reports
     tools:
+      - icon: hexagon
+        href: https://datonic.io
       - icon: twitter
         href: https://twitter.com/davidgasquez
       - icon: github

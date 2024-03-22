@@ -1,0 +1,26 @@
+---
+format:
+  html:
+    toc: false
+---
+
+<p align="center">
+  <h1 style="font-size:70px; font-weight: 800;" align="center">D A T A D E X</h1>
+  <p align="center">The Open Data Platform for your Community</a> </p>
+</p>
+
+
+<div class="text-center">
+<img src="logo.svg" class="rounded img-fluid w-25" alt="DataDex Logo">
+</div>
+
+
+Open-source, serverless, and local-first Data Platform to improve how communities collaborate on Open Data!
+
+<br>
+
+<center>
+<a href="https://huggingface.co/davidgasquez" role="button" class="btn btn-primary btn-outline-dark btn-lg btn-block mx-4">Get the Data</a>
+<a href="https://github.com/datonic/datadex" role="button" class="btn btn-primary btn-outline-dark btn-lg btn-block mx-4">Contribute</a>
+<a href="https://github.com/datonic/datadex/issues/new" role="button" class="btn btn-primary btn-outline-dark btn-lg btn-block">Request Dataset</a>
+</center>

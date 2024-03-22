@@ -2,8 +2,8 @@ default:
   outputs:
     dev:
       type: duckdb
-      path: "../data/local.duckdb"
-      threads: 8
+      path: "{{ env_var('DATABASE_PATH', '../data/database.duckdb') }}"
+      threads: 16
       settings:
         enable_object_cache: true
         enable_http_metadata_cache: true

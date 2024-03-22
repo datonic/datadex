@@ -13,7 +13,7 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-      IUCNREDLIST_TOKEN: ${{ secrets.IUCNREDLIST_TOKEN }}
+      IUCN_REDLIST_TOKEN: ${{ secrets.IUCNREDLIST_TOKEN }}
       HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
     steps:
       - name: Checkout
@@ -28,7 +28,7 @@ jobs:
           pip install -e .
       - name: Run
         run: |
-          make run && make hf
+          make run
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -36,6 +36,10 @@ jobs:
       - name: Render
         run: |
           make render
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
