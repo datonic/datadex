@@ -3,10 +3,6 @@ version: 2
 sources:
   - name: main
     tables:
-      - name: threatened_animal_species
-        meta:
-          dagster:
-            asset_key: ["threatened_animal_species"]
       - name: owid_co2_data
         meta:
           dagster:
@@ -15,7 +11,3 @@ sources:
         meta:
           dagster:
             asset_key: ["owid_energy_data"]
-      - name: co2_global_trend
-        meta:
-          dagster:
-            asset_key: ["co2_global_trend"]

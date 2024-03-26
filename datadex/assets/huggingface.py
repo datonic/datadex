@@ -1,5 +1,5 @@
 import pandas as pd
-from dagster import asset, AssetIn
+from dagster import AssetIn, asset
 
 from ..resources import HuggingFaceResource
 
@@ -16,13 +16,10 @@ def create_hf_asset(dataset_name: str):
 
 
 datasets = [
-    "co2_global_trend",
     "spain_energy_demand",
-    "owid_energy_data",
-    "owid_co2_data",
     "wikidata_asteroids",
     "threatened_animal_species",
-    "climate",
+    "country_year_indicators",
 ]
 
 assets = []

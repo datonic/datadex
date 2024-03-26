@@ -11,10 +11,10 @@
                 "files.associations": {
                     "*.sql": "jinja-sql"
                 },
-                "[jinja-sql]": {
-                    "editor.defaultFormatter": "innoverio.vscode-dbt-power-user",
-                    "editor.formatOnSave": true
-                },
+                // "[jinja-sql]": {
+                //     "editor.defaultFormatter": "innoverio.vscode-dbt-power-user",
+                //     "editor.formatOnSave": true
+                // },
                 "[python]": {
                     "editor.defaultFormatter": "charliermarsh.ruff",
                     "editor.formatOnSave": true,
@@ -30,16 +30,6 @@
                 },
                 "python.analysis.typeCheckingMode": "basic",
                 "python.analysis.autoImportCompletions": true,
-                "sqltools.useNodeRuntime": true,
-                "sqltools.connections": [
-                    {
-                        "name": "DuckDB",
-                        "accessMode": "Read Only",
-                        "previewLimit": 50,
-                        "driver": "DuckDB",
-                        "databaseFilePath": "data/local.duckdb"
-                    }
-                ]
             },
             "extensions": [
                 "charliermarsh.ruff",

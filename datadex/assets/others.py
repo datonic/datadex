@@ -25,37 +25,6 @@ def threatened_animal_species(iucn_redlist_api: IUCNRedListAPI) -> pd.DataFrame:
 
 
 @asset
-def owid_energy_data() -> pd.DataFrame:
-    """
-    Raw Energy data from Our World in Data.
-    """
-    energy_owid_url = (
-        "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv"
-    )
-    return pd.read_csv(energy_owid_url)
-
-
-@asset
-def owid_co2_data() -> pd.DataFrame:
-    """
-    Raw CO2 data from Our World in Data.
-    """
-    co2_owid_url = (
-        "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
-    )
-    return pd.read_csv(co2_owid_url)
-
-
-@asset
-def co2_global_trend() -> pd.DataFrame:
-    """
-    Trends in Atmospheric Carbon Dioxide from NOAA/ESRL.
-    """
-    co2_noaa_url = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv"
-    return pd.read_csv(co2_noaa_url, skiprows=24)
-
-
-@asset
 def wikidata_asteroids() -> pd.DataFrame:
     """
     Wikidata asteroids data.
