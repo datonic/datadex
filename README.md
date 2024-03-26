@@ -27,7 +27,7 @@ You can check other real-world production implementations of the Datadex pattern
 - **Open**: Code, standards, infrastructure, and data, are public and open source.
 - **Modular and Interoperable**: Each component can be replaced, extended, or removed. Works well in many environments (your laptop, in a cluster, or from the browser), can be deployed to many places (S3 + GH Pages, IPFS, ...) and integrates with multiple tools (thanks to the Arrow ecosystem). [Use open tool, standards, infrastructure, and share data in accesible formats](https://voltrondata.com/codex/a-new-frontier).
 - **Permissionless**. Don't ask, fork it and improve the models, add a new source or update any script. No API limits, just plain files.
-- **Data as Code**. Declarative stateless transformations tracked in `git`. V- [Arbitrum Grants Data Portal](https://github.com/davidgasquez/arbitrum-data-portal).  Data hub for Arbitrum Grants data.  Improves data access and empowers data scientists to conduct research and helps to guide community-driven analysis and decisions.ersion your data as code! Publish and share your reusable models for others to build on top. Datasets should be both reproducible and accessible!
+- **Data as Code**. Declarative stateless transformations tracked in `git`. Improves data access and empowers data scientists to conduct research and helps to guide community-driven analysis and decisions.ersion your data as code! Publish and share your reusable models for others to build on top. Datasets should be both reproducible and accessible!
 - **Glue**: Be a bridge between tools and aproaches. E.g: Use software engineering good practices like types, tests, materialized views, and more.
 
 ### 🚀 What can you do with Datadex?
