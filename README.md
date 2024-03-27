@@ -35,7 +35,7 @@ You can check other real-world production implementations of the Datadex pattern
 - Add new data sources. Bring data locally and work with it!
 - Model existing datasets using `Python` and `SQL`.
 - Explore your data wherever you want. Use Jupyter Notebooks, BI Tools, Excel, ....
-- [Share your findings with others](https://davidgasquez.github.io/datadex/reports/2023-01-01-Datadex.html) by publishing them online as beautiful static websites.
+- [Share your findings with others](https://datadex.datonic.io/notebooks/2023-01-01-Datadex) by publishing them online as beautiful static websites.
 
 ## ⚙️ Setup
 
