@@ -21,7 +21,6 @@ You can check other real-world production implementations of the Datadex pattern
 
 ![DAG](https://github.com/datonic/datadex/assets/1682202/c53cced8-7b83-46a9-9ee9-e699301a49bd)
 
-
 ### 💡 Principles
 
 - **Open**: Code, standards, infrastructure, and data, are public and open source.
@@ -45,7 +44,7 @@ Datadex consists of several components and requires some setup to get started.
 
 The fastest way to start using Datadex is via [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers). Once inside the develpment environment, you'll only need to run `make dev` to spin up the [Dagster UI locally](http://127.0.0.1:3000).
 
-[![](https://github.com/codespaces/badge.svg)](https://codespaces.new/davidgasquez/datadex)
+[![badge](https://github.com/codespaces/badge.svg)](https://codespaces.new/davidgasquez/datadex)
 
 The development environment can also run in your browser thanks to GitHub Codespaces!
 

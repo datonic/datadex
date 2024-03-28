@@ -11,10 +11,10 @@
                 "files.associations": {
                     "*.sql": "jinja-sql"
                 },
-                // "[jinja-sql]": {
-                //     "editor.defaultFormatter": "innoverio.vscode-dbt-power-user",
-                //     "editor.formatOnSave": true
-                // },
+                "[jinja-sql]": {
+                    "editor.defaultFormatter": "innoverio.vscode-dbt-power-user",
+                    "editor.formatOnSave": false
+                },
                 "[python]": {
                     "editor.defaultFormatter": "charliermarsh.ruff",
                     "editor.formatOnSave": true,
