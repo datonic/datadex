@@ -38,26 +38,13 @@ You can check other real-world production implementations of the Datadex pattern
 
 ## ⚙️ Setup
 
-Datadex consists of several components and requires some setup to get started.
+There are two ways to get started with Datadex or your own Open Data Portal/Platform based on the Datadex pattern, Python Virtual Environment or Docker / Dev Containers.
 
-### 🐳 Docker / Dev Containers
-
-The fastest way to start using Datadex is via [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers). Once inside the develpment environment, you'll only need to run `make dev` to spin up the [Dagster UI locally](http://127.0.0.1:3000).
-
-[![badge](https://github.com/codespaces/badge.svg)](https://codespaces.new/davidgasquez/datadex)
-
-The development environment can also run in your browser thanks to GitHub Codespaces!
-
-You can also build the [Dockerfile](Dockerfile) image locally and run it with:
-
-```bash
-docker build -t datadex .
-docker run -it -v $(pwd):/workspaces/datadex -p 3000:3000 datadex
-```
+If you hit any issue, please [open an issue](https:github.com/datonic/datadex/issues/new)!
 
 ### 🐍 Python Virtual Environment
 
-Clone the repository and run the following commands from the root folder:
+You can install all the dependencies inside a Python virtual environment. To do that, clone the repository and run the following commands from the root folder:
 
 ```bash
 # Create a virtual environment
@@ -68,7 +55,19 @@ source .venv/bin/activate
 pip install -e .[dev]
 ```
 
-Now, you should be able to spin up Dagster UI and [access it locally](http://127.0.0.1:3000).
+Alternatively, you can use `make setup` which will install and setup the project for you using `uv`.
+
+Now, you should be able to spin up Dagster UI (`make dev` or `dagster dev`) and [access it locally](http://127.0.0.1:3000).
+
+### 🐳 Docker / Dev Containers
+
+Using [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers) is the fastest and smoother way to start using Datadex, but requires you to have Docker running. Open the project in VSCode and click on the bottom right corner to open the project in a container.
+
+Once inside the develpment environment, you'll only need to run `make dev` to spin up the [Dagster UI locally](http://127.0.0.1:3000). You'll also have a few extra extensions installed and configured to work with the project.
+
+The development environment can also run in your browser thanks to GitHub Codespaces!
+
+[![badge](https://github.com/codespaces/badge.svg)](https://codespaces.new/davidgasquez/datadex)
 
 ## 🎯 Motivation
 
@@ -76,5 +75,5 @@ This project started after [thinking how an Open Data Protocol could look like](
 
 ## 👏 Acknowledgements
 
-- This proof of concept was created thanks to open source projects like [DuckDB](https://www.duckdb.org/), [dbt](https://getdbt.com), [Dagster](https://dagster.io/), and [Quarto](https://quarto.org/).
+- This proof of concept was created thanks to open source projects like [DuckDB](https://www.duckdb.org/), [dbt](https://getdbt.com), [Dagster](https://dagster.io/), [Quarto](https://quarto.org/), ...
 - Datadex name was inspired by [Juan Benet's `data` projects](https://juan.benet.ai/blog/2014-03-11-discussion-scienceexchange/).

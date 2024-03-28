@@ -9,6 +9,9 @@ from ..resources import IUCNRedListAPI
 
 @asset
 def threatened_animal_species(iucn_redlist_api: IUCNRedListAPI) -> pd.DataFrame:
+    """
+    Threatened animal species data from the IUCN Red List API.
+    """
     page = 1
     all_results = []
 
