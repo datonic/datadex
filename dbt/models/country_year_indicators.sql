@@ -131,6 +131,7 @@ with
             wind_share_elec,
             wind_share_energy
         from {{ source("main", "owid_energy_data") }}
+        where iso_code is not null
     ),
 
     owid_co2_data as (
@@ -215,8 +216,14 @@ with
             trade_co2,
             trade_co2_share
         from {{ source("main", "owid_co2_data") }}
+        where iso_code is not null
+    ),
+
+    world_bank_wdi as (
+        select * from {{ source("main", "world_bank_wdi") }}
     )
 
-select e.*, c.*
+select e.*, c.*, w.*
 from owid_energy_data as e
 join owid_co2_data as c on e.iso_code = c.iso_code and e.year = c.year
+join world_bank_wdi as w on e.iso_code = w.country_code and e.year = w.year

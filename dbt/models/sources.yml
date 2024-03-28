@@ -11,3 +11,7 @@ sources:
         meta:
           dagster:
             asset_key: ["owid_energy_data"]
+      - name: world_bank_wdi
+        meta:
+          dagster:
+            asset_key: ["world_bank_wdi"]
