@@ -7,12 +7,12 @@ dependencies = [
     "dagster-dbt",
     "dagster-duckdb-pandas",
     "dagster",
+    "datasets",
     "dbt-core",
     "dbt-duckdb",
     "duckdb",
-    "huggingface_hub",
-    "datasets",
     "frictionless",
+    "huggingface_hub",
     "ipykernel",
     "ipywidgets",
     "itables",
@@ -20,6 +20,7 @@ dependencies = [
     "nbclient",
     "nbformat",
     "pyarrow",
+    "python-slugify",
     "regex",
 ]
 
