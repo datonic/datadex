@@ -3,6 +3,7 @@ import io
 import pandas as pd
 import requests
 from dagster import AssetExecutionContext, asset
+from slugify import slugify
 
 from ..resources import IUCNRedListAPI
 
@@ -90,5 +91,29 @@ def spain_energy_demand(context: AssetExecutionContext) -> pd.DataFrame:
         start_date_str = start_date.strftime("%Y-%m-%d")
         end_date = start_date + pd.DateOffset(days=15)
         end_date_str = end_date.strftime("%Y-%m-%d")
+
+    return df
+
+
+@asset
+def spain_ipc() -> pd.DataFrame:
+    """
+    Spain IPC data from INE. Downloaded from datos.gob.es (https://datos.gob.es/es/apidata).
+    """
+
+    df = pd.read_csv("https://www.ine.es/jaxiT3/files/t/csv_bdsc/50904.csv", sep=";")
+
+    # Clean data
+    df["Total"] = pd.to_numeric(df["Total"].str.replace(",", "."), errors="coerce")
+    df["Periodo"] = pd.to_datetime(df["Periodo"].str.replace("M", "-"), format="%Y-%m")
+
+    df = df.pivot_table(
+        index=["Periodo", "Clases"],
+        columns=["Tipo de dato"],
+        values="Total",
+        aggfunc="sum",
+    ).reset_index()
+
+    df.columns = [slugify(col, separator="_") for col in df.columns]
 
     return df

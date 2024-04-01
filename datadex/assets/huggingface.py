@@ -20,6 +20,7 @@ datasets = [
     "wikidata_asteroids",
     "threatened_animal_species",
     "country_year_indicators",
+    "spain_ipc",
 ]
 
 assets = []

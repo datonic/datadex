@@ -4,26 +4,7 @@ import zipfile
 import pandas as pd
 import requests
 from dagster import asset
-
-
-def sanitize_string(s: str) -> str:
-    """
-    Sanitize a string to be used as a column name in a pandas DataFrame.
-    """
-
-    return (
-        s.lower()
-        .replace(" ", "_")
-        .replace("(", "")
-        .replace(")", "")
-        .replace("-", "_")
-        .replace(",", "")
-        .replace(":", "")
-        .replace("'", "")
-        .replace("$", "dollar")
-        .replace("%", "percent")
-        .replace("+", "plus")
-    )
+from slugify import slugify
 
 
 @asset
@@ -86,6 +67,6 @@ def world_bank_wdi() -> pd.DataFrame:
     ).reset_index()
 
     # Clean column names
-    pivoted_data.columns = [sanitize_string(col) for col in pivoted_data.columns]
+    pivoted_data.columns = [slugify(col, separator="_") for col in pivoted_data.columns]
 
     return pivoted_data
