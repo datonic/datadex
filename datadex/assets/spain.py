@@ -1,0 +1,112 @@
+from datetime import datetime, timedelta
+
+import pandas as pd
+import requests
+from dagster import AssetExecutionContext, asset
+from slugify import slugify
+from pandas.tseries.offsets import MonthEnd
+
+from ..resources import AEMETAPI
+
+
+@asset
+def spain_energy_demand(context: AssetExecutionContext) -> pd.DataFrame:
+    """
+    Spain energy demand data.
+    """
+    df = pd.DataFrame()
+
+    FIRST_DAY = pd.to_datetime("2014-01-01")
+    ENDPOINT = "https://apidatos.ree.es/en/datos/demanda/demanda-tiempo-real"
+
+    start_date = pd.to_datetime(FIRST_DAY)
+    start_date_str = start_date.strftime("%Y-%m-%d")
+    end_date = start_date + pd.DateOffset(days=15)
+    end_date_str = end_date.strftime("%Y-%m-%d")
+
+    yesterday = pd.to_datetime("today") - pd.DateOffset(days=1)
+
+    while start_date < yesterday:
+        url = f"{ENDPOINT}?start_date={start_date_str}T00:00&end_date={end_date_str}T00:00&time_trunc=hour"
+        response = requests.get(url)
+
+        context.log.info(
+            f"Start date: {start_date_str} status code: {response.status_code}"
+        )
+
+        local_df = pd.json_normalize(
+            response.json()["included"][0]["attributes"]["values"]
+        )
+        local_df["datetime"] = pd.to_datetime(local_df["datetime"], utc=True)
+
+        df = pd.concat([df, local_df[["value", "datetime"]]])
+
+        start_date = start_date + pd.DateOffset(days=15)
+        start_date_str = start_date.strftime("%Y-%m-%d")
+        end_date = start_date + pd.DateOffset(days=15)
+        end_date_str = end_date.strftime("%Y-%m-%d")
+
+    return df
+
+
+@asset
+def spain_ipc() -> pd.DataFrame:
+    """
+    Spain IPC data from INE. Downloaded from datos.gob.es (https://datos.gob.es/es/apidata).
+    """
+
+    df = pd.read_csv("https://www.ine.es/jaxiT3/files/t/csv_bdsc/50904.csv", sep=";")
+
+    # Clean data
+    df["Total"] = pd.to_numeric(df["Total"].str.replace(",", "."), errors="coerce")
+    df["Periodo"] = pd.to_datetime(df["Periodo"].str.replace("M", "-"), format="%Y-%m")
+
+    df = df.pivot_table(
+        index=["Periodo", "Clases"],
+        columns=["Tipo de dato"],
+        values="Total",
+        aggfunc="sum",
+    ).reset_index()
+
+    df.columns = [slugify(col, separator="_") for col in df.columns]
+
+    return df
+
+
+@asset
+def spain_aemet_stations(aemet_api: AEMETAPI) -> pd.DataFrame:
+    """
+    Spain AEMET stations data.
+    """
+
+    df = pd.DataFrame(aemet_api.get_all_stations())
+
+    return df
+
+
+@asset
+def spain_aemet_weather_data(
+    context: AssetExecutionContext, aemet_api: AEMETAPI
+) -> pd.DataFrame:
+    """
+    Spain weather data since 1920.
+    """
+
+    start_date = pd.to_datetime("1920-01-01")
+
+    end_date = datetime.now() - timedelta(days=1)
+
+    df = pd.DataFrame()
+
+    for i in pd.date_range(start_date, end_date, freq="M"):
+        first_day = i.strftime("%Y-%m-01") + "T00:00:00UTC"
+        last_day = (i + MonthEnd(0)).strftime("%Y-%m-%d") + "T23:59:59UTC"
+        context.log.info(f"Getting data from {first_day} to {last_day}")
+
+        mdf = pd.DataFrame(aemet_api.get_weather_data(first_day, last_day))
+
+        df = pd.concat([df, mdf], ignore_index=True)
+
+    # df["fecha"] = pd.to_datetime(df["fecha"], format="%Y-%m-%d")
+
+    return df

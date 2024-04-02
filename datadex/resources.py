@@ -2,6 +2,7 @@ import requests
 import huggingface_hub as hf_hub
 from dagster import ConfigurableResource
 from datasets import Dataset, NamedSplit
+from tenacity import retry, wait_exponential, stop_after_attempt
 
 
 class HuggingFaceResource(ConfigurableResource):
@@ -56,3 +57,50 @@ class REDataAPI(ConfigurableResource):
         category = "mercados"
         widget = "precios-mercados-tiempo-real"
         return self.query(category, widget, start_date, end_date, time_trunc)
+
+
+class AEMETAPI(ConfigurableResource):
+    endpoint: str = "https://opendata.aemet.es/opendata/api"
+    token: str
+
+    @retry(
+        stop=stop_after_attempt(10),
+        wait=wait_exponential(multiplier=1, min=4, max=20),
+    )
+    def query(self, url):
+        query = {
+            "api_key": self.token,
+        }
+
+        headers = {"cache-control": "no-cache"}
+        r = requests.get(url, params=query, headers=headers)
+        r.raise_for_status()
+
+        return r.json()
+
+    @retry(
+        stop=stop_after_attempt(10),
+        wait=wait_exponential(multiplier=1, min=4, max=20),
+    )
+    def get_query_data(self, query_response):
+        data_url = query_response.get("datos")
+        r = requests.get(data_url)
+        r.raise_for_status()
+
+        return r.json()
+
+    def get_all_stations(self):
+        url = f"{self.endpoint}/valores/climatologicos/inventarioestaciones/todasestaciones"
+
+        query_response = self.query(url)
+        data = self.get_query_data(query_response)
+
+        return data
+
+    def get_weather_data(self, start_date: str, end_date: str):
+        url = f"{self.endpoint}/valores/climatologicos/diarios/datos/fechaini/{start_date}/fechafin/{end_date}/todasestaciones"
+
+        query_response = self.query(url)
+        data = self.get_query_data(query_response)
+
+        return data
