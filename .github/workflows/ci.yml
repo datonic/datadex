@@ -15,6 +15,7 @@ jobs:
     env:
       IUCN_REDLIST_TOKEN: ${{ secrets.IUCNREDLIST_TOKEN }}
       HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
+      AEMET_API_TOKEN: ${{ secrets.AEMET_API_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
