@@ -19,7 +19,8 @@ You can check other real-world production implementations of the Datadex pattern
 - [Arbitrum Grants Data Portal](https://github.com/davidgasquez/arbitrum-data-portal).  Data hub for Arbitrum Grants data.  Improves data access and empowers data scientists to conduct research and helps to guide community-driven analysis and decisions.
 - [Filecoin Data Portal](https://github.com/davidgasquez/filecoin-data-portal/). Data hub for Filecoin data! Like Dune, but in your laptop.
 
-![DAG](https://github.com/datonic/datadex/assets/1682202/c53cced8-7b83-46a9-9ee9-e699301a49bd)
+![Global_Asset_Lineage](https://github.com/datonic/datadex/assets/1682202/5734a6b9-0618-4bf6-958a-1c45f5d34442)
+
 
 ### 💡 Principles
 
