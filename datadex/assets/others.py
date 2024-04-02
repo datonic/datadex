@@ -7,7 +7,7 @@ from dagster import asset
 from ..resources import IUCNRedListAPI
 
 
-@asset
+@asset(group_name="others")
 def threatened_animal_species(iucn_redlist_api: IUCNRedListAPI) -> pd.DataFrame:
     """
     Threatened animal species data from the IUCN Red List API.
@@ -27,7 +27,7 @@ def threatened_animal_species(iucn_redlist_api: IUCNRedListAPI) -> pd.DataFrame:
     )
 
 
-@asset
+@asset(group_name="others")
 def wikidata_asteroids() -> pd.DataFrame:
     """
     Wikidata asteroids data.

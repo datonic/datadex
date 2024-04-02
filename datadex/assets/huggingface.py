@@ -5,7 +5,11 @@ from ..resources import HuggingFaceResource
 
 
 def create_hf_asset(dataset_name: str):
-    @asset(name="huggingface_" + dataset_name, ins={"data": AssetIn(dataset_name)})
+    @asset(
+        name="huggingface_" + dataset_name,
+        ins={"data": AssetIn(dataset_name)},
+        group_name="huggingface",
+    )
     def hf_asset(data: pd.DataFrame, hf: HuggingFaceResource) -> None:
         """
         Upload data to HuggingFace.

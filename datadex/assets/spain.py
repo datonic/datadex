@@ -9,7 +9,7 @@ from pandas.tseries.offsets import MonthEnd
 from ..resources import AEMETAPI
 
 
-@asset
+@asset(group_name="spain_open_data")
 def spain_energy_demand(context: AssetExecutionContext) -> pd.DataFrame:
     """
     Spain energy demand data.
@@ -49,7 +49,7 @@ def spain_energy_demand(context: AssetExecutionContext) -> pd.DataFrame:
     return df
 
 
-@asset
+@asset(group_name="spain_open_data")
 def spain_ipc() -> pd.DataFrame:
     """
     Spain IPC data from INE. Downloaded from datos.gob.es (https://datos.gob.es/es/apidata).
@@ -73,7 +73,7 @@ def spain_ipc() -> pd.DataFrame:
     return df
 
 
-@asset
+@asset(group_name="spain_open_data")
 def spain_aemet_stations(aemet_api: AEMETAPI) -> pd.DataFrame:
     """
     Spain AEMET stations data.
@@ -84,7 +84,7 @@ def spain_aemet_stations(aemet_api: AEMETAPI) -> pd.DataFrame:
     return df
 
 
-@asset
+@asset(group_name="spain_open_data")
 def spain_aemet_weather_data(
     context: AssetExecutionContext, aemet_api: AEMETAPI
 ) -> pd.DataFrame:
