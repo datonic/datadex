@@ -14,7 +14,9 @@ class HuggingFaceResource(ConfigurableResource):
     def upload_dataset(self, dataset, name):
         self.login()
         dataset = Dataset.from_pandas(dataset, split=NamedSplit("main"))
-        r = dataset.push_to_hub("davidgasquez/" + name)
+        r = dataset.push_to_hub(
+            "davidgasquez/" + name, max_shard_size="50000MB", num_shards=1
+        )
         return r
 
 

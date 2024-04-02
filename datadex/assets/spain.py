@@ -101,6 +101,8 @@ def spain_aemet_stations_data(aemet_api: AEMETAPI) -> pd.DataFrame:
 
     df = df.drop(columns=["latitude_sign", "longitude_sign"])
 
+    df = df.convert_dtypes(dtype_backend="pyarrow")
+
     return df
 
 
@@ -143,5 +145,7 @@ def spain_aemet_weather_data(
 
     df[float_columns] = df[float_columns].apply(lambda x: x.str.replace(",", "."))
     df[float_columns] = df[float_columns].apply(pd.to_numeric, errors="coerce")
+
+    df = df.convert_dtypes(dtype_backend="pyarrow")
 
     return df
