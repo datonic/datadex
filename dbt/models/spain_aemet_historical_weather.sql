@@ -1,0 +1,31 @@
+select
+    cast(w.fecha as date) as fecha,
+    w.indicativo,
+    w.nombre,
+    w.provincia,
+    s.latitud,
+    s.longitud,
+    w.altitud,
+    w.tmed,
+    w.prec,
+    w.tmin,
+    w.horatmin,
+    w.tmax,
+    w.horatmax,
+    w.dir,
+    w.velmedia,
+    w.racha,
+    w.horaracha,
+    w.presMax,
+    w.horaPresMax,
+    w.presMin,
+    w.horaPresMin,
+    w.hrMedia,
+    w.hrMax,
+    w.horaHrMax,
+    w.hrMin,
+    w.horaHrMin,
+    w.sol
+from {{ source('main', 'spain_aemet_weather_data') }} as w
+left join {{ source('main', 'spain_aemet_stations_data') }} as s
+    on w.indicativo = s.indicativo

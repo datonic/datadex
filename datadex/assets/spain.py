@@ -74,12 +74,32 @@ def spain_ipc() -> pd.DataFrame:
 
 
 @asset(group_name="spain_open_data")
-def spain_aemet_stations(aemet_api: AEMETAPI) -> pd.DataFrame:
+def spain_aemet_stations_data(aemet_api: AEMETAPI) -> pd.DataFrame:
     """
     Spain AEMET stations data.
     """
 
     df = pd.DataFrame(aemet_api.get_all_stations())
+
+    # Clean latitud and longitud
+    df["latitude_sign"] = df["latitud"].str[-1]
+    df["longitude_sign"] = df["longitud"].str[-1]
+
+    df["latitud"] = pd.to_numeric(
+        df["latitud"].str[:-1].str.replace(",", "."), errors="coerce"
+    )
+    df["longitud"] = pd.to_numeric(
+        df["longitud"].str[:-1].str.replace(",", "."), errors="coerce"
+    )
+
+    df["latitud"] = df["latitud"] * df["latitude_sign"].apply(
+        lambda x: 1 if x == "N" else -1
+    )
+    df["longitud"] = df["longitud"] * df["longitude_sign"].apply(
+        lambda x: 1 if x == "E" else -1
+    )
+
+    df = df.drop(columns=["latitude_sign", "longitude_sign"])
 
     return df
 
@@ -107,6 +127,21 @@ def spain_aemet_weather_data(
 
         df = pd.concat([df, mdf], ignore_index=True)
 
-    # df["fecha"] = pd.to_datetime(df["fecha"], format="%Y-%m-%d")
+    df["fecha"] = pd.to_datetime(df["fecha"], format="%Y-%m-%d")
+
+    float_columns = [
+        "prec",
+        "presMax",
+        "presMin",
+        "racha",
+        "sol",
+        "tmax",
+        "tmed",
+        "tmin",
+        "velmedia",
+    ]
+
+    df[float_columns] = df[float_columns].apply(lambda x: x.str.replace(",", "."))
+    df[float_columns] = df[float_columns].apply(pd.to_numeric, errors="coerce")
 
     return df

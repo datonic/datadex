@@ -15,3 +15,11 @@ sources:
         meta:
           dagster:
             asset_key: ["world_bank_wdi"]
+      - name: spain_aemet_weather_data
+        meta:
+          dagster:
+            asset_key: ["spain_aemet_weather_data"]
+      - name: spain_aemet_stations_data
+        meta:
+          dagster:
+            asset_key: ["spain_aemet_stations_data"]

@@ -25,8 +25,7 @@ datasets = [
     "threatened_animal_species",
     "country_year_indicators",
     "spain_ipc",
-    "spain_aemet_stations",
-    "spain_aemet_weather_data",
+    "spain_aemet_historical_weather",
 ]
 
 assets = []
