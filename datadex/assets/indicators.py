@@ -2,31 +2,34 @@ import io
 import zipfile
 
 import pandas as pd
+import polars as pl
 import requests
 from dagster import asset
 from slugify import slugify
 
 
-@asset(group_name="country_indicators")
-def owid_energy_data() -> pd.DataFrame:
+@asset(group_name="country_indicators", io_manager_key="polars_io_manager")
+def owid_energy_data() -> pl.DataFrame:
     """
     Raw Energy data from Our World in Data.
     """
     energy_owid_url = (
         "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv"
     )
-    return pd.read_csv(energy_owid_url)
+
+    return pl.read_csv(energy_owid_url)
 
 
-@asset(group_name="country_indicators")
-def owid_co2_data() -> pd.DataFrame:
+@asset(group_name="country_indicators", io_manager_key="polars_io_manager")
+def owid_co2_data() -> pl.DataFrame:
     """
     Raw CO2 data from Our World in Data.
     """
     co2_owid_url = (
         "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
     )
-    return pd.read_csv(co2_owid_url)
+
+    return pl.read_csv(co2_owid_url)
 
 
 @asset(group_name="country_indicators")

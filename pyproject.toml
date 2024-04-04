@@ -6,6 +6,7 @@ dependencies = [
     "altair",
     "dagster-dbt",
     "dagster-duckdb-pandas",
+    "dagster-duckdb-polars",
     "dagster",
     "datasets",
     "dbt-core",

@@ -3,8 +3,9 @@ import os
 from dagster import EnvVar, Definitions, load_assets_from_modules
 from dagster_dbt import DbtCliResource, load_assets_from_dbt_project
 from dagster_duckdb_pandas import DuckDBPandasIOManager
+from dagster_duckdb_polars import DuckDBPolarsIOManager
 
-from .assets import others, indicators, huggingface, spain
+from .assets import spain, others, indicators, huggingface
 from .resources import AEMETAPI, IUCNRedListAPI, HuggingFaceResource
 
 DBT_PROJECT_DIR = os.path.dirname(os.path.abspath(__file__)) + "/../dbt/"
@@ -21,6 +22,7 @@ resources = {
     "iucn_redlist_api": IUCNRedListAPI(token=EnvVar("IUCN_REDLIST_TOKEN")),
     "aemet_api": AEMETAPI(token=EnvVar("AEMET_API_TOKEN")),
     "io_manager": DuckDBPandasIOManager(database=DATABASE_PATH, schema="main"),
+    "polars_io_manager": DuckDBPolarsIOManager(database=DATABASE_PATH, schema="main"),
 }
 
 defs = Definitions(assets=[*dbt_assets, *all_assets], resources=resources)
