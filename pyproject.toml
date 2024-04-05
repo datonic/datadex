@@ -16,7 +16,6 @@ dependencies = [
     "huggingface_hub",
     "ipykernel",
     "ipywidgets",
-    "itables",
     "matplotlib",
     "nbclient",
     "nbformat",
@@ -37,7 +36,7 @@ Issues = "https://github.com/davidgasquez/datadex/issues"
 CI = "https://github.com/davidgasquez/datadex/actions"
 
 [project.optional-dependencies]
-dev = ["dagit", "shandy-sqlfmt[jinjafmt]", "ruff"]
+dev = ["dagit", "ruff"]
 
 [build-system]
 requires = ["setuptools"]
