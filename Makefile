@@ -15,6 +15,9 @@ setup:
 	uv pip install -U -e ".[dev]"
 	. .venv/bin/activate
 
+sql:
+	harlequin data/database.duckdb --theme nord
+
 dbt-docs:
 	cd dbt && dbt docs generate --profiles-dir .
 	mkdir -p dbt/target/docs

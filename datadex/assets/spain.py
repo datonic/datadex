@@ -2,11 +2,26 @@ from datetime import datetime, timedelta
 
 import pandas as pd
 import requests
-from dagster import AssetExecutionContext, asset
+from dagster import AssetExecutionContext, TimeWindowPartitionsDefinition, asset
 from slugify import slugify
 from pandas.tseries.offsets import MonthEnd
 
 from ..resources import AEMETAPI
+
+yearly_partitions_def = TimeWindowPartitionsDefinition(
+    cron_schedule="0 0 1 1 *",
+    fmt="%Y-%m-%d",
+    start="2000-01-01",
+    end_offset=1,
+)
+
+
+@asset(partitions_def=yearly_partitions_def, metadata={"partition_expr": "year"})
+def yearly_asset(context: AssetExecutionContext) -> pd.DataFrame:
+    df = pd.DataFrame()
+    df["year"] = context.partition_key
+
+    return df
 
 
 @asset(group_name="spain_open_data")

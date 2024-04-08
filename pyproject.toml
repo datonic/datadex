@@ -25,18 +25,14 @@ dependencies = [
     "tenacity",
 ]
 
-requires-python = ">=3.11, <=3.12"
-readme = "README.md"
-license = { text = "MIT" }
+[project.optional-dependencies]
+dev = ["dagit", "ruff", "harlequin"]
 
 [project.urls]
 Homepage = "https://davidgasquez.github.io/datadex/"
 Changelog = "https://github.com/davidgasquez/datadex/commits/main/"
 Issues = "https://github.com/davidgasquez/datadex/issues"
 CI = "https://github.com/davidgasquez/datadex/actions"
-
-[project.optional-dependencies]
-dev = ["dagit", "ruff"]
 
 [build-system]
 requires = ["setuptools"]
