@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta
-
 import pandas as pd
 import requests
 from dagster import AssetExecutionContext, TimeWindowPartitionsDefinition, asset
@@ -10,16 +8,23 @@ from ..resources import AEMETAPI
 
 yearly_partitions_def = TimeWindowPartitionsDefinition(
     cron_schedule="0 0 1 1 *",
-    fmt="%Y-%m-%d",
-    start="2000-01-01",
+    fmt="%Y",
+    # fmt="%Y-%m-%d",
+    start="2018-01-01",
     end_offset=1,
 )
 
 
-@asset(partitions_def=yearly_partitions_def, metadata={"partition_expr": "year"})
+@asset(
+    partitions_def=yearly_partitions_def,
+    metadata={"partition_expr": "date(year)"},
+)
 def yearly_asset(context: AssetExecutionContext) -> pd.DataFrame:
-    df = pd.DataFrame()
-    df["year"] = context.partition_key
+    # Random dataframe
+    df = pd.DataFrame(
+        {"year": [context.partition_key for _ in range(10)]}, index=range(10)
+    )
+    print(df)
 
     return df
 
@@ -121,7 +126,11 @@ def spain_aemet_stations_data(aemet_api: AEMETAPI) -> pd.DataFrame:
     return df
 
 
-@asset(group_name="spain_open_data")
+@asset(
+    group_name="spain_open_data",
+    partitions_def=yearly_partitions_def,
+    metadata={"partition_expr": "date(fecha)"},
+)
 def spain_aemet_weather_data(
     context: AssetExecutionContext, aemet_api: AEMETAPI
 ) -> pd.DataFrame:
@@ -129,9 +138,11 @@ def spain_aemet_weather_data(
     Spain weather data since 1990.
     """
 
-    start_date = pd.to_datetime("1990-01-01")
+    start_date = pd.to_datetime(context.partition_key)
 
-    end_date = datetime.now() - timedelta(days=1)
+    end_date = pd.to_datetime(context.partition_key_range.end)
+
+    context.log.info(f"Fetching weather data from {start_date} to {end_date}")
 
     df = pd.DataFrame()
 
