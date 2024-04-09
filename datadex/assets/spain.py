@@ -6,27 +6,15 @@ from pandas.tseries.offsets import MonthEnd
 
 from ..resources import AEMETAPI
 
+# yearly partitions definition from
+# https://github.com/dagster-io/dagster/discussions/14612
 yearly_partitions_def = TimeWindowPartitionsDefinition(
     cron_schedule="0 0 1 1 *",
     fmt="%Y",
     # fmt="%Y-%m-%d",
-    start="2018-01-01",
+    start="2018",
     end_offset=1,
 )
-
-
-@asset(
-    partitions_def=yearly_partitions_def,
-    metadata={"partition_expr": "date(year)"},
-)
-def yearly_asset(context: AssetExecutionContext) -> pd.DataFrame:
-    # Random dataframe
-    df = pd.DataFrame(
-        {"year": [context.partition_key for _ in range(10)]}, index=range(10)
-    )
-    print(df)
-
-    return df
 
 
 @asset(group_name="spain_open_data")
@@ -138,9 +126,10 @@ def spain_aemet_weather_data(
     Spain weather data since 1990.
     """
 
+    today = pd.to_datetime("today")
     start_date = pd.to_datetime(context.partition_key)
-
-    end_date = pd.to_datetime(context.partition_key_range.end)
+    end_date = pd.to_datetime(str(int(context.partition_key) + 1))
+    end_date = min(end_date, today)
 
     context.log.info(f"Fetching weather data from {start_date} to {end_date}")
 

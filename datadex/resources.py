@@ -79,7 +79,7 @@ class AEMETAPI(ConfigurableResource):
         return r.json()
 
     @retry(
-        stop=stop_after_attempt(10),
+        stop=stop_after_attempt(20),
         wait=wait_exponential(multiplier=1, min=4, max=20),
     )
     def get_query_data(self, query_response):
