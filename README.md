@@ -21,7 +21,6 @@ You can check other real-world production implementations of the Datadex pattern
 
 ![Global_Asset_Lineage](https://github.com/datonic/datadex/assets/1682202/5734a6b9-0618-4bf6-958a-1c45f5d34442)
 
-
 ### 💡 Principles
 
 - **Open**: Code, standards, infrastructure, and data, are public and open source.

@@ -17,7 +17,7 @@ yearly_partitions_def = TimeWindowPartitionsDefinition(
 )
 
 
-@asset(group_name="spain_open_data")
+@asset()
 def spain_energy_demand(context: AssetExecutionContext) -> pd.DataFrame:
     """
     Spain energy demand data.
@@ -57,7 +57,7 @@ def spain_energy_demand(context: AssetExecutionContext) -> pd.DataFrame:
     return df
 
 
-@asset(group_name="spain_open_data")
+@asset()
 def spain_ipc() -> pd.DataFrame:
     """
     Spain IPC data from INE. Downloaded from datos.gob.es (https://datos.gob.es/es/apidata).
@@ -81,7 +81,7 @@ def spain_ipc() -> pd.DataFrame:
     return df
 
 
-@asset(group_name="spain_open_data")
+@asset()
 def spain_aemet_stations_data(aemet_api: AEMETAPI) -> pd.DataFrame:
     """
     Spain AEMET stations data.
@@ -115,7 +115,6 @@ def spain_aemet_stations_data(aemet_api: AEMETAPI) -> pd.DataFrame:
 
 
 @asset(
-    group_name="spain_open_data",
     partitions_def=yearly_partitions_def,
     metadata={"partition_expr": "date(fecha)"},
 )
