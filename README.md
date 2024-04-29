@@ -13,7 +13,7 @@
 
 Datadex is a fully open-source, serverless, and local-first Data Platform that improves how communities collaborate on Open Data. Datadex is not a new tool, it is a pattern showing an opinionated bridge between existing ones.
 
-You can check other real-world production implementations of the Datadex pattern working in the following repositories:
+You can [learn more about the approach in this post](https://davidgasquez.com/modern-open-data-portals/) or check other real-world production implementations of the Datadex pattern working in the following repositories:
 
 - [Gitcoin Grants Data Portal](https://github.com/davidgasquez/gitcoin-grants-data-portal). Data hub for Gitcoin Grants data. Improves data access and empowers data scientists to conduct research and helps to guide community-driven analysis and decisions.
 - [Arbitrum Grants Data Portal](https://github.com/davidgasquez/arbitrum-data-portal).  Data hub for Arbitrum Grants data.  Improves data access and empowers data scientists to conduct research and helps to guide community-driven analysis and decisions.
