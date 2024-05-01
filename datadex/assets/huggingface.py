@@ -7,8 +7,7 @@ from ..resources import HuggingFaceResource
 def create_hf_asset(dataset_name: str):
     @asset(
         name="huggingface_" + dataset_name,
-        ins={"data": AssetIn(dataset_name)},
-        group_name="huggingface",
+        ins={"data": AssetIn(dataset_name)}
     )
     def hf_asset(data: pd.DataFrame, hf: HuggingFaceResource) -> None:
         """

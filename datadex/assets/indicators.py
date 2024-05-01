@@ -8,7 +8,7 @@ from dagster import asset
 from slugify import slugify
 
 
-@asset(group_name="country_indicators", io_manager_key="polars_io_manager")
+@asset(io_manager_key="polars_io_manager")
 def owid_energy_data() -> pl.DataFrame:
     """
     Raw Energy data from Our World in Data.
@@ -20,7 +20,7 @@ def owid_energy_data() -> pl.DataFrame:
     return pl.read_csv(energy_owid_url)
 
 
-@asset(group_name="country_indicators", io_manager_key="polars_io_manager")
+@asset(io_manager_key="polars_io_manager")
 def owid_co2_data() -> pl.DataFrame:
     """
     Raw CO2 data from Our World in Data.
@@ -32,7 +32,7 @@ def owid_co2_data() -> pl.DataFrame:
     return pl.read_csv(co2_owid_url)
 
 
-@asset(group_name="country_indicators")
+@asset()
 def world_bank_wdi() -> pd.DataFrame:
     """
     World Development Indicators (WDI) is the World Bank's premier compilation of cross-country comparable data on development.

@@ -7,7 +7,7 @@ dependencies = [
     "dagster-dbt",
     "dagster-duckdb-pandas",
     "dagster-duckdb-polars",
-    "dagster",
+    "dagster==1.7.3",
     "datasets",
     "dbt-core",
     "dbt-duckdb",

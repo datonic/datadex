@@ -3,7 +3,3 @@ version: 2
 models:
   - name: country_year_indicators
     description: "Country-year indicators"
-    config:
-      meta:
-        dagster:
-          group: country_indicators
