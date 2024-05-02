@@ -111,10 +111,10 @@ def spain_aemet_weather_data(
     context: AssetExecutionContext, aemet_api: AEMETAPI
 ) -> pd.DataFrame:
     """
-    Spain weather data since 1970.
+    Spain weather data since 1950.
     """
 
-    start_date = pd.to_datetime("1970-01-01")
+    start_date = pd.to_datetime("1950-01-01")
 
     end_date = datetime.now() - timedelta(days=1)
 
