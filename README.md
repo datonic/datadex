@@ -44,7 +44,13 @@ If you hit any issue, please [open an issue](https:github.com/datonic/datadex/is
 
 ### 🐍 Python Virtual Environment
 
-You can install all the dependencies inside a Python virtual environment. To do that, clone the repository and run the following commands from the root folder:
+You can install all the dependencies inside a Python virtual environment by running `make dev`. To do that, clone the repository and run the following commands from the root folder.
+
+```bash
+make dev
+```
+
+Alternatively, you can rely on your system's Python installation to create a virtual environment and install the dependencies.
 
 ```bash
 # Create a virtual environment
@@ -54,8 +60,6 @@ source .venv/bin/activate
 # Install the package and dependencies
 pip install -e .[dev]
 ```
-
-Alternatively, you can use `make setup` which will install and setup the project for you using `uv`.
 
 Now, you should be able to spin up Dagster UI (`make dev` or `dagster dev`) and [access it locally](http://127.0.0.1:3000).
 

@@ -37,7 +37,7 @@ Issues = "https://github.com/davidgasquez/datadex/issues"
 CI = "https://github.com/davidgasquez/datadex/actions"
 
 [project.optional-dependencies]
-dev = ["dagit", "ruff"]
+dev = ["dagster-webserver==1.7.4", "ruff"]
 
 [build-system]
 requires = ["setuptools"]
