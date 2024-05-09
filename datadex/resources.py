@@ -89,6 +89,10 @@ class AEMETAPI(ConfigurableResource):
 
         return r.json()
 
+    @retry(
+        stop=stop_after_attempt(10),
+        wait=wait_exponential(multiplier=1, min=4, max=20),
+    )
     def get_all_stations(self):
         url = f"{self.endpoint}/valores/climatologicos/inventarioestaciones/todasestaciones"
 
