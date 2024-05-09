@@ -1,7 +1,6 @@
 import io
 
 import pandas as pd
-import polars as pl
 import requests
 from dagster import asset
 
@@ -28,8 +27,8 @@ def threatened_animal_species(iucn_redlist_api: IUCNRedListAPI) -> pd.DataFrame:
     )
 
 
-@asset(io_manager_key="polars_io_manager")
-def wikidata_asteroids() -> pl.DataFrame:
+@asset()
+def wikidata_asteroids() -> pd.DataFrame:
     """
     Wikidata asteroids data.
     """
@@ -52,6 +51,6 @@ def wikidata_asteroids() -> pl.DataFrame:
         url, headers={"Accept": "text/csv"}, params={"query": query}
     )
 
-    df = pl.read_csv(io.StringIO(response.content.decode("utf-8")))
+    df = pd.read_csv(io.StringIO(response.content.decode("utf-8")))
 
     return df
