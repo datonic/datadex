@@ -131,6 +131,7 @@ dmypy.json
 # dbt
 dbt_packages/
 logs/
+dbt/.user.yml
 
 # Ignore everything under data except datasets/.gitkeep
 data/**

@@ -1,9 +1,8 @@
 import io
 import zipfile
 
-import pandas as pd
+import httpx
 import polars as pl
-import requests
 from dagster import asset
 from slugify import slugify
 
@@ -32,8 +31,8 @@ def owid_co2_data() -> pl.DataFrame:
     return pl.read_csv(co2_owid_url)
 
 
-@asset()
-def world_bank_wdi() -> pd.DataFrame:
+@asset(io_manager_key="polars_io_manager")
+def world_bank_wdi() -> pl.DataFrame:
     """
     World Development Indicators (WDI) is the World Bank's premier compilation of cross-country comparable data on development.
 
@@ -42,34 +41,40 @@ def world_bank_wdi() -> pd.DataFrame:
 
     url = "https://databankfiles.worldbank.org/public/ddpext_download/WDI_CSV.zip"
 
-    # Download the zip file
-    response = requests.get(url)
+    response = httpx.get(url)
 
-    # Read the zip file
-    zip_file = zipfile.ZipFile(io.BytesIO(response.content))
+    zipfile.ZipFile(io.BytesIO(response.content)).extractall(path="/tmp/")
 
-    # Extract the zip file
-    zip_file.extractall(path="/tmp/")
-
-    # Load the WDICSV.csv file as a pandas DataFrame
-    df = pd.read_csv("/tmp/WDICSV.csv")
+    # Load the WDICSV.csv file as a DataFrame
+    df = pl.read_csv("/tmp/WDICSV.csv")
 
     # Reshape the dataframe
-    melted_data = pd.melt(
-        df,
+    df = df.melt(
         id_vars=["Country Name", "Country Code", "Indicator Name", "Indicator Code"],
-        var_name="Year",
         value_name="Indicator Value",
+        variable_name="Year",
     )
 
-    # Now one column per Indicator Name
-    pivoted_data = melted_data.pivot_table(
+    # Make one column per Indicator Name
+    df = df.pivot(
         index=["Country Name", "Country Code", "Year"],
         columns="Indicator Name",
         values="Indicator Value",
-    ).reset_index()
+    )
+
+    # Cast to floats
+    df = df.select(
+        [
+            pl.col("Country Name"),
+            pl.col("Country Code"),
+            pl.col("Year").cast(pl.Int32),
+            *[pl.col(col).cast(pl.Float32) for col in df.columns[3:]],
+        ]
+    )
 
     # Clean column names
-    pivoted_data.columns = [slugify(col, separator="_") for col in pivoted_data.columns]
+    df = df.rename(
+        lambda column_name: slugify(column_name.replace("%", "percent"), separator="_")
+    )
 
-    return pivoted_data
+    return df
