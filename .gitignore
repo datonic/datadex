@@ -141,3 +141,6 @@ data/**
 
 # Environment
 .env
+
+# JetBrains IDEs settings
+.idea/*

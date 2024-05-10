@@ -1,13 +1,9 @@
-# from datetime import datetime, timedelta
-
 import pandas as pd
 import requests
 from dagster import Backoff, RetryPolicy, AssetExecutionContext, asset
 from slugify import slugify
 
-# from pandas.tseries.offsets import MonthEnd
-
-# from ..resources import AEMETAPI
+from ..resources import MITECOArcGisAPI
 
 
 @asset()
@@ -150,6 +146,36 @@ def spain_ipc() -> pd.DataFrame:
 #     df[float_columns] = df[float_columns].apply(lambda x: x.str.replace(",", "."))
 #     df[float_columns] = df[float_columns].apply(pd.to_numeric, errors="coerce")
 
-#     df = df.convert_dtypes(dtype_backend="pyarrow")
-
 #     return df
+
+@asset()
+def spain_water_reservoirs_data(
+    context: AssetExecutionContext, miteco_api: MITECOArcGisAPI
+) -> pd.DataFrame:
+    """
+    Spain water reservoirs data since 1988.
+
+    Data obtained from the ArcGIS server hosted by MITECO (Ministerio para la Transición Ecológica
+     y el Reto Demográfico).
+
+    The data are also available on this website:
+     https://www.miteco.gob.es/es/agua/temas/evaluacion-de-los-recursos-hidricos/boletin-hidrologico.html
+    """
+    start_year = 1988
+    current_year = datetime.now().year
+
+    df = pd.DataFrame()
+
+    for year in range(start_year, current_year + 1):
+        start_date = datetime(year, 1, 1)
+        end_date = datetime(year, 12, 31)
+        context.log.info(f"Getting data from {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}")
+        response = miteco_api.get_water_reservoirs_data(start_date, end_date)
+        if response['features']:
+            mdf = pd.DataFrame.from_dict((elem['attributes'] for elem in response['features']), orient='columns')
+            df = pd.concat([df, mdf], ignore_index=True)
+
+    df["fecha"] = pd.to_datetime(df["fecha"], unit='ms')
+    df = df.convert_dtypes(dtype_backend="pyarrow")
+
+    return df
