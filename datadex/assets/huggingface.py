@@ -5,10 +5,7 @@ from ..resources import HuggingFaceResource
 
 
 def create_hf_asset(dataset_name: str):
-    @asset(
-        name="huggingface_" + dataset_name,
-        ins={"data": AssetIn(dataset_name)}
-    )
+    @asset(name="huggingface_" + dataset_name, ins={"data": AssetIn(dataset_name)})
     def hf_asset(data: pd.DataFrame, hf: HuggingFaceResource) -> None:
         """
         Upload data to HuggingFace.
@@ -24,7 +21,7 @@ datasets = [
     "threatened_animal_species",
     "country_year_indicators",
     "spain_ipc",
-    "spain_aemet_historical_weather",
+    # "spain_aemet_historical_weather",
 ]
 
 assets = []

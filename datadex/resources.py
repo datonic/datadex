@@ -1,7 +1,9 @@
+import httpx
 import requests
 import huggingface_hub as hf_hub
-from dagster import ConfigurableResource
+from dagster import InitResourceContext, ConfigurableResource
 from datasets import Dataset, NamedSplit
+from pydantic import PrivateAttr
 from tenacity import retry, wait_exponential, stop_after_attempt
 
 
@@ -63,6 +65,15 @@ class AEMETAPI(ConfigurableResource):
     endpoint: str = "https://opendata.aemet.es/opendata/api"
     token: str
 
+    _client: httpx.Client = PrivateAttr()
+
+    def setup_for_execution(self, context: InitResourceContext) -> None:
+        self._client = httpx.Client(
+            base_url=self.endpoint,
+            transport=httpx.HTTPTransport(retries=8),
+            timeout=30,
+        )
+
     @retry(
         stop=stop_after_attempt(10),
         wait=wait_exponential(multiplier=1, min=4, max=20),
@@ -73,26 +84,26 @@ class AEMETAPI(ConfigurableResource):
         }
 
         headers = {"cache-control": "no-cache"}
-        r = requests.get(url, params=query, headers=headers)
+        print(f"Quering... {url}")
+        r = self._client.get(url, params=query, headers=headers)
         r.raise_for_status()
 
         return r.json()
 
     @retry(
         stop=stop_after_attempt(10),
-        wait=wait_exponential(multiplier=1, min=4, max=20),
+        wait=wait_exponential(min=5, max=30),
     )
     def get_query_data(self, query_response):
         data_url = query_response.get("datos")
-        r = requests.get(data_url)
+
+        print(f"Getting query response at {data_url}")
+
+        r = self._client.get(data_url)
         r.raise_for_status()
 
         return r.json()
 
-    @retry(
-        stop=stop_after_attempt(10),
-        wait=wait_exponential(multiplier=1, min=4, max=20),
-    )
     def get_all_stations(self):
         url = f"{self.endpoint}/valores/climatologicos/inventarioestaciones/todasestaciones"
 
