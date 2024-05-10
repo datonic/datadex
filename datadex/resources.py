@@ -1,9 +1,9 @@
+import json
+
 import httpx
-import requests
 import huggingface_hub as hf_hub
-from dagster import InitResourceContext, ConfigurableResource
+from dagster import ConfigurableResource
 from datasets import Dataset, NamedSplit
-from pydantic import PrivateAttr
 from tenacity import retry, wait_exponential, stop_after_attempt
 
 
@@ -25,7 +25,8 @@ class IUCNRedListAPI(ConfigurableResource):
 
     def get_species(self, page):
         API_ENDPOINT = "https://apiv3.iucnredlist.org/api/v3"
-        r = requests.get(f"{API_ENDPOINT}/species/page/{page}?token={self.token}")
+
+        r = httpx.get(f"{API_ENDPOINT}/species/page/{page}?token={self.token}")
         r.raise_for_status()
 
         return r.json()["result"]
@@ -45,7 +46,8 @@ class REDataAPI(ConfigurableResource):
     ):
         params = f"start_date={start_date}T00:00&end_date={end_date}T00:00&time_trunc={time_trunc}"
         url = f"{self.endpoint}/{category}/{widget}?{params}"
-        r = requests.get(url)
+
+        r = httpx.get(url)
         r.raise_for_status()
 
         return r.json()
@@ -65,18 +67,9 @@ class AEMETAPI(ConfigurableResource):
     endpoint: str = "https://opendata.aemet.es/opendata/api"
     token: str
 
-    _client: httpx.Client = PrivateAttr()
-
-    def setup_for_execution(self, context: InitResourceContext) -> None:
-        self._client = httpx.Client(
-            base_url=self.endpoint,
-            transport=httpx.HTTPTransport(retries=8),
-            timeout=30,
-        )
-
     @retry(
         stop=stop_after_attempt(10),
-        wait=wait_exponential(multiplier=1, min=4, max=20),
+        wait=wait_exponential(min=5, max=30),
     )
     def query(self, url):
         query = {
@@ -84,8 +77,7 @@ class AEMETAPI(ConfigurableResource):
         }
 
         headers = {"cache-control": "no-cache"}
-        print(f"Quering... {url}")
-        r = self._client.get(url, params=query, headers=headers)
+        r = httpx.get(url, params=query, headers=headers, timeout=30)
         r.raise_for_status()
 
         return r.json()
@@ -97,12 +89,12 @@ class AEMETAPI(ConfigurableResource):
     def get_query_data(self, query_response):
         data_url = query_response.get("datos")
 
-        print(f"Getting query response at {data_url}")
-
-        r = self._client.get(data_url)
+        r = httpx.get(data_url, timeout=30)
         r.raise_for_status()
 
-        return r.json()
+        data = json.loads(r.text.encode("utf-8"))
+
+        return data
 
     def get_all_stations(self):
         url = f"{self.endpoint}/valores/climatologicos/inventarioestaciones/todasestaciones"
@@ -122,7 +114,9 @@ class AEMETAPI(ConfigurableResource):
 
 
 class MITECOArcGisAPI(ConfigurableResource):
-    endpoint: str = "https://services-eu1.arcgis.com/RvnYk1PBUJ9rrAuT/ArcGIS/rest/services/"
+    endpoint: str = (
+        "https://services-eu1.arcgis.com/RvnYk1PBUJ9rrAuT/ArcGIS/rest/services/"
+    )
 
     @retry(
         stop=stop_after_attempt(10),
@@ -130,17 +124,10 @@ class MITECOArcGisAPI(ConfigurableResource):
     )
     def query(self, dataset_name, params=None):
         url = f"{self.endpoint}/{dataset_name}/FeatureServer/0/query"
-        default_params = {
-            'resultType': 'standard',
-            'outFields': '*',
-            'f': 'pjson'
-        }
-        query_params = {
-            **default_params,
-            **params
-        } if params else default_params
+        default_params = {"resultType": "standard", "outFields": "*", "f": "pjson"}
+        query_params = {**default_params, **params} if params else default_params
 
-        r = requests.get(url, params=query_params)
+        r = httpx.get(url, params=query_params)
         r.raise_for_status()
 
         return r.json()
@@ -149,11 +136,11 @@ class MITECOArcGisAPI(ConfigurableResource):
         if start_date and end_date:
             date_format = "%Y-%m-%d"
             params = {
-                'where': f"fecha BETWEEN timestamp '{start_date.strftime(date_format)}' "
-                         f"AND timestamp '{end_date.strftime(date_format)}'"
+                "where": f"fecha BETWEEN timestamp '{start_date.strftime(date_format)}' "
+                f"AND timestamp '{end_date.strftime(date_format)}'"
             }
         else:
             params = None
-        query_response = self.query(dataset_name='Embalses_Total', params=params)
+        query_response = self.query(dataset_name="Embalses_Total", params=params)
 
         return query_response

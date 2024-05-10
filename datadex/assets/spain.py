@@ -1,10 +1,12 @@
-from datetime import datetime
+from datetime import datetime, timedelta
+
 import pandas as pd
 import requests
 from dagster import Backoff, RetryPolicy, AssetExecutionContext, asset
 from slugify import slugify
+from pandas.tseries.offsets import MonthEnd
 
-from ..resources import MITECOArcGisAPI
+from ..resources import AEMETAPI, MITECOArcGisAPI
 
 
 @asset()
@@ -73,81 +75,81 @@ def spain_ipc() -> pd.DataFrame:
     return df
 
 
-# @asset()
-# def spain_aemet_stations_data(aemet_api: AEMETAPI) -> pd.DataFrame:
-#     """
-#     Spain AEMET stations data.
-#     """
+@asset()
+def spain_aemet_stations_data(aemet_api: AEMETAPI) -> pd.DataFrame:
+    """
+    Spain AEMET stations data.
+    """
 
-#     df = pd.DataFrame(aemet_api.get_all_stations())
+    df = pd.DataFrame(aemet_api.get_all_stations())
 
-#     # Clean latitud and longitud
-#     df["latitude_sign"] = df["latitud"].str[-1]
-#     df["longitude_sign"] = df["longitud"].str[-1]
+    # Clean latitud and longitud
+    df["latitude_sign"] = df["latitud"].str[-1]
+    df["longitude_sign"] = df["longitud"].str[-1]
 
-#     df["latitud"] = pd.to_numeric(
-#         df["latitud"].str[:-1].str.replace(",", "."), errors="coerce"
-#     )
-#     df["longitud"] = pd.to_numeric(
-#         df["longitud"].str[:-1].str.replace(",", "."), errors="coerce"
-#     )
+    df["latitud"] = pd.to_numeric(
+        df["latitud"].str[:-1].str.replace(",", "."), errors="coerce"
+    )
+    df["longitud"] = pd.to_numeric(
+        df["longitud"].str[:-1].str.replace(",", "."), errors="coerce"
+    )
 
-#     df["latitud"] = df["latitud"] * df["latitude_sign"].apply(
-#         lambda x: 1 if x == "N" else -1
-#     )
-#     df["longitud"] = df["longitud"] * df["longitude_sign"].apply(
-#         lambda x: 1 if x == "E" else -1
-#     )
+    df["latitud"] = df["latitud"] * df["latitude_sign"].apply(
+        lambda x: 1 if x == "N" else -1
+    )
+    df["longitud"] = df["longitud"] * df["longitude_sign"].apply(
+        lambda x: 1 if x == "E" else -1
+    )
 
-#     df = df.drop(columns=["latitude_sign", "longitude_sign"])
+    df = df.drop(columns=["latitude_sign", "longitude_sign"])
 
-#     df = df.convert_dtypes(dtype_backend="pyarrow")
+    df = df.convert_dtypes(dtype_backend="pyarrow")
 
-#     return df
+    return df
 
 
-# @asset()
-# def spain_aemet_weather_data(
-#     context: AssetExecutionContext, aemet_api: AEMETAPI
-# ) -> pd.DataFrame:
-#     """
-#     Spain weather data since 1950.
-#     """
+@asset()
+def spain_aemet_weather_data(
+    context: AssetExecutionContext, aemet_api: AEMETAPI
+) -> pd.DataFrame:
+    """
+    Spain weather data since 1950.
+    """
 
-#     start_date = pd.to_datetime("1950-01-01")
+    start_date = pd.to_datetime("1950-01-01")
 
-#     end_date = datetime.now() - timedelta(days=1)
+    end_date = datetime.now() - timedelta(days=1)
 
-#     df = pd.DataFrame()
+    df = pd.DataFrame()
 
-#     for i in pd.date_range(start_date, end_date, freq="M"):
-#         first_day = i.strftime("%Y-%m-01") + "T00:00:00UTC"
-#         last_day = (i + MonthEnd(0)).strftime("%Y-%m-%d") + "T23:59:59UTC"
+    for i in pd.date_range(start_date, end_date, freq="M"):
+        first_day = i.strftime("%Y-%m-01") + "T00:00:00UTC"
+        last_day = (i + MonthEnd(0)).strftime("%Y-%m-%d") + "T23:59:59UTC"
 
-#         context.log.info(f"Getting data from {first_day} to {last_day}")
+        context.log.info(f"Getting data from {first_day} to {last_day}")
 
-#         mdf = pd.DataFrame(aemet_api.get_weather_data(first_day, last_day))
+        mdf = pd.DataFrame(aemet_api.get_weather_data(first_day, last_day))
 
-#         df = pd.concat([df, mdf], ignore_index=True)
+        df = pd.concat([df, mdf], ignore_index=True)
 
-#     df["fecha"] = pd.to_datetime(df["fecha"], format="%Y-%m-%d")
+    df["fecha"] = pd.to_datetime(df["fecha"], format="%Y-%m-%d")
 
-#     float_columns = [
-#         "prec",
-#         "presMax",
-#         "presMin",
-#         "racha",
-#         "sol",
-#         "tmax",
-#         "tmed",
-#         "tmin",
-#         "velmedia",
-#     ]
+    float_columns = [
+        "prec",
+        "presMax",
+        "presMin",
+        "racha",
+        "sol",
+        "tmax",
+        "tmed",
+        "tmin",
+        "velmedia",
+    ]
 
-#     df[float_columns] = df[float_columns].apply(lambda x: x.str.replace(",", "."))
-#     df[float_columns] = df[float_columns].apply(pd.to_numeric, errors="coerce")
+    df[float_columns] = df[float_columns].apply(lambda x: x.str.replace(",", "."))
+    df[float_columns] = df[float_columns].apply(pd.to_numeric, errors="coerce")
 
-#     return df
+    return df
 
 
 @asset()
