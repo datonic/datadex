@@ -1,3 +1,4 @@
+from datetime import datetime
 import pandas as pd
 import requests
 from dagster import Backoff, RetryPolicy, AssetExecutionContext, asset
@@ -148,6 +149,7 @@ def spain_ipc() -> pd.DataFrame:
 
 #     return df
 
+
 @asset()
 def spain_water_reservoirs_data(
     context: AssetExecutionContext, miteco_api: MITECOArcGisAPI
@@ -169,13 +171,18 @@ def spain_water_reservoirs_data(
     for year in range(start_year, current_year + 1):
         start_date = datetime(year, 1, 1)
         end_date = datetime(year, 12, 31)
-        context.log.info(f"Getting data from {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}")
+        context.log.info(
+            f"Getting data from {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}"
+        )
         response = miteco_api.get_water_reservoirs_data(start_date, end_date)
-        if response['features']:
-            mdf = pd.DataFrame.from_dict((elem['attributes'] for elem in response['features']), orient='columns')
+        if response["features"]:
+            mdf = pd.DataFrame.from_dict(
+                (elem["attributes"] for elem in response["features"]),  # type: ignore
+                orient="columns",
+            )
             df = pd.concat([df, mdf], ignore_index=True)
 
-    df["fecha"] = pd.to_datetime(df["fecha"], unit='ms')
+    df["fecha"] = pd.to_datetime(df["fecha"], unit="ms")
     df = df.convert_dtypes(dtype_backend="pyarrow")
 
     return df

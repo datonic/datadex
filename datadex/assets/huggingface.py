@@ -22,6 +22,7 @@ datasets = [
     "country_year_indicators",
     "spain_ipc",
     # "spain_aemet_historical_weather",
+    "spain_water_reservoirs_data",
 ]
 
 assets = []
