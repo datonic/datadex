@@ -1,3 +1,7 @@
+{{
+    config(enabled=false)
+}}
+
 select
     cast(w.fecha as date) as fecha,
     w.indicativo,
