@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 import pandas as pd
 import requests
@@ -117,12 +117,11 @@ def spain_aemet_weather_data(
     """
 
     start_date = pd.to_datetime("1950-01-01")
-
-    end_date = datetime.now() - timedelta(days=1)
+    end_date = datetime.now() + MonthEnd(1)
 
     df = pd.DataFrame()
 
-    for i in pd.date_range(start_date, end_date, freq="M"):
+    for i in pd.date_range(start_date, end_date, freq="M", inclusive="right"):
         first_day = i.strftime("%Y-%m-01") + "T00:00:00UTC"
         last_day = (i + MonthEnd(0)).strftime("%Y-%m-%d") + "T23:59:59UTC"
 
