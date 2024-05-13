@@ -26,7 +26,10 @@ class IUCNRedListAPI(ConfigurableResource):
     def get_species(self, page):
         API_ENDPOINT = "https://apiv3.iucnredlist.org/api/v3"
 
-        r = httpx.get(f"{API_ENDPOINT}/species/page/{page}?token={self.token}")
+        r = httpx.get(
+            f"{API_ENDPOINT}/species/page/{page}?token={self.token}", timeout=30
+        )
+
         r.raise_for_status()
 
         return r.json()["result"]

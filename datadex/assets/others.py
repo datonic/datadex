@@ -2,13 +2,15 @@ import io
 
 import pandas as pd
 import requests
-from dagster import asset
+from dagster import AssetExecutionContext, asset
 
 from ..resources import IUCNRedListAPI
 
 
 @asset()
-def threatened_animal_species(iucn_redlist_api: IUCNRedListAPI) -> pd.DataFrame:
+def threatened_animal_species(
+    context: AssetExecutionContext, iucn_redlist_api: IUCNRedListAPI
+) -> pd.DataFrame:
     """
     Threatened animal species data from the IUCN Red List API.
     """
@@ -16,7 +18,11 @@ def threatened_animal_species(iucn_redlist_api: IUCNRedListAPI) -> pd.DataFrame:
     all_results = []
 
     while True:
+        context.log.info(f"Fetching page {page}...")
         results = iucn_redlist_api.get_species(page)
+
+        context.log.info(f"Got {len(results)} results.")
+
         if results == []:
             break
         all_results.extend(results)
