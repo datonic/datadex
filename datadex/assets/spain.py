@@ -44,7 +44,7 @@ def spain_energy_demand(context: AssetExecutionContext) -> pl.DataFrame:
         end_date = start_date + timedelta(days=15)
         end_date_str = end_date.strftime("%Y-%m-%d")
 
-        return df
+    return df
 
 
 @asset(
