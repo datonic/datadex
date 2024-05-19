@@ -5,29 +5,23 @@ authors = [{ name = "David Gasquez" }]
 dependencies = [
     "altair",
     "dagster-dbt==0.23.5",
-    "dagster-duckdb-pandas==0.23.5",
     "dagster-duckdb-polars==0.23.5",
     "dagster-duckdb==0.23.5",
     "dagster==1.7.5",
     "datasets",
     "dbt-core",
-    "dbt-duckdb==1.7.5",
+    "dbt-duckdb",
     "duckdb==0.10.2",
-    "frictionless",
     "huggingface_hub",
     "httpx",
     "ipykernel",
     "ipywidgets",
-    "matplotlib",
-    "nbclient",
-    "nbformat",
     "pyarrow",
     "python-slugify",
-    "regex",
     "tenacity",
 ]
 
-requires-python = ">=3.11, <=3.12"
+requires-python = ">=3.11, <=3.13"
 readme = "README.md"
 license = { text = "MIT" }
 

@@ -28,3 +28,4 @@ clean:
 	rm -rf data/*.parquet data/*.duckdb
 	rm -rf dbt/target dbt/dbt_packages dbt/logs
 	rm -rf portal/.quarto
+	rm -rf .venv

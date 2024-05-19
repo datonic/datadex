@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD033 MD041-->
+
 <p align="center">
   <h1 style="font-size:80px; font-weight: 800;" align="center">D A T A D E X</h1>
   <p align="center">The Open Data Platform for your community Open Data</a> </p>

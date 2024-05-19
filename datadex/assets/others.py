@@ -1,7 +1,7 @@
 import io
 
-import pandas as pd
-import requests
+import httpx
+import polars as pl
 from dagster import AssetExecutionContext, asset
 
 from ..resources import IUCNRedListAPI
@@ -10,7 +10,7 @@ from ..resources import IUCNRedListAPI
 @asset()
 def threatened_animal_species(
     context: AssetExecutionContext, iucn_redlist_api: IUCNRedListAPI
-) -> pd.DataFrame:
+) -> pl.DataFrame:
     """
     Threatened animal species data from the IUCN Red List API.
     """
@@ -28,13 +28,11 @@ def threatened_animal_species(
         all_results.extend(results)
         page += 1
 
-    return pd.DataFrame(all_results).drop(
-        columns=["infra_rank", "infra_name", "population", "main_common_name"]
-    )
+    return pl.DataFrame(all_results, infer_schema_length=None)
 
 
 @asset()
-def wikidata_asteroids() -> pd.DataFrame:
+def wikidata_asteroids() -> pl.DataFrame:
     """
     Wikidata asteroids data.
     """
@@ -53,10 +51,10 @@ def wikidata_asteroids() -> pd.DataFrame:
         ORDER BY DESC(?discovered)
     """
 
-    response = requests.get(
-        url, headers={"Accept": "text/csv"}, params={"query": query}
+    response = httpx.get(
+        url, headers={"Accept": "text/csv"}, params={"query": query}, timeout=30
     )
 
-    df = pd.read_csv(io.StringIO(response.content.decode("utf-8")))
+    df = pl.read_csv(io.StringIO(response.content.decode("utf-8")))
 
     return df
