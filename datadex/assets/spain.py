@@ -120,7 +120,7 @@ def spain_aemet_weather_data(
     Spain weather data since 1950.
     """
 
-    start_date = datetime(2024, 3, 1)
+    start_date = datetime(1950, 3, 1)
     end_date = datetime.now()
 
     df = pl.DataFrame()
