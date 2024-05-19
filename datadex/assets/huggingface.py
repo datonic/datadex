@@ -1,4 +1,4 @@
-import pandas as pd
+import polars as pl
 from dagster import AssetIn, asset
 
 from ..resources import HuggingFaceResource
@@ -6,7 +6,7 @@ from ..resources import HuggingFaceResource
 
 def create_hf_asset(dataset_name: str):
     @asset(name="huggingface_" + dataset_name, ins={"data": AssetIn(dataset_name)})
-    def hf_asset(data: pd.DataFrame, hf: HuggingFaceResource) -> None:
+    def hf_asset(data: pl.DataFrame, hf: HuggingFaceResource) -> None:
         """
         Upload data to HuggingFace.
         """
