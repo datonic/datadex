@@ -13,7 +13,7 @@ dependencies = [
     "dbt-duckdb",
     "duckdb==0.10.2",
     "huggingface_hub",
-    "httpx",
+    "httpx[http2]",
     "ipykernel",
     "ipywidgets",
     "pyarrow",
