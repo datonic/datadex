@@ -1,5 +1,5 @@
+import asyncio
 from datetime import datetime, timedelta
-import time
 
 import httpx
 import polars as pl
@@ -12,40 +12,50 @@ from ..resources import AEMETAPI, MITECOArcGisAPI
 @asset(
     retry_policy=RetryPolicy(max_retries=3, delay=10, backoff=Backoff.EXPONENTIAL),
 )
-def spain_energy_demand(context: AssetExecutionContext) -> pl.DataFrame:
+async def spain_energy_demand(context: AssetExecutionContext) -> pl.DataFrame:
     """
     Spain energy demand data.
     """
-    df = pl.DataFrame()
-
-    ENDPOINT = "https://apidatos.ree.es/en/datos/demanda/demanda-tiempo-real"
 
     start_date = datetime(2014, 1, 1)
-    start_date_str = start_date.strftime("%Y-%m-%d")
-    end_date = start_date + timedelta(days=15)
-    end_date_str = end_date.strftime("%Y-%m-%d")
+    end_date = datetime.now() - timedelta(days=1)
 
-    yesterday = datetime.now() - timedelta(days=1)
+    transport = httpx.AsyncHTTPTransport(retries=5)
+    limits = httpx.Limits(max_keepalive_connections=5, max_connections=5)
+    base_url = "https://apidatos.ree.es/en/datos/"
 
-    while start_date < yesterday:
-        url = f"{ENDPOINT}?start_date={start_date_str}T00:00&end_date={end_date_str}T00:00&time_trunc=hour"
-        response = httpx.get(url, timeout=60)
+    async with httpx.AsyncClient(
+        transport=transport, limits=limits, http2=True, base_url=base_url, timeout=60
+    ) as client:
+        responses = []
 
-        context.log.info(
-            f"Start date: {start_date_str} status code: {response.status_code}"
-        )
+        for i in pl.datetime_range(start_date, end_date, "15 d", eager=True):
+            request_start_date = i.date().strftime("%Y-%m-%d")
+            request_end_date = (i + timedelta(days=15)).date().strftime("%Y-%m-%d")
 
-        local_df = pl.DataFrame(response.json()["included"][0]["attributes"]["values"])
-        local_df = local_df.with_columns(
-            pl.col("datetime").str.strptime(pl.Datetime, "%Y-%m-%dT%H:%M:%S%.f%z")
-        )
+            params = {
+                "start_date": f"{request_start_date}T00:00",
+                "end_date": f"{request_end_date}T00:00",
+                "time_trunc": "hour",
+            }
 
-        df = pl.concat([df, local_df.select(["value", "datetime"])])
+            response = client.get(
+                url="demanda/demanda-tiempo-real",
+                params=params,
+            )
 
-        start_date = start_date + timedelta(days=15)
-        start_date_str = start_date.strftime("%Y-%m-%d")
-        end_date = start_date + timedelta(days=15)
-        end_date_str = end_date.strftime("%Y-%m-%d")
+            responses.append(response)
+
+        f = await asyncio.gather(*responses)
+        data = [i.json()["included"][0]["attributes"]["values"] for i in f]
+        exploded_data = [item for sublist in data for item in sublist]
+
+    df = pl.from_records(exploded_data).with_columns(
+        [
+            pl.col("datetime").cast(pl.Datetime),
+            pl.col("value").cast(pl.Float64),
+        ]
+    )
 
     return df
 
