@@ -2,7 +2,7 @@ import io
 
 import httpx
 import polars as pl
-from dagster import AssetExecutionContext, asset
+from dagster import AssetExecutionContext, Backoff, RetryPolicy, asset
 
 from ..resources import IUCNRedListAPI
 
@@ -31,7 +31,9 @@ def threatened_animal_species(
     return pl.DataFrame(all_results, infer_schema_length=None)
 
 
-@asset()
+@asset(
+    retry_policy=RetryPolicy(max_retries=5, delay=1, backoff=Backoff.EXPONENTIAL),
+)
 def wikidata_asteroids() -> pl.DataFrame:
     """
     Wikidata asteroids data.

@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import time
 
 import httpx
 import polars as pl
@@ -8,7 +9,9 @@ from slugify import slugify
 from ..resources import AEMETAPI, MITECOArcGisAPI
 
 
-@asset()
+@asset(
+    retry_policy=RetryPolicy(max_retries=3, delay=10, backoff=Backoff.EXPONENTIAL),
+)
 def spain_energy_demand(context: AssetExecutionContext) -> pl.DataFrame:
     """
     Spain energy demand data.
@@ -26,7 +29,7 @@ def spain_energy_demand(context: AssetExecutionContext) -> pl.DataFrame:
 
     while start_date < yesterday:
         url = f"{ENDPOINT}?start_date={start_date_str}T00:00&end_date={end_date_str}T00:00&time_trunc=hour"
-        response = httpx.get(url)
+        response = httpx.get(url, timeout=60)
 
         context.log.info(
             f"Start date: {start_date_str} status code: {response.status_code}"
@@ -48,7 +51,7 @@ def spain_energy_demand(context: AssetExecutionContext) -> pl.DataFrame:
 
 
 @asset(
-    retry_policy=RetryPolicy(max_retries=5, delay=0.2, backoff=Backoff.EXPONENTIAL),
+    retry_policy=RetryPolicy(max_retries=5, delay=1, backoff=Backoff.EXPONENTIAL),
 )
 def spain_ipc() -> pl.DataFrame:
     """
