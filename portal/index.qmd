@@ -20,7 +20,7 @@ Open-source, serverless, and local-first Data Platform to improve how communitie
 <br>
 
 <center>
-<a href="https://huggingface.co/davidgasquez" role="button" class="btn btn-primary btn-outline-dark btn-lg btn-block mx-4">Get the Data</a>
+<a href="https://huggingface.co/datonic" role="button" class="btn btn-primary btn-outline-dark btn-lg btn-block mx-4">Get the Data</a>
 <a href="https://github.com/datonic/datadex" role="button" class="btn btn-primary btn-outline-dark btn-lg btn-block mx-4">Contribute</a>
 <a href="https://github.com/datonic/datadex/issues/new" role="button" class="btn btn-primary btn-outline-dark btn-lg btn-block">Request Dataset</a>
 </center>
