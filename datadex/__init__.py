@@ -5,7 +5,12 @@ from dagster_dbt import DbtCliResource, load_assets_from_dbt_project
 from dagster_duckdb_polars import DuckDBPolarsIOManager
 
 from .assets import spain, others, indicators, huggingface
-from .resources import AEMETAPI, IUCNRedListAPI, MITECOArcGisAPI, HuggingFaceResource
+from .resources import (
+    AEMETAPI,
+    IUCNRedListAPI,
+    MITECOArcGisAPI,
+    HuggingFaceResource,
+)
 
 DBT_PROJECT_DIR = os.path.dirname(os.path.abspath(__file__)) + "/../dbt/"
 DATABASE_PATH = os.getenv("DATABASE_PATH", "data/database.duckdb")

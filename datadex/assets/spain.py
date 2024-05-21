@@ -130,29 +130,15 @@ def spain_aemet_weather_data(
     context: AssetExecutionContext, aemet_api: AEMETAPI
 ) -> pl.DataFrame:
     """
-    Spain weather data since 1950.
+    Spain weather data since 1940.
     """
 
-    start_date = datetime(1950, 3, 1)
+    start_date = datetime(1940, 1, 1)
     end_date = datetime.now()
 
-    df = pl.DataFrame()
+    data = aemet_api.get_weather_data(start_date, end_date)
 
-    for i in pl.datetime_range(start_date, end_date, interval="1mo", eager=True):
-        pl.col("dates").dt.month_end()
-
-        first_day = i.strftime("%Y-%m-01") + "T00:00:00UTC"
-        last_day = (i.replace(day=1) + timedelta(days=32)).replace(day=1) - timedelta(
-            days=1
-        )
-        last_day = last_day.strftime("%Y-%m-%d") + "T23:59:59UTC"
-
-        context.log.info(f"Getting data from {first_day} to {last_day}")
-
-        mdf = pl.DataFrame(aemet_api.get_weather_data(first_day, last_day))
-
-        df = pl.concat([df, mdf], how="diagonal")
-
+    df = pl.DataFrame(data)
     df = df.with_columns(pl.col("fecha").str.strptime(pl.Date, format="%Y-%m-%d"))
 
     float_columns = [

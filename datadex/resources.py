@@ -1,9 +1,11 @@
 import json
+import datetime
 
 import httpx
 import huggingface_hub as hf_hub
-from dagster import ConfigurableResource
+from dagster import InitResourceContext, ConfigurableResource
 from datasets import Dataset, NamedSplit
+from pydantic import PrivateAttr
 from tenacity import retry, wait_exponential, stop_after_attempt
 
 
@@ -70,50 +72,75 @@ class AEMETAPI(ConfigurableResource):
     endpoint: str = "https://opendata.aemet.es/opendata/api"
     token: str
 
+    _client: httpx.Client = PrivateAttr()
+
+    def setup_for_execution(self, context: InitResourceContext) -> None:
+        transport = httpx.HTTPTransport(retries=5)
+        limits = httpx.Limits(max_keepalive_connections=5, max_connections=5)
+        self._client = httpx.Client(
+            transport=transport,
+            limits=limits,
+            http2=True,
+            base_url=self.endpoint,
+            timeout=60,
+        )
+
     @retry(
         stop=stop_after_attempt(10),
-        wait=wait_exponential(min=5, max=30),
+        wait=wait_exponential(min=1, max=30),
     )
     def query(self, url):
+        headers = {"cache-control": "no-cache"}
+
         query = {
             "api_key": self.token,
         }
 
-        headers = {"cache-control": "no-cache"}
-        r = httpx.get(url, params=query, headers=headers, timeout=30)
-        r.raise_for_status()
+        response = self._client.get(url, headers=headers, params=query)
+        response.raise_for_status()
 
-        return r.json()
+        data_url = response.json().get("datos")
+        if data_url is None:
+            raise ValueError(f"The 'datos' field is not correct. {response.json()}")
 
-    @retry(
-        stop=stop_after_attempt(10),
-        wait=wait_exponential(min=5, max=30),
-    )
-    def get_query_data(self, query_response):
-        data_url = query_response.get("datos")
-
-        r = httpx.get(data_url, timeout=30)
+        r = self._client.get(data_url, timeout=30)
         r.raise_for_status()
 
         data = json.loads(r.text.encode("utf-8"))
 
         return data
 
+    def get_weather_data(
+        self, start_date: datetime.datetime, end_date: datetime.datetime
+    ):
+        start_date_str = start_date.strftime("%Y-%m-01") + "T00:00:00UTC"
+        end_date_str = end_date.strftime("%Y-%m-01") + "T00:00:00UTC"
+
+        current_date = start_date
+        all_data = []
+
+        while current_date < end_date:
+            next_date = min(current_date + datetime.timedelta(days=31), end_date)
+
+            start_date_str = current_date.strftime("%Y-%m-%d") + "T00:00:00UTC"
+            end_date_str = next_date.strftime("%Y-%m-%d") + "T00:00:00UTC"
+
+            url = f"/valores/climatologicos/diarios/datos/fechaini/{start_date_str}/fechafin/{end_date_str}/todasestaciones"
+            data = self.query(url)
+
+            all_data.extend(data)
+
+            current_date = next_date + datetime.timedelta(days=1)
+
+        return all_data
+
     def get_all_stations(self):
-        url = f"{self.endpoint}/valores/climatologicos/inventarioestaciones/todasestaciones"
+        url = "/valores/climatologicos/inventarioestaciones/todasestaciones"
 
-        query_response = self.query(url)
-        data = self.get_query_data(query_response)
+        return self.query(url)
 
-        return data
-
-    def get_weather_data(self, start_date: str, end_date: str):
-        url = f"{self.endpoint}/valores/climatologicos/diarios/datos/fechaini/{start_date}/fechafin/{end_date}/todasestaciones"
-
-        query_response = self.query(url)
-        data = self.get_query_data(query_response)
-
-        return data
+    def teardown_after_execution(self, context: InitResourceContext) -> None:
+        self._client.close()
 
 
 class MITECOArcGisAPI(ConfigurableResource):
