@@ -21,7 +21,7 @@ async def spain_energy_demand(context: AssetExecutionContext) -> pl.DataFrame:
     end_date = datetime.now() - timedelta(days=1)
 
     transport = httpx.AsyncHTTPTransport(retries=3)
-    limits = httpx.Limits(max_keepalive_connections=2, max_connections=2)
+    limits = httpx.Limits(max_keepalive_connections=1, max_connections=2)
     base_url = "https://apidatos.ree.es/en/datos/"
 
     async with httpx.AsyncClient(
