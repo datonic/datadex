@@ -76,7 +76,7 @@ class AEMETAPI(ConfigurableResource):
 
     def setup_for_execution(self, context: InitResourceContext) -> None:
         transport = httpx.HTTPTransport(retries=5)
-        limits = httpx.Limits(max_keepalive_connections=5, max_connections=5)
+        limits = httpx.Limits(max_keepalive_connections=2, max_connections=2)
         self._client = httpx.Client(
             transport=transport,
             limits=limits,
