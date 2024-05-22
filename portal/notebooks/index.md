@@ -1,5 +1,0 @@
----
-title: "Notebooks"
-listing:
-  contents: .
----

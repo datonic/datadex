@@ -76,7 +76,7 @@ class AEMETAPI(ConfigurableResource):
 
     def setup_for_execution(self, context: InitResourceContext) -> None:
         transport = httpx.HTTPTransport(retries=5)
-        limits = httpx.Limits(max_keepalive_connections=1, max_connections=1)
+        limits = httpx.Limits(max_keepalive_connections=2, max_connections=4)
         self._client = httpx.Client(
             transport=transport,
             limits=limits,
@@ -86,7 +86,7 @@ class AEMETAPI(ConfigurableResource):
         )
 
     @retry(
-        stop=stop_after_attempt(5),
+        stop=stop_after_attempt(10),
         wait=wait_exponential(min=1, max=30),
     )
     def query(self, url):

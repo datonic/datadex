@@ -13,23 +13,20 @@ website:
   title: Datadex
   favicon: logo.svg
   repo-url: https://github.com/davidgasquez/datadex
-  repo-actions: [edit, issue]
-  page-footer: Made with ❤️ by David Gasquez
+  page-footer: Made with ❤ by David Gasquez
   search: false
   navbar:
     logo: logo.svg
     left:
-      - text: dbt Docs
-        icon: sun
-        file: dbt
       - text: Knowledge Base
         icon: book
-        href: notebooks
-      - text: Tutorial
-        icon: bi-journal
-        href: docs/tutorial.html
+        href: docs
+        file: dbt
+      - text: Datasets
+        icon: box-seam
+        href: https://huggingface.co/datonic
     tools:
-      - icon: hexagon
+      - icon: hexagon-fill
         href: https://datonic.io
       - icon: twitter
         href: https://twitter.com/davidgasquez

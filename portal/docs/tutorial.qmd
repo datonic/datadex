@@ -1,6 +1,13 @@
-# Datadex Tutorial
+---
+title: "Tutorial"
+date-format: iso
+format:
+    html:
+        metadata:
+          date-meta: false
+---
 
-Welcome to the Datadex tutorial! This guide will walk you through the process of adding new data sources, running dbt models, understanding the development workflow, and how Dagster integrates with dbt.
+Add new data sources, run pipelines, and, publish datasets in the Datadex world.
 
 ## 📦 Adding New Data Sources
 
