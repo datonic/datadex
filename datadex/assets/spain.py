@@ -136,9 +136,13 @@ def spain_aemet_weather_data(
     start_date = datetime(1940, 1, 1)
     end_date = datetime.now()
 
-    data = aemet_api.get_weather_data(start_date, end_date)
+    r = aemet_api.get_weather_data(start_date, end_date)
 
-    df = pl.DataFrame(data)
+    df = pl.DataFrame()
+    for d in r:
+        ndf = pl.DataFrame(d)
+        df = pl.concat([df, ndf], how="diagonal_relaxed")
+
     df = df.with_columns(pl.col("fecha").str.strptime(pl.Date, format="%Y-%m-%d"))
 
     float_columns = [

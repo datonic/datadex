@@ -76,13 +76,13 @@ class AEMETAPI(ConfigurableResource):
 
     def setup_for_execution(self, context: InitResourceContext) -> None:
         transport = httpx.HTTPTransport(retries=5)
-        limits = httpx.Limits(max_keepalive_connections=2, max_connections=4)
+        limits = httpx.Limits(max_keepalive_connections=5, max_connections=10)
         self._client = httpx.Client(
             transport=transport,
             limits=limits,
-            http2=True,
+            # http2=True,
             base_url=self.endpoint,
-            timeout=60,
+            timeout=20,
         )
 
     @retry(
@@ -97,6 +97,7 @@ class AEMETAPI(ConfigurableResource):
         }
 
         response = self._client.get(url, headers=headers, params=query)
+
         response.raise_for_status()
 
         data_url = response.json().get("datos")
@@ -117,7 +118,6 @@ class AEMETAPI(ConfigurableResource):
         end_date_str = end_date.strftime("%Y-%m-01") + "T00:00:00UTC"
 
         current_date = start_date
-        all_data = []
 
         while current_date < end_date:
             next_date = min(current_date + datetime.timedelta(days=31), end_date)
@@ -128,11 +128,9 @@ class AEMETAPI(ConfigurableResource):
             url = f"/valores/climatologicos/diarios/datos/fechaini/{start_date_str}/fechafin/{end_date_str}/todasestaciones"
             data = self.query(url)
 
-            all_data.extend(data)
-
             current_date = next_date + datetime.timedelta(days=1)
 
-        return all_data
+            yield data
 
     def get_all_stations(self):
         url = "/valores/climatologicos/inventarioestaciones/todasestaciones"
