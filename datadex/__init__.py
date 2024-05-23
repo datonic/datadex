@@ -9,7 +9,7 @@ from .resources import (
     AEMETAPI,
     IUCNRedListAPI,
     MITECOArcGisAPI,
-    HuggingFaceResource,
+    DatasetPublisher,
 )
 
 DBT_PROJECT_DIR = os.path.dirname(os.path.abspath(__file__)) + "/../dbt/"
@@ -21,12 +21,12 @@ dbt_assets = load_assets_from_dbt_project(DBT_PROJECT_DIR, DBT_PROJECT_DIR)
 all_assets = load_assets_from_modules([indicators, huggingface, others, spain])
 
 resources = {
-    "hf": HuggingFaceResource(token=EnvVar("HUGGINGFACE_TOKEN")),
     "dbt": dbt,
+    "io_manager": DuckDBPolarsIOManager(database=DATABASE_PATH, schema="main"),
     "iucn_redlist_api": IUCNRedListAPI(token=EnvVar("IUCN_REDLIST_TOKEN")),
     "aemet_api": AEMETAPI(token=EnvVar("AEMET_API_TOKEN")),
     "miteco_api": MITECOArcGisAPI(),
-    "io_manager": DuckDBPolarsIOManager(database=DATABASE_PATH, schema="main"),
+    "dp": DatasetPublisher(hf_token=EnvVar("HUGGINGFACE_TOKEN")),
 }
 
 defs = Definitions(assets=[*dbt_assets, *all_assets], resources=resources)

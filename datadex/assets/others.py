@@ -32,7 +32,7 @@ def threatened_animal_species(
 
 
 @asset(
-    retry_policy=RetryPolicy(max_retries=5, delay=1, backoff=Backoff.EXPONENTIAL),
+    retry_policy=RetryPolicy(max_retries=5, delay=2, backoff=Backoff.EXPONENTIAL),
 )
 def wikidata_asteroids() -> pl.DataFrame:
     """

@@ -1,25 +1,18 @@
+import os
 import json
 import datetime
+import tempfile
+from typing import Optional
 
+import yaml
 import httpx
-import huggingface_hub as hf_hub
-from dagster import InitResourceContext, ConfigurableResource
-from datasets import Dataset, NamedSplit
+import polars as pl
+from dagster import InitResourceContext, ConfigurableResource, get_dagster_logger
 from pydantic import PrivateAttr
 from tenacity import retry, wait_exponential, stop_after_attempt
+from huggingface_hub import HfApi
 
-
-class HuggingFaceResource(ConfigurableResource):
-    token: str
-
-    def login(self):
-        hf_hub.login(token=self.token)
-
-    def upload_dataset(self, dataset, name):
-        self.login()
-        dataset = Dataset.from_polars(dataset, split=NamedSplit("main"))
-        r = dataset.push_to_hub("datonic/" + name, max_shard_size="50000MB")
-        return r
+log = get_dagster_logger()
 
 
 class IUCNRedListAPI(ConfigurableResource):
@@ -80,7 +73,7 @@ class AEMETAPI(ConfigurableResource):
         self._client = httpx.Client(
             transport=transport,
             limits=limits,
-            # http2=True,
+            http2=True,
             base_url=self.endpoint,
             timeout=20,
         )
@@ -125,6 +118,7 @@ class AEMETAPI(ConfigurableResource):
             start_date_str = current_date.strftime("%Y-%m-%d") + "T00:00:00UTC"
             end_date_str = next_date.strftime("%Y-%m-%d") + "T00:00:00UTC"
 
+            log.info(f"Getting data from {start_date_str} to {end_date_str}")
             url = f"/valores/climatologicos/diarios/datos/fechaini/{start_date_str}/fechafin/{end_date_str}/todasestaciones"
             data = self.query(url)
 
@@ -172,3 +166,52 @@ class MITECOArcGisAPI(ConfigurableResource):
         query_response = self.query(dataset_name="Embalses_Total", params=params)
 
         return query_response
+
+
+class DatasetPublisher(ConfigurableResource):
+    hf_token: str
+
+    _api: HfApi = PrivateAttr()
+
+    def setup_for_execution(self, context: InitResourceContext) -> None:
+        self._api = HfApi(token=self.hf_token)
+
+    def publish(
+        self,
+        dataset: pl.DataFrame,
+        dataset_name: str,
+        readme: Optional[str] = None,
+        generate_datapackage: bool = False,
+    ):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            # Define the file path
+            data_dir = os.path.join(temp_dir, "data")
+            os.makedirs(data_dir, exist_ok=True)
+            file_path = os.path.join(data_dir, f"{dataset_name}.parquet")
+
+            # Write the dataset to a parquet file
+            dataset.write_parquet(file_path)
+
+            if readme:
+                readme_path = os.path.join(temp_dir, "README.md")
+                with open(readme_path, "w") as readme_file:
+                    readme_file.write(readme)
+
+            if generate_datapackage:
+                datapackage = {
+                    "name": dataset_name,
+                    "resources": [
+                        {"path": f"data/{dataset_name}.parquet", "format": "parquet"}
+                    ],
+                }
+                datapackage_path = os.path.join(temp_dir, "datapackage.yaml")
+                with open(datapackage_path, "w") as dp_file:
+                    yaml.dump(datapackage, dp_file)
+
+            # Upload the entire folder to Hugging Face
+            self._api.upload_folder(
+                folder_path=temp_dir,
+                repo_id="datonic/" + dataset_name,
+                repo_type="dataset",
+                commit_message=f"Update {dataset_name}",
+            )
