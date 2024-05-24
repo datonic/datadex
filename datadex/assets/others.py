@@ -7,7 +7,9 @@ from dagster import AssetExecutionContext, Backoff, RetryPolicy, asset
 from ..resources import IUCNRedListAPI
 
 
-@asset()
+@asset(
+    retry_policy=RetryPolicy(max_retries=5, delay=2, backoff=Backoff.EXPONENTIAL),
+)
 def threatened_animal_species(
     context: AssetExecutionContext, iucn_redlist_api: IUCNRedListAPI
 ) -> pl.DataFrame:
