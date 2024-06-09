@@ -4,14 +4,14 @@ version = "1.0.0"
 authors = [{ name = "David Gasquez" }]
 dependencies = [
     "altair",
-    "dagster-dbt==0.23.5",
-    "dagster-duckdb-polars==0.23.5",
-    "dagster-duckdb==0.23.5",
-    "dagster==1.7.5",
+    "dagster-dbt==0.23.8",
+    "dagster-duckdb-polars==0.23.8",
+    "dagster-duckdb==0.23.8",
+    "dagster==1.7.8",
     "datasets",
     "dbt-core",
     "dbt-duckdb",
-    "duckdb==0.10.2",
+    "duckdb==1.0.0",
     "huggingface_hub",
     "httpx[http2]",
     "ipykernel",
@@ -32,7 +32,7 @@ Issues = "https://github.com/davidgasquez/datadex/issues"
 CI = "https://github.com/davidgasquez/datadex/actions"
 
 [project.optional-dependencies]
-dev = ["dagster-webserver==1.7.5", "ruff"]
+dev = ["dagster-webserver==1.7.8", "ruff"]
 
 [build-system]
 requires = ["setuptools"]
