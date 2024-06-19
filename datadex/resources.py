@@ -113,7 +113,7 @@ class AEMETAPI(ConfigurableResource):
         current_date = start_date
 
         while current_date < end_date:
-            next_date = min(current_date + datetime.timedelta(days=31), end_date)
+            next_date = min(current_date + datetime.timedelta(days=14), end_date)
 
             start_date_str = current_date.strftime("%Y-%m-%d") + "T00:00:00UTC"
             end_date_str = next_date.strftime("%Y-%m-%d") + "T00:00:00UTC"

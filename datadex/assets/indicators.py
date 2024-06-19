@@ -50,7 +50,8 @@ def world_bank_wdi() -> pl.DataFrame:
 
     # Reshape the dataframe
     df = df.melt(
-        id_vars=["Country Name", "Country Code", "Indicator Name", "Indicator Code"],
+        id_vars=["Country Name", "Country Code",
+                 "Indicator Name", "Indicator Code"],
         value_name="Indicator Value",
         variable_name="Year",
     )
@@ -74,7 +75,8 @@ def world_bank_wdi() -> pl.DataFrame:
 
     # Clean column names
     df = df.rename(
-        lambda column_name: slugify(column_name.replace("%", "percent"), separator="_")
+        lambda column_name: slugify(
+            column_name.replace("%", "percent"), separator="_")
     )
 
     return df
