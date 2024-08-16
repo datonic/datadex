@@ -117,8 +117,8 @@ def spain_aemet_stations_data(aemet_api: AEMETAPI) -> pl.DataFrame:
 
     df = df.with_columns(
         [
-            pl.col("latitud").apply(convert_to_decimal).alias("latitud"),
-            pl.col("longitud").apply(convert_to_decimal).alias("longitud"),
+            pl.col("latitud").map_elements(convert_to_decimal).alias("latitud"),
+            pl.col("longitud").map_elements(convert_to_decimal).alias("longitud"),
         ]
     )
 
