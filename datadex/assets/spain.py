@@ -83,8 +83,8 @@ def spain_ipc() -> pl.DataFrame:
     )
 
     df = df.pivot(
+        on="Tipo de dato",
         index=["Periodo", "Clases"],
-        columns="Tipo de dato",
         values="Total",
         aggregate_function="sum",
     )
