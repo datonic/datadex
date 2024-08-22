@@ -22,6 +22,7 @@ Datadex is a fully open-source, serverless, and local-first Data Platform that i
 
 [Learn more about the approach in this post](https://davidgasquez.com/modern-open-data-portals/) or check other real-world production implementations of the Datadex pattern working in the following repositories:
 
+- [LUNG-SARG](https://github.com/open-radiogenomics/lung-sarg). The Open Data Platform for Sustainable, Accessible Lung Radiogenomics.
 - [Gitcoin Grants Data Portal](https://github.com/davidgasquez/gitcoin-grants-data-portal). Data hub for Gitcoin Grants data. Improves data access and empowers data scientists to conduct research and helps to guide community-driven analysis and decisions.
 - [Filecoin Data Portal](https://github.com/davidgasquez/filecoin-data-portal/). Data hub for Filecoin data! Like Dune, but in your laptop.
 
