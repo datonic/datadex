@@ -214,4 +214,6 @@ class DatasetPublisher(ConfigurableResource):
                 repo_id="datonic/" + dataset_name,
                 repo_type="dataset",
                 commit_message=f"Update {dataset_name}",
+                multi_commits=True,
+                multi_commits_verbose=True,
             )

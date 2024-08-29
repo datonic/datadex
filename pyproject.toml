@@ -4,10 +4,10 @@ version = "1.0.0"
 authors = [{ name = "David Gasquez" }]
 dependencies = [
     "altair",
-    "dagster-dbt==0.24.1",
-    "dagster-duckdb-polars==0.24.1",
+    "dagster-dbt==0.24.2",
+    "dagster-duckdb-polars==0.24.2",
     "dagster-duckdb",
-    "dagster==1.8.1",
+    "dagster==1.8.2",
     "datasets",
     "dbt-core",
     "dbt-duckdb",
