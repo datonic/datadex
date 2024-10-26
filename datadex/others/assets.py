@@ -7,33 +7,32 @@ import httpx
 import polars as pl
 from slugify import slugify
 
-from datadex.others.resources import AEMETAPI, IUCNRedListAPI, MITECOArcGisAPI
+from datadex.others.resources import AEMETAPI, MITECOArcGisAPI
 
+# @dg.asset(
+#     retry_policy=dg.RetryPolicy(max_retries=5, delay=2, backoff=dg.Backoff.EXPONENTIAL),
+# )
+# def threatened_animal_species(
+#     context: dg.AssetExecutionContext, iucn_redlist_api: IUCNRedListAPI
+# ) -> pl.DataFrame:
+#     """
+#     Threatened animal species data from the IUCN Red List API.
+#     """
+#     page = 1
+#     all_results = []
 
-@dg.asset(
-    retry_policy=dg.RetryPolicy(max_retries=5, delay=2, backoff=dg.Backoff.EXPONENTIAL),
-)
-def threatened_animal_species(
-    context: dg.AssetExecutionContext, iucn_redlist_api: IUCNRedListAPI
-) -> pl.DataFrame:
-    """
-    Threatened animal species data from the IUCN Red List API.
-    """
-    page = 1
-    all_results = []
+#     while True:
+#         context.log.info(f"Fetching page {page}...")
+#         results = iucn_redlist_api.get_species(page)
 
-    while True:
-        context.log.info(f"Fetching page {page}...")
-        results = iucn_redlist_api.get_species(page)
+#         context.log.info(f"Got {len(results)} results.")
 
-        context.log.info(f"Got {len(results)} results.")
+#         if results == []:
+#             break
+#         all_results.extend(results)
+#         page += 1
 
-        if results == []:
-            break
-        all_results.extend(results)
-        page += 1
-
-    return pl.DataFrame(all_results, infer_schema_length=None)
+#     return pl.DataFrame(all_results, infer_schema_length=None)
 
 
 @dg.asset(
