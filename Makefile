@@ -2,7 +2,7 @@
 
 run:
 	uv run dagster-dbt project prepare-and-package --file datadex/dbt_project.py
-	uv run dagster asset materialize --select \* -m datadex
+	uv run dagster asset materialize --select \* -m datadex.definitions
 
 dev:
 	uv run dagster dev

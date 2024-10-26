@@ -1,12 +1,70 @@
 import asyncio
+import io
 from datetime import datetime, timedelta
 
+import dagster as dg
 import httpx
 import polars as pl
-import dagster as dg
 from slugify import slugify
 
-from ..resources import AEMETAPI, MITECOArcGisAPI
+from datadex.others.resources import AEMETAPI, IUCNRedListAPI, MITECOArcGisAPI
+
+
+@dg.asset(
+    retry_policy=dg.RetryPolicy(max_retries=5, delay=2, backoff=dg.Backoff.EXPONENTIAL),
+)
+def threatened_animal_species(
+    context: dg.AssetExecutionContext, iucn_redlist_api: IUCNRedListAPI
+) -> pl.DataFrame:
+    """
+    Threatened animal species data from the IUCN Red List API.
+    """
+    page = 1
+    all_results = []
+
+    while True:
+        context.log.info(f"Fetching page {page}...")
+        results = iucn_redlist_api.get_species(page)
+
+        context.log.info(f"Got {len(results)} results.")
+
+        if results == []:
+            break
+        all_results.extend(results)
+        page += 1
+
+    return pl.DataFrame(all_results, infer_schema_length=None)
+
+
+@dg.asset(
+    retry_policy=dg.RetryPolicy(max_retries=5, delay=2, backoff=dg.Backoff.EXPONENTIAL),
+)
+def wikidata_asteroids() -> pl.DataFrame:
+    """
+    Wikidata asteroids data.
+    """
+    url = "https://query.wikidata.org/sparql"
+    query = """
+        SELECT
+            ?asteroidLabel
+            ?discovered
+            ?discovererLabel
+        WHERE {
+            ?asteroid wdt:P31 wd:Q3863;  # Retrieve instances of "asteroid"
+                        wdt:P61 ?discoverer; # Retrieve discoverer of the asteroid
+                        wdt:P575 ?discovered; # Retrieve discovered date of the asteroid
+            SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+        }
+        ORDER BY DESC(?discovered)
+    """
+
+    response = httpx.get(
+        url, headers={"Accept": "text/csv"}, params={"query": query}, timeout=30
+    )
+
+    df = pl.read_csv(io.StringIO(response.content.decode("utf-8")))
+
+    return df
 
 
 @dg.asset(
@@ -143,7 +201,7 @@ def spain_aemet_weather_data(
     df = pl.DataFrame()
     for d in r:
         ndf = pl.DataFrame(d)
-        df = pl.concat([df, ndf], how="diagonal_relaxed")
+        df = pl.concat(items=[df, ndf], how="diagonal_relaxed")
 
     df = df.with_columns(pl.col("fecha").str.strptime(pl.Date, format="%Y-%m-%d"))
 

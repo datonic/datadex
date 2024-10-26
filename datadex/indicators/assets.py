@@ -1,13 +1,13 @@
 import io
 import zipfile
 
+import dagster as dg
 import httpx
 import polars as pl
-from dagster import asset
 from slugify import slugify
 
 
-@asset()
+@dg.asset()
 def owid_energy_data() -> pl.DataFrame:
     """
     Raw Energy data from Our World in Data.
@@ -19,7 +19,7 @@ def owid_energy_data() -> pl.DataFrame:
     return pl.read_csv(energy_owid_url)
 
 
-@asset()
+@dg.asset()
 def owid_co2_data() -> pl.DataFrame:
     """
     Raw CO2 data from Our World in Data.
@@ -31,7 +31,7 @@ def owid_co2_data() -> pl.DataFrame:
     return pl.read_csv(co2_owid_url)
 
 
-@asset()
+@dg.asset()
 def world_bank_wdi() -> pl.DataFrame:
     """
     World Development Indicators (WDI) is the World Bank's premier compilation of cross-country comparable data on development.
@@ -59,7 +59,7 @@ def world_bank_wdi() -> pl.DataFrame:
     df = df.pivot(
         index=["Country Name", "Country Code", "Year"],
         values="Indicator Value",
-        on="Indicator Name",
+        on="Indicator Value",
     )
 
     # Cast to floats

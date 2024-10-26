@@ -29,11 +29,12 @@ Changelog = "https://github.com/datonic/datadex/commits/main/"
 Issues = "https://github.com/datonic/datadex/issues"
 CI = "https://github.com/datonic/datadex/actions"
 
-[tool.uv]
-dev-dependencies = ["dagster-webserver>=1.8.13"]
-
 [tool.setuptools]
 packages = ["datadex"]
 
 [tool.dagster]
-module_name = "datadex"
+module_name = "datadex.definitions"
+code_location_name = "datadex"
+
+[tool.uv]
+dev-dependencies = ["dagster-webserver>=1.8.13"]

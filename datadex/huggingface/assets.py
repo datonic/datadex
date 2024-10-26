@@ -1,14 +1,14 @@
-import polars as pl
 import dagster as dg
+import polars as pl
 
-from ..resources import DatasetPublisher
+from datadex.huggingface.resources import HuggingFaceDatasetPublisher
 
 
 def create_hf_asset(dataset_name: str):
     @dg.asset(
         name="huggingface_" + dataset_name, ins={"data": dg.AssetIn(dataset_name)}
     )
-    def hf_asset(data: pl.DataFrame, dp: DatasetPublisher) -> None:
+    def hf_asset(data: pl.DataFrame, dp: HuggingFaceDatasetPublisher) -> None:
         """
         Upload data to HuggingFace.
         """
@@ -31,6 +31,7 @@ a fully open-source, serverless, and local-first Data Platform that improves how
         dp.publish(
             dataset=data,
             dataset_name=dataset_name,
+            username="datonic",
             readme=readme_content,
             generate_datapackage=True,
         )
