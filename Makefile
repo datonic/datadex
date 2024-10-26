@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := run
 
 run:
-	uv run dagster-dbt project prepare-and-package --file datadex/dbt_project.py
+	uv run dagster-dbt project prepare-and-package --file datadex/dbt/resources.py
 	uv run dagster asset materialize --select \* -m datadex.definitions
 
 dev:
