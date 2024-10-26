@@ -2,16 +2,16 @@ import io
 
 import httpx
 import polars as pl
-from dagster import AssetExecutionContext, Backoff, RetryPolicy, asset
+import dagster as dg
 
 from ..resources import IUCNRedListAPI
 
 
-@asset(
-    retry_policy=RetryPolicy(max_retries=5, delay=2, backoff=Backoff.EXPONENTIAL),
+@dg.asset(
+    retry_policy=dg.RetryPolicy(max_retries=5, delay=2, backoff=dg.Backoff.EXPONENTIAL),
 )
 def threatened_animal_species(
-    context: AssetExecutionContext, iucn_redlist_api: IUCNRedListAPI
+    context: dg.AssetExecutionContext, iucn_redlist_api: IUCNRedListAPI
 ) -> pl.DataFrame:
     """
     Threatened animal species data from the IUCN Red List API.
@@ -33,8 +33,8 @@ def threatened_animal_species(
     return pl.DataFrame(all_results, infer_schema_length=None)
 
 
-@asset(
-    retry_policy=RetryPolicy(max_retries=5, delay=2, backoff=Backoff.EXPONENTIAL),
+@dg.asset(
+    retry_policy=dg.RetryPolicy(max_retries=5, delay=2, backoff=dg.Backoff.EXPONENTIAL),
 )
 def wikidata_asteroids() -> pl.DataFrame:
     """

@@ -1,19 +1,18 @@
 .DEFAULT_GOAL := run
 
 run:
-	dagster-dbt project prepare-and-package --file datadex/dbt_project.py
-	dagster asset materialize --select \* -m datadex
+	uv run dagster-dbt project prepare-and-package --file datadex/dbt_project.py
+	uv run dagster asset materialize --select \* -m datadex
 
 dev:
-	dagster dev
+	uv run dagster dev
 
 preview:
 	quarto preview portal
 
 setup:
-	@command -v uv >/dev/null 2>&1 || pip install -U uv
-	uv venv
-	uv pip install -U -e ".[dev]"
+	command -v uv >/dev/null 2>&1 || pip install -U uv
+	uv sync
 	. .venv/bin/activate
 
 dbt-docs:

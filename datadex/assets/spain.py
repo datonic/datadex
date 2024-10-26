@@ -3,16 +3,18 @@ from datetime import datetime, timedelta
 
 import httpx
 import polars as pl
-from dagster import Backoff, RetryPolicy, AssetExecutionContext, asset
+import dagster as dg
 from slugify import slugify
 
 from ..resources import AEMETAPI, MITECOArcGisAPI
 
 
-@asset(
-    retry_policy=RetryPolicy(max_retries=3, delay=10, backoff=Backoff.EXPONENTIAL),
+@dg.asset(
+    retry_policy=dg.RetryPolicy(
+        max_retries=3, delay=10, backoff=dg.Backoff.EXPONENTIAL
+    ),
 )
-async def spain_energy_demand(context: AssetExecutionContext) -> pl.DataFrame:
+async def spain_energy_demand(context: dg.AssetExecutionContext) -> pl.DataFrame:
     """
     Spain energy demand data.
     """
@@ -60,8 +62,8 @@ async def spain_energy_demand(context: AssetExecutionContext) -> pl.DataFrame:
     return df
 
 
-@asset(
-    retry_policy=RetryPolicy(max_retries=5, delay=1, backoff=Backoff.EXPONENTIAL),
+@dg.asset(
+    retry_policy=dg.RetryPolicy(max_retries=5, delay=1, backoff=dg.Backoff.EXPONENTIAL),
 )
 def spain_ipc() -> pl.DataFrame:
     """
@@ -96,7 +98,7 @@ def spain_ipc() -> pl.DataFrame:
     return df
 
 
-@asset()
+@dg.asset()
 def spain_aemet_stations_data(aemet_api: AEMETAPI) -> pl.DataFrame:
     """
     Spain AEMET stations data.
@@ -125,9 +127,9 @@ def spain_aemet_stations_data(aemet_api: AEMETAPI) -> pl.DataFrame:
     return df
 
 
-@asset()
+@dg.asset()
 def spain_aemet_weather_data(
-    context: AssetExecutionContext, aemet_api: AEMETAPI
+    context: dg.AssetExecutionContext, aemet_api: AEMETAPI
 ) -> pl.DataFrame:
     """
     Spain weather data since 1940.
@@ -167,9 +169,9 @@ def spain_aemet_weather_data(
     return df
 
 
-@asset()
+@dg.asset()
 def spain_water_reservoirs_data(
-    context: AssetExecutionContext, miteco_api: MITECOArcGisAPI
+    context: dg.AssetExecutionContext, miteco_api: MITECOArcGisAPI
 ) -> pl.DataFrame:
     """
     Spain water reservoirs data since 1988.

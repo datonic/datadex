@@ -3,22 +3,20 @@ name = "datadex"
 version = "1.0.0"
 authors = [{ name = "David Gasquez" }]
 dependencies = [
-    "altair",
-    "dagster-dbt==0.24.2",
-    "dagster-duckdb-polars==0.24.2",
-    "dagster-duckdb",
-    "dagster==1.8.2",
-    "datasets",
-    "dbt-core",
-    "dbt-duckdb",
-    "duckdb==1.0.0",
-    "huggingface_hub",
-    "httpx[http2]",
-    "ipykernel",
-    "ipywidgets",
-    "pyarrow",
-    "python-slugify",
-    "tenacity",
+    "dagster-dbt>=0.24.13",
+    "dagster-duckdb>=0.24.13",
+    "dagster-duckdb-polars>=0.24.13",
+    "dagster>=1.8.13",
+    "datasets>=3.0.2",
+    "dbt-core>=1.8.8",
+    "dbt-duckdb>=1.9.0",
+    "duckdb>=1.1.2",
+    "httpx>=0.27.2",
+    "huggingface-hub>=0.26.1",
+    "ipykernel>=6.29.5",
+    "pyarrow>=17.0.0",
+    "python-slugify>=8.0.4",
+    "tenacity>=9.0.0",
 ]
 
 requires-python = ">=3.11, <=3.13"
@@ -26,28 +24,16 @@ readme = "README.md"
 license = { text = "MIT" }
 
 [project.urls]
-Homepage = "https://davidgasquez.github.io/datadex/"
-Changelog = "https://github.com/davidgasquez/datadex/commits/main/"
-Issues = "https://github.com/davidgasquez/datadex/issues"
-CI = "https://github.com/davidgasquez/datadex/actions"
+Homepage = "https://datadex.datonic.io/"
+Changelog = "https://github.com/datonic/datadex/commits/main/"
+Issues = "https://github.com/datonic/datadex/issues"
+CI = "https://github.com/datonic/datadex/actions"
 
-[project.optional-dependencies]
-dev = ["dagster-webserver", "ruff"]
-
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+[tool.uv]
+dev-dependencies = ["dagster-webserver>=1.8.13"]
 
 [tool.setuptools]
 packages = ["datadex"]
 
-[tool.setuptools.package-data]
-"datadex" = ["../dbt/**"]
-
 [tool.dagster]
 module_name = "datadex"
-
-[tool.ruff.lint.isort]
-case-sensitive = true
-combine-as-imports = true
-length-sort = true

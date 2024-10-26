@@ -1,11 +1,13 @@
 import polars as pl
-from dagster import AssetIn, asset
+import dagster as dg
 
 from ..resources import DatasetPublisher
 
 
 def create_hf_asset(dataset_name: str):
-    @asset(name="huggingface_" + dataset_name, ins={"data": AssetIn(dataset_name)})
+    @dg.asset(
+        name="huggingface_" + dataset_name, ins={"data": dg.AssetIn(dataset_name)}
+    )
     def hf_asset(data: pl.DataFrame, dp: DatasetPublisher) -> None:
         """
         Upload data to HuggingFace.

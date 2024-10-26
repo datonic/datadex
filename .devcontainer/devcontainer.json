@@ -1,7 +1,7 @@
 {
     "name": "Datadex",
     "build": {
-        "dockerfile": "../Dockerfile",
+        "dockerfile": "Dockerfile",
         "context": ".."
     },
     "customizations": {
@@ -24,8 +24,8 @@
                 },
                 "notebook.formatOnSave.enabled": true,
                 "notebook.codeActionsOnSave": {
-                    "source.fixAll.ruff": true,
-                    "source.organizeImports.ruff": true
+                    "source.fixAll.ruff": "explicit",
+                    "source.organizeImports.ruff": "explicit"
                 },
                 "python.analysis.typeCheckingMode": "basic",
                 "python.analysis.autoImportCompletions": true,

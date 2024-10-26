@@ -7,15 +7,15 @@ from typing import Optional
 import yaml
 import httpx
 import polars as pl
-from dagster import InitResourceContext, ConfigurableResource, get_dagster_logger
+import dagster as dg
 from pydantic import PrivateAttr
 from tenacity import retry, wait_exponential, stop_after_attempt
 from huggingface_hub import HfApi
 
-log = get_dagster_logger()
+log = dg.get_dagster_logger()
 
 
-class IUCNRedListAPI(ConfigurableResource):
+class IUCNRedListAPI(dg.ConfigurableResource):
     token: str
 
     def get_species(self, page):
@@ -30,7 +30,7 @@ class IUCNRedListAPI(ConfigurableResource):
         return r.json()["result"]
 
 
-class REDataAPI(ConfigurableResource):
+class REDataAPI(dg.ConfigurableResource):
     endpoint: str = "https://apidatos.ree.es/en/datos"
     first_day: str = "2014-01-01"
 
@@ -61,13 +61,13 @@ class REDataAPI(ConfigurableResource):
         return self.query(category, widget, start_date, end_date, time_trunc)
 
 
-class AEMETAPI(ConfigurableResource):
+class AEMETAPI(dg.ConfigurableResource):
     endpoint: str = "https://opendata.aemet.es/opendata/api"
     token: str
 
     _client: httpx.Client = PrivateAttr()
 
-    def setup_for_execution(self, context: InitResourceContext) -> None:
+    def setup_for_execution(self, context: dg.InitResourceContext) -> None:
         transport = httpx.HTTPTransport(retries=5)
         limits = httpx.Limits(max_keepalive_connections=5, max_connections=10)
         self._client = httpx.Client(
@@ -131,11 +131,11 @@ class AEMETAPI(ConfigurableResource):
 
         return self.query(url)
 
-    def teardown_after_execution(self, context: InitResourceContext) -> None:
+    def teardown_after_execution(self, context: dg.InitResourceContext) -> None:
         self._client.close()
 
 
-class MITECOArcGisAPI(ConfigurableResource):
+class MITECOArcGisAPI(dg.ConfigurableResource):
     endpoint: str = (
         "https://services-eu1.arcgis.com/RvnYk1PBUJ9rrAuT/ArcGIS/rest/services/"
     )
@@ -168,12 +168,12 @@ class MITECOArcGisAPI(ConfigurableResource):
         return query_response
 
 
-class DatasetPublisher(ConfigurableResource):
+class DatasetPublisher(dg.ConfigurableResource):
     hf_token: str
 
     _api: HfApi = PrivateAttr()
 
-    def setup_for_execution(self, context: InitResourceContext) -> None:
+    def setup_for_execution(self, context: dg.InitResourceContext) -> None:
         self._api = HfApi(token=self.hf_token)
 
     def publish(
