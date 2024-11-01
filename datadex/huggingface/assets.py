@@ -39,15 +39,7 @@ a fully open-source, serverless, and local-first Data Platform that improves how
     return hf_asset
 
 
-datasets = [
-    "spain_energy_demand",
-    "wikidata_asteroids",
-    # "threatened_animal_species",
-    "country_year_indicators",
-    "spain_ipc",
-    "spain_aemet_historical_weather",
-    "spain_water_reservoirs_data",
-]
+datasets = ["world_bank_wdi"]
 
 assets = []
 for dataset in datasets:

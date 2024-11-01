@@ -1,5 +1,0 @@
-version: 2
-
-models:
-  - name: spain_aemet_historical_weather
-    description: "Historical weather data for Spain. Cleaned and augmented with station metadata."
