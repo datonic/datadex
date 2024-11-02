@@ -16,7 +16,7 @@ setup:
 	. .venv/bin/activate
 
 dbt-docs:
-	. .venv/bin/activate; cd dbt; uv run dbt docs generate --profiles-dir .
+	. .venv/bin/activate; cd dbt; dbt docs generate --profiles-dir .
 	mkdir -p dbt/target/docs
 	cp dbt/target/*.json dbt/target/index.html dbt/target/graph.gpickle dbt/target/docs/
 
