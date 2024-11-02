@@ -2,7 +2,7 @@ default:
   outputs:
     dev:
       type: duckdb
-      path: "{{ env_var('DATABASE_PATH', 'data/database.duckdb') }}"
+      path: "{{ env_var('DATABASE_PATH', '../data/database.duckdb') }}"
       threads: 16
       settings:
         enable_object_cache: true
