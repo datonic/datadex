@@ -32,3 +32,7 @@ code_location_name = "datadex"
 
 [tool.uv]
 dev-dependencies = ["dagster-webserver>=1.9.0", "ipykernel>=6.29.5"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

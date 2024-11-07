@@ -7,6 +7,9 @@ run:
 dev:
 	uv run dagster dev
 
+setup:
+	uv sync --all-extras --dev
+
 web:
 	python -m http.server -d web
 

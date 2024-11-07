@@ -442,7 +442,7 @@ wheels = [
 [[package]]
 name = "datadex"
 version = "1.0.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "dagster" },
     { name = "dagster-duckdb" },
