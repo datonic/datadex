@@ -1,48 +1,20 @@
 {
-    "name": "Datadex",
-    "build": {
-        "dockerfile": "Dockerfile",
-        "context": ".."
-    },
-    "customizations": {
-        "vscode": {
-            "settings": {
-                "quarto.render.previewType": "external",
-                "files.associations": {
-                    "*.sql": "jinja-sql"
-                },
-                "[jinja-sql]": {
-                    "editor.formatOnSave": false
-                },
-                "[python]": {
-                    "editor.defaultFormatter": "charliermarsh.ruff",
-                    "editor.formatOnSave": true,
-                    "editor.codeActionsOnSave": {
-                        "source.fixAll": "explicit",
-                        "source.organizeImports": "explicit"
-                    }
-                },
-                "notebook.formatOnSave.enabled": true,
-                "notebook.codeActionsOnSave": {
-                    "source.fixAll.ruff": "explicit",
-                    "source.organizeImports.ruff": "explicit"
-                },
-                "python.analysis.typeCheckingMode": "basic",
-                "python.analysis.autoImportCompletions": true,
-            },
-            "extensions": [
-                "charliermarsh.ruff",
-                "innoverio.vscode-dbt-power-user",
-                "ms-python.python",
-                "ms-python.vscode-pylance",
-                "ms-toolsai.datawrangler",
-                "ms-toolsai.jupyter",
-                "quarto.quarto",
-                "redhat.vscode-yaml",
-                "tamasfe.even-better-toml",
-                "visualstudioexptteam.vscodeintellicode"
-            ]
-        }
-    },
-    "postCreateCommand": "make setup"
+	"name": "Datadex",
+	"image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
+	"features": {
+		"ghcr.io/jsburckhardt/devcontainer-features/uv:1": {},
+		"ghcr.io/devcontainers/features/node:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"tamasfe.even-better-toml",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"ms-toolsai.jupyter",
+				"ms-python.vscode-pylance",
+				"charliermarsh.ruff"
+			]
+		}
+	}
 }

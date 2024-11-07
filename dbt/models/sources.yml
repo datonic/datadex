@@ -1,9 +1,0 @@
-version: 2
-
-sources:
-  - name: main
-    tables:
-      - name: world_bank_wdi
-        meta:
-          dagster:
-            asset_key: ["world_bank_wdi"]

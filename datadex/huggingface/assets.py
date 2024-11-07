@@ -39,7 +39,7 @@ a fully open-source, serverless, and local-first Data Platform that improves how
     return hf_asset
 
 
-datasets = ["world_development_indicators"]
+datasets = []
 
 assets = []
 for dataset in datasets:
