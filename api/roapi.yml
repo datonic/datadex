@@ -1,0 +1,12 @@
+addr:
+  http: 0.0.0.0:8084
+  postgres: 0.0.0.0:5432
+tables:
+  - name: "owid_indicators"
+    uri: "https://huggingface.co/datasets/datonic/owid_indicators/resolve/main/data/owid_indicators.parquet"
+    option:
+      format: "parquet"
+  - name: "world_development_indicators"
+    uri: "https://huggingface.co/datasets/datonic/world_development_indicators/resolve/main/data/world_development_indicators.parquet"
+    option:
+      format: "parquet"
