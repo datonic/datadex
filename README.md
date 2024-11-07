@@ -7,7 +7,7 @@
 
 <div align="center">
   <img alt="GitHub" src="https://img.shields.io/github/license/davidgasquez/datadex?style=flat-square">
-  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/davidgasquez/datadex/ci.yml?style=flat-square">
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/davidgasquez/datadex/etl.yml?style=flat-square">
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/davidgasquez/datadex?style=flat-square">
 </div>
 
