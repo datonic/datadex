@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := run
 
-.PHONY: web run dev clean api
+.PHONY: run dev setup web api space clean
 
 run:
 	uv run dagster asset materialize --select \* -m datadex.definitions
@@ -16,6 +16,9 @@ web:
 
 api:
 	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/api --repo-type=space --delete "*" ./api .
+
+space:
+	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/datadex --delete '*' --repo-type=space "Dockerfile"
 
 clean:
 	rm -rf data/*.parquet data/*.duckdb
