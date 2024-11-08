@@ -11,9 +11,11 @@
 
 <br>
 
-Datadex is a fully open-source, serverless, and local-first Data Platform that improves how communities collaborate on Open Data. Datadex is not a new tool, it is a pattern showing an opinionated bridge between existing ones.
+Datadex is a fully open-source, serverless, and local-first Data Platform that improves how [communities collaborate on Open Data](https://davidgasquez.com/community-level-open-data-infrastructure/). Datadex is not a new tool, it is a pattern showing an opinionated bridge between existing ones.
 
-[You can learn more about this approach in this post](https://davidgasquez.com/modern-open-data-portals/) or check other real-world production implementations of the Datadex pattern working in the following repositories:
+### 🚀 Implementations
+
+Check other [real-world production Open Data Portals](https://davidgasquez.com/modern-open-data-portals/) of the Datadex pattern in the following repositories:
 
 - [LUNG-SARG](https://github.com/open-radiogenomics/lung-sarg). The Open Data Platform for Sustainable, Accessible Lung Radiogenomics.
 - [Datania](https://github.com/davidgasquez/datania/). An Open Data Platform at national level that unifies and harmonizes information from different sources.
@@ -22,10 +24,12 @@ Datadex is a fully open-source, serverless, and local-first Data Platform that i
 
 ### 💡 Principles
 
-- **Open**: Code, standards, infrastructure, and data, are public and open source.
-- **Modular and Interoperable**: Each component can be replaced, extended, or removed. Works well in many environments (your laptop, in a cluster, or from the browser), can be deployed to many places (S3 + GH Pages, IPFS, Hugging Face) and integrates with multiple tools. Uses open tools, standards, infrastructure, and shares data in [accessible formats](https://voltrondata.com/codex/a-new-frontier).
-- **Permissionless**: Fork it and improve the pipelines, datasets, or documentation. Datasets are published as static files. No API limits, just plain files.
-- **Data as Code**: Datasets are reproducible thanks to declarative stateless transformations tracked in `git`. Improves data access and empowers data scientists to conduct research and helps to guide community-driven analysis and decisions. Data is versioned alongside the code. Publish and share your reusable models for others to build on top.
+> [Make Open Data compatible with the Modern Data Ecosystem](https://handbook.davidgasquez.com/Open+Data).
+
+- **Open**: Code, standards, infrastructure, and data, all public and open source. Rely on open source tools, standards, public infrastructure, and [accessible data formats](https://voltrondata.com/codex/a-new-frontier).
+- **Modular and Interoperable**: Easy to replace, extend or remove components of the pattern. Environment flexibility (your laptop, in a cluster, or from the browser) when running and when deploying (S3 + GH Pages, IPFS, Hugging Face).
+- **Permissionless**: Any improvement is one Pull Request away. Update pipelines, add datasets, or improve documentation. When consuming, there are no API limits, just plain files.
+- **Data as Code**: Reproducible datasets with declarative stateless transformations tracked in `git`. Data is versioned alongside the code. Models are reusable, packaged, and versioned.
 - **Glue**: Be a bridge between tools and approaches. E.g: Use software engineering good practices like types, tests, materialized views, and more.
 
 ## ⚙️ Setup
