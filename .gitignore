@@ -128,11 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# dbt
-dbt_packages/
-logs/
-dbt/.user.yml
-
 # Ignore everything under data except datasets/.gitkeep
 data/**
 !data/.gitkeep
