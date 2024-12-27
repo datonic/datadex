@@ -84,4 +84,6 @@ def world_development_indicators() -> pl.DataFrame:
         }
     )
 
+    df = df.drop_nulls(subset=["indicator_value"])
+
     return df
