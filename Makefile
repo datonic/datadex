@@ -12,7 +12,8 @@ setup:
 	uv sync --all-extras --dev
 
 web:
-	python -m http.server -d web
+	npm install --prefix web
+	npm run dev --prefix web
 
 api:
 	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/api --repo-type=space --delete "*" ./api .
