@@ -1,12 +1,28 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
-import logo from "../assets/logo.svg";
+import { getCollection } from "astro:content";
+
+const countries = await getCollection("countries");
 ---
 
 <Layout>
-    <div class="logo" style="text-align: center;">
-        <Image src={logo} alt="Datadex" width="100" height="100" />
+    <div class="logo">
+        <svg
+            width="100"
+            height="100"
+            viewBox="0 0 24 24"
+            data-name="Flat Color"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="m20.49 6.63-8-4.5a1 1 0 0 0-1 0l-8 4.5A1 1 0 0 0 3 7.5v9a1 1 0 0 0 .51.87l8 4.5a1 1 0 0 0 1 0l8-4.5a1 1 0 0 0 .49-.87v-9a1 1 0 0 0-.51-.87Z"
+                style="fill: var(--logo-primary-color); transition: fill 0.2s ease-in-out;"
+            ></path>
+            <path
+                d="M16 15a1 1 0 0 1-1-1v-3.88l-3.45-1.73a1 1 0 0 1 .9-1.78l4 2a1 1 0 0 1 .55.89V14a1 1 0 0 1-1 1Z"
+                style="fill: var(--hover-color); transition: fill 0.2s ease-in-out;"
+            ></path>
+        </svg>
     </div>
 
     <div style="text-align: center;">

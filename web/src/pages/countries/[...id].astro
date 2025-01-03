@@ -1,0 +1,69 @@
+---
+import { getCollection, render } from "astro:content";
+import { DuckDBInstance } from "@duckdb/node-api";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const countries = await getCollection("countries");
+    return countries.map((country) => ({
+        params: { id: country.id },
+        props: { country },
+    }));
+}
+
+const instance = await DuckDBInstance.create("/tmp/datadex.duckdb");
+const connection = await instance.connect();
+
+await connection.run(`
+    create table if not exists world_development_indicators as
+    select * from 'https://huggingface.co/datasets/datonic/world_development_indicators/resolve/main/data/world_development_indicators.parquet'
+`);
+
+const reader = await connection.runAndReadAll(`
+    select
+        country_name,
+        country_code,
+        indicator_name,
+        year,
+        indicator_value
+    from world_development_indicators
+    where country_code = '${Astro.params.id}'
+    order by indicator_name desc, year desc
+    limit 10
+`);
+const rows = reader.getRows();
+
+const { country } = Astro.props;
+const { Content } = await render(country);
+---
+
+<Layout>
+    <h1>{country.data.name}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Country Name</th>
+                <th>Country Code</th>
+                <th>Indicator Name</th>
+                <th>Year</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {
+                rows.map((row) => (
+                    <tr>
+                        <td>{row[0]}</td>
+                        <td>{row[1]}</td>
+                        <td>{row[2]}</td>
+                        <td>{row[3]}</td>
+                        <td>{row[4]}</td>
+                    </tr>
+                ))
+            }
+        </tbody>
+    </table>
+
+    <Content />
+</Layout>
