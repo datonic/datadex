@@ -14,7 +14,7 @@ dependencies = [
     "polars>=1.19.0",
 ]
 
-requires-python = ">=3.11, <=3.13"
+requires-python = ">=3.11, <3.14"
 readme = "README.md"
 license = { text = "MIT" }
 
