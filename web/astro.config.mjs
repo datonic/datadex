@@ -3,5 +3,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://datadex.datonic.io',
+  site: 'https://datadex.datonic.io',
+  compressHTML: true,
 });
