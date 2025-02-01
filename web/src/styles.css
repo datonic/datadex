@@ -3,7 +3,7 @@
     --heading-color: #333;
     --border-color: #b1b1b1;
     --hover-color: #fbbf24;
-    --max-width: 860px;
+    --max-width: clamp(360px, 90vw, 900px);
     --bg-color: #fff;
     --logo-primary-color: #0a0a0a;
 }
@@ -19,17 +19,24 @@
 body {
     line-height: 1.4;
     font-family: "Source Code Pro", monospace;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: var(--text-color);
     background-color: var(--bg-color);
     max-width: var(--max-width);
-    margin: 2.5rem auto;
+    margin: 1.8rem auto;
     padding: 0 0.625rem;
 }
 
 h1 {
     font-size: 2.6em;
     color: var(--heading-color);
+}
+
+h3 {
+    color: var(--heading-color);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
 .logo {
@@ -42,8 +49,16 @@ a {
     border-bottom: 1px solid var(--border-color);
 }
 
+a:hover {
+    background-color: var(--hover-color);
+    color: #222
+}
+
 .link-container {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.625rem;
 }
 
 .custom-link {
@@ -56,5 +71,4 @@ a {
 
 .custom-link:hover {
     background-color: var(--hover-color);
-    color: #000;
 }
