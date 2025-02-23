@@ -13,6 +13,8 @@
 
 Datadex is a fully open-source, serverless, and local-first Data Platform that improves how [communities collaborate on Open Data](https://davidgasquez.com/community-level-open-data-infrastructure/). Datadex is not a new tool, it is a pattern showing an opinionated bridge between existing ones.
 
+The goal is to increase your community's coordination and shared understanding of the world. Datadex makes it easy to produce data products built by your community, for your community.
+
 ### 🚀 Implementations
 
 Check other [real-world production Open Data Portals](https://davidgasquez.com/modern-open-data-portals/) of the Datadex pattern in the following repositories:
