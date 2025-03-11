@@ -3,15 +3,15 @@ name = "datadex"
 version = "1.0.0"
 authors = [{ name = "David Gasquez" }]
 dependencies = [
-    "dagster>=1.9.11",
-    "dagster-duckdb>=0.25.11",
-    "dagster-duckdb-polars>=0.25.11",
-    "dagster-webserver>=1.9.11",
-    "datasets>=3.2.0",
-    "duckdb>=1.2.0",
+    "dagster>=1.10.4",
+    "dagster-duckdb>=0.26.4",
+    "dagster-duckdb-polars>=0.26.4",
+    "dagster-webserver>=1.10.4",
+    "datasets>=3.3.2",
+    "duckdb>=1.2.1",
     "httpx>=0.28.1",
-    "huggingface-hub>=0.28.1",
-    "polars>=1.21.0",
+    "huggingface-hub>=0.29.2",
+    "polars>=1.24.0",
 ]
 
 requires-python = ">=3.11, <3.14"
@@ -29,7 +29,9 @@ module_name = "datadex.definitions"
 code_location_name = "datadex"
 
 [dependency-groups]
-dev = ["ipykernel>=6.29.5"]
+dev = [
+    "ipykernel>=6.29.5",
+]
 
 [build-system]
 requires = ["hatchling"]
