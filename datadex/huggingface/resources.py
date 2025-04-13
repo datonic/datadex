@@ -1,21 +1,22 @@
 import os
 import tempfile
-from typing import Optional
 
 import polars as pl
 import yaml
 from dagster import ConfigurableResource, InitResourceContext, get_dagster_logger
 from huggingface_hub import HfApi
 from pydantic import PrivateAttr
+from typing_extensions import override
 
 log = get_dagster_logger()
 
 
-class HuggingFaceDatasetPublisher(ConfigurableResource):
+class HuggingFaceDatasetPublisher(ConfigurableResource[None]):
     hf_token: str
 
-    _api: HfApi = PrivateAttr()
+    _api: HfApi | None = PrivateAttr(default=None)
 
+    @override
     def setup_for_execution(self, context: InitResourceContext) -> None:
         self._api = HfApi(token=self.hf_token)
 
@@ -24,9 +25,12 @@ class HuggingFaceDatasetPublisher(ConfigurableResource):
         dataset: pl.DataFrame,
         dataset_name: str,
         username: str,
-        readme: Optional[str] = None,
+        readme: str | None = None,
         generate_datapackage: bool = False,
     ):
+        if self._api is None:
+            self._api = HfApi(token=self.hf_token)
+
         with tempfile.TemporaryDirectory() as temp_dir:
             # Define the file path
             data_dir = os.path.join(temp_dir, "data")
@@ -39,7 +43,7 @@ class HuggingFaceDatasetPublisher(ConfigurableResource):
             if readme:
                 readme_path = os.path.join(temp_dir, "README.md")
                 with open(readme_path, "w") as readme_file:
-                    readme_file.write(readme)
+                    _ = readme_file.write(readme)
 
             if generate_datapackage:
                 datapackage = {
@@ -56,13 +60,13 @@ class HuggingFaceDatasetPublisher(ConfigurableResource):
             repo_id = f"{username}/{dataset_name}"
 
             try:
-                self._api.repo_info(repo_id=repo_id, repo_type="dataset")
+                _ = self._api.repo_info(repo_id=repo_id, repo_type="dataset")
                 log.info(f"Repository {repo_id} exists.")
             except Exception:
                 log.info(
                     f"Repository {repo_id} does not exist. Creating a new repository."
                 )
-                self._api.create_repo(
+                _ = self._api.create_repo(
                     repo_id=repo_id, repo_type="dataset", private=False
                 )
 

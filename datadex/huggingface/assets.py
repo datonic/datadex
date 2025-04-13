@@ -45,7 +45,7 @@ a fully open-source, serverless, and local-first Data Platform that improves how
     return hf_asset
 
 
-assets = []
+assets: list[dg.AssetsDefinition] = []
 for asset_spec in indicators_definitions.get_all_asset_specs():
     if asset_spec.metadata and "huggingface" in asset_spec.metadata.get("publish", []):
         a = create_hf_asset(asset_spec)

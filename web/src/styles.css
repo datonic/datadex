@@ -1,7 +1,7 @@
 :root {
     --text-color: #222;
     --heading-color: #333;
-    --border-color: #b1b1b1;
+    --border-color: #fbbf24;
     --hover-color: #fbbf24;
     --max-width: clamp(360px, 90vw, 900px);
     --bg-color: #fff;
@@ -11,14 +11,13 @@
 :root.dark {
     --text-color: #e5e5e5;
     --heading-color: #fff;
-    --border-color: #555;
     --bg-color: #1a1a1a;
     --logo-primary-color: #ffffff;
 }
 
 body {
     line-height: 1.4;
-    font-family: "Source Code Pro", monospace;
+    font-family: "Source Sans Pro", sans;
     font-size: 1.2rem;
     color: var(--text-color);
     background-color: var(--bg-color);
@@ -28,19 +27,23 @@ body {
 }
 
 h1 {
+    margin-top: 0.5rem;
+    font-family: "Source Code Pro", monospace;
     font-size: 2.6em;
     color: var(--heading-color);
 }
 
 h3 {
+    font-family: "Source Code Pro", monospace;
     color: var(--heading-color);
-    font-weight: 400;
-    letter-spacing: 0.1em;
+    font-weight: 600;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
 }
 
 .logo {
     text-align: center;
+    margin-bottom: 0;
 }
 
 a {
@@ -51,10 +54,11 @@ a {
 
 a:hover {
     background-color: var(--hover-color);
-    color: #222
+    color: #222;
 }
 
 .link-container {
+    font-family: "Source Code Pro", monospace;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -65,10 +69,24 @@ a:hover {
     display: inline-block;
     margin: 0 0.625rem;
     padding: 0.625rem;
-    border: 1px solid var(--border-color);
+    border: 2px solid var(--border-color);
     border-radius: 5px;
 }
 
 .custom-link:hover {
     background-color: var(--hover-color);
+}
+
+li {
+    padding: 0.5rem;
+    list-style-type: none;
+}
+
+footer {
+    font-family: "Source Code Pro", monospace;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
 }

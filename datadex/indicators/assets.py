@@ -40,7 +40,7 @@ def owid_indicators(
     Joined energy and CO2 data from Our World in Data.
     """
 
-    df = owid_energy_data.join(
+    df: pl.DataFrame = owid_energy_data.join(
         owid_co2_data, on=["iso_code", "year"], how="inner", suffix="_co2"
     )
 
