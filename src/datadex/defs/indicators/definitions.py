@@ -1,6 +1,6 @@
 import dagster as dg
 
-from datadex.indicators import assets
+from datadex.defs.indicators import assets
 
 indicators_assets = dg.load_assets_from_modules([assets])
 

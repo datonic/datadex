@@ -1,7 +1,7 @@
 import dagster as dg
 
-from datadex.huggingface.assets import assets
-from datadex.huggingface.resources import HuggingFaceDatasetPublisher
+from datadex.defs.huggingface.assets import assets
+from datadex.defs.huggingface.resources import HuggingFaceDatasetPublisher
 
 definitions = dg.Definitions(
     assets=assets,
