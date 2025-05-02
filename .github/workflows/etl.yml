@@ -21,14 +21,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Install uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v5
         with:
           enable-cache: true
-      - name: Set up Python
-        run: uv python install
+
       - name: Install dependencies
-        run: uv sync
+        run: make setup
+
       - name: Run
-        run: |
-          make run
+        run: make run

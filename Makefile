@@ -1,15 +1,21 @@
 .DEFAULT_GOAL := run
 
-.PHONY: run dev setup web api space clean
+.PHONY: .uv
+.uv:
+	@uv --version || echo 'Please install uv: https://docs.astral.sh/uv/getting-started/installation/'
 
-run:
-	uv run dagster asset materialize --select \* -m datadex.definitions
+.PHONY: setup
+setup: .uv
+	uv sync --frozen
 
+.PHONY: dev
 dev:
-	uv run dagster dev
+	uv run dg dev
 
-setup:
-	uv sync --all-extras --dev
+
+.PHONY: run
+run:
+	uv run dg launch --assets '*'
 
 web:
 	npm install --prefix web

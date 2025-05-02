@@ -1,8 +1,8 @@
 import dagster as dg
 import polars as pl
 
-from datadex.huggingface.resources import HuggingFaceDatasetPublisher
-from datadex.indicators.definitions import definitions as indicators_definitions
+from datadex.defs.huggingface.resources import HuggingFaceDatasetPublisher
+from datadex.defs.indicators.definitions import definitions as indicators_definitions
 
 
 def create_hf_asset(asset_spec: dg.AssetSpec):
