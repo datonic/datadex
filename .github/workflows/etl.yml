@@ -28,7 +28,7 @@ jobs:
           enable-cache: true
 
       - name: Install dependencies
-        run: make setup
+        run: make data
 
-      - name: Run
-        run: make run
+      - name: Upload to Hugging Face
+        run: make upload

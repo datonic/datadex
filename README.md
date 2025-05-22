@@ -11,11 +11,12 @@
 
 <br>
 
-Datadex is a fully open-source, serverless, and local-first Data Platform that improves how [communities collaborate on Open Data](https://davidgasquez.com/community-level-open-data-infrastructure/). Datadex is not a new tool, it is a pattern showing an opinionated bridge between existing ones.
+Datadex is a fully open-source, serverless, and local-first Data Platform to improve how [communities collaborate on Open Data](https://davidgasquez.com/community-level-open-data-infrastructure/). Why?
 
-The goal is to increase your community's coordination and shared understanding of the world. Datadex makes it easy to produce data products built by your community, for your community.
+- Increase your community's coordination and shared understanding.
+- Makes it easy to publish data products built by your community, for your community.
 
-### 🚀 Implementations
+## 🚀 Implementations
 
 Check other [real-world production Open Data Portals](https://davidgasquez.com/modern-open-data-portals/) of the Datadex pattern in the following repositories:
 
@@ -24,23 +25,25 @@ Check other [real-world production Open Data Portals](https://davidgasquez.com/m
 - [Gitcoin Grants Data Portal](https://github.com/davidgasquez/gitcoin-grants-data-portal). A Data hub for Gitcoin Grants data and related models.
 - [Filecoin Data Portal](https://github.com/davidgasquez/filecoin-data-portal/). A data portal for data related to the Filecoin network and ecosystem.
 
-### 💡 Principles
+## 💡 Principles
 
 > [Make Open Data compatible with the Modern Data Ecosystem](https://handbook.davidgasquez.com/Open+Data).
 
 - **Open**: Code, standards, infrastructure, and data, all public and open source. Rely on open source tools, standards, public infrastructure, and [accessible data formats](https://voltrondata.com/codex/a-new-frontier).
 - **Modular and Interoperable**: Easy to replace, extend or remove components of the pattern. Environment flexibility (your laptop, in a cluster, or from the browser) when running and when deploying (S3 + GH Pages, IPFS, Hugging Face).
 - **Permissionless**: Any improvement is one Pull Request away. Update pipelines, add datasets, or improve documentation. When consuming, there are no API limits, just plain files.
-- **Data as Code**: Reproducible datasets with declarative stateless transformations tracked in `git`. Data is versioned alongside the code. Models are reusable, packaged, and versioned.
+- **Data as Code**: Reproducible datasets with declarative stateless transformations tracked in `git`. Data is versioned alongside the code.
 - **Glue**: Be a bridge between tools and approaches. E.g: Use software engineering good practices like types, tests, materialized views, and more.
 
 ## ⚙️ Setup
 
-Datadex is mainly a Python project, so you'll need to have Python installed. If you hit any issue, please [open an issue](https:github.com/datonic/datadex/issues/new)! The easiest way to get started is using a Python virtual environment, but a development container is also provided.
+Datadex is a Python project. The easiest way to get started is using a Python virtual environment.
+
+If you hit any issue, please [open an issue](https:github.com/datonic/datadex/issues/new)!
 
 ### 🐍 Python Virtual Environment
 
-The recommended way is to install [`uv`](https://github.com/astral-sh/uv) and let it manage the Python environment. The following commands will install the dependencies and create a virtual environment in the project's folder.
+Install [`uv`](https://github.com/astral-sh/uv) and let it manage the Python environment. The following commands will install the dependencies.
 
 ```bash
 make setup
@@ -54,16 +57,12 @@ python3 -m venv .venv
 source .venv/bin/activate
 
 # Install the package and dependencies
-pip install -e ".[dev]"
+pip install -e .
 ```
-
-Now, you should be able to spin up Dagster UI (`make dev` or `dagster dev`) and [access it locally](http://127.0.0.1:3000).
 
 ### 🐳 Docker / Dev Containers
 
-You can use [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers) to get started with Datadex too. If you have Docker running, open the project in VSCode and click on the bottom right corner to open the project in a container.
-
-Once inside the develpment environment, you'll only need to run `make dev` to spin up the [Dagster UI locally](http://127.0.0.1:3000). You'll also have a few extra extensions installed and configured to work with the project.
+You can use [VSCode Remote Containers](https://code.visualstudio.com/docs/remote/containers) to get started with Datadex too. If you have Docker installed and running, open the project in VSCode and click on the bottom right corner to open the project in a container.
 
 The development environment can also run in your browser thanks to GitHub Codespaces!
 
