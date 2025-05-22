@@ -45,13 +45,7 @@ def write_parquet(df: pl.DataFrame, path: str) -> None:
     and sorted by iso_code and year for optimal query performance.
     """
     df = df.sort(["iso_code", "year"])
-    df.write_parquet(
-        path, 
-        compression="snappy", 
-        use_pyarrow=True, 
-        pyarrow_options={"version": "2.0"},
-        statistics=True
-    )
+    df.write_parquet(path, compression="zstd", statistics=True)
 
 
 def main() -> None:

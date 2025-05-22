@@ -7,8 +7,9 @@ readme = "README.md"
 license = { text = "MIT" }
 dependencies = [
     "httpx>=0.28.1",
- "huggingface-hub[hf-xet]>=0.31.4",
- "polars>=1.30.0",
+    "huggingface-hub[hf-xet]>=0.31.4",
+    "polars>=1.30.0",
+    "pyarrow>=20.0.0",
 ]
 
 [project.urls]

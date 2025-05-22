@@ -49,11 +49,7 @@ def main() -> None:
     # Sort by country_code, year, and indicator_code for optimal query performance
     df = df.sort(["country_code", "year", "indicator_code"])
     df.write_parquet(
-        "data/world_development_indicators.parquet",
-        compression="snappy",
-        use_pyarrow=True,
-        pyarrow_options={"version": "2.0"},
-        statistics=True
+        "data/world_development_indicators.parquet", compression="zstd", statistics=True
     )
 
 
