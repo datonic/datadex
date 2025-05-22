@@ -1,8 +1,8 @@
 ---
 title: API
 emoji: 📊
-colorFrom: gray
-colorTo: purple
+colorFrom: black
+colorTo: yellow
 sdk: docker
 pinned: false
 license: mit
