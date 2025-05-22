@@ -41,9 +41,17 @@ def owid_indicators(
 
 def write_parquet(df: pl.DataFrame, path: str) -> None:
     """
-    Write a DataFrame to a parquet file.
+    Write a DataFrame to a parquet file using Parquet version 2.0
+    and sorted by iso_code and year for optimal query performance.
     """
-    df.write_parquet(path)
+    df = df.sort(["iso_code", "year"])
+    df.write_parquet(
+        path, 
+        compression="snappy", 
+        use_pyarrow=True, 
+        pyarrow_options={"version": "2.0"},
+        statistics=True
+    )
 
 
 def main() -> None:

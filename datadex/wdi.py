@@ -46,7 +46,15 @@ def world_development_indicators() -> pl.DataFrame:
 
 def main() -> None:
     df = world_development_indicators()
-    df.write_parquet("data/world_development_indicators.parquet")
+    # Sort by country_code, year, and indicator_code for optimal query performance
+    df = df.sort(["country_code", "year", "indicator_code"])
+    df.write_parquet(
+        "data/world_development_indicators.parquet",
+        compression="snappy",
+        use_pyarrow=True,
+        pyarrow_options={"version": "2.0"},
+        statistics=True
+    )
 
 
 if __name__ == "__main__":
