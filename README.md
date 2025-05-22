@@ -16,6 +16,9 @@ Datadex is a fully open-source, serverless, and local-first Data Platform to imp
 - Increase your community's coordination and shared understanding.
 - Makes it easy to publish data products built by your community, for your community.
 
+> [!NOTE]
+> The previous version of Datadex, which utilized Dagster and DuckDB, can be found at [this commit](https://github.com/datonic/datadex/tree/e0906b943bb35a4507fa24aa33494e9d7ceb6fef).
+
 ## 🚀 Implementations
 
 Check other [real-world production Open Data Portals](https://davidgasquez.com/modern-open-data-portals/) of the Datadex pattern in the following repositories:
