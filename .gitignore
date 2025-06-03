@@ -134,3 +134,6 @@ data/**
 
 # JetBrains IDEs settings
 .idea/*
+
+# Context files
+CLAUDE.md
