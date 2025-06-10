@@ -10,19 +10,19 @@ DD := datadex
 setup: .uv
 	uv sync --frozen
 
-data: .uv data/world_development_indicators.parquet data/owid_indicators.parquet
+data: .uv data/world_development_indicators/world_development_indicators.parquet data/owid_indicators/owid_indicators.parquet
 
-data/world_development_indicators.parquet: $(DD)/wdi.py
+data/world_development_indicators/world_development_indicators.parquet: $(DD)/wdi.py
 	@echo "[run] wdi"
 	@uv run $(DD)/wdi.py
 
-data/owid_indicators.parquet: $(DD)/owid.py
+data/owid_indicators/owid_indicators.parquet: $(DD)/owid.py
 	@echo "[run] owid"
 	@uv run $(DD)/owid.py
 
-upload: data/owid_indicators.parquet data/world_development_indicators.parquet
-	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/owid_indicators data/owid_indicators.parquet data/owid_indicators.parquet --repo-type dataset
-	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/world_development_indicators data/world_development_indicators.parquet data/world_development_indicators.parquet --repo-type dataset
+upload: data
+	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/owid_indicators data/owid_indicators data --repo-type dataset
+	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/world_development_indicators data/world_development_indicators data --repo-type dataset
 
 .PHONY: web
 web:
@@ -32,4 +32,4 @@ api:
 	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/api --repo-type=space --delete "*" ./api .
 
 clean:
-	rm -rf data/*.parquet
+	rm -rf data/world_development_indicators data/owid_indicators

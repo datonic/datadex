@@ -1,5 +1,6 @@
 import io
 import zipfile
+from pathlib import Path
 
 import httpx
 import polars as pl
@@ -48,8 +49,15 @@ def main() -> None:
     df = world_development_indicators()
     # Sort by country_code, year, and indicator_code for optimal query performance
     df = df.sort(["country_code", "year", "indicator_code"])
+
+    # Create the output directory if it doesn't exist
+    output_dir = Path("data/world_development_indicators")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
     df.write_parquet(
-        "data/world_development_indicators.parquet", compression="zstd", statistics=True
+        "data/world_development_indicators/world_development_indicators.parquet",
+        compression="zstd",
+        statistics=True
     )
 
 

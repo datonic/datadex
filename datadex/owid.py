@@ -1,4 +1,5 @@
 import polars as pl
+from pathlib import Path
 
 
 def owid_energy_data() -> pl.DataFrame:
@@ -52,7 +53,12 @@ def main() -> None:
     owid_energy_df = owid_energy_data()
     owid_co2_df = owid_co2_data()
     owid_indicators_df = owid_indicators(owid_energy_df, owid_co2_df)
-    write_parquet(owid_indicators_df, "data/owid_indicators.parquet")
+
+    # Create the output directory if it doesn't exist
+    output_dir = Path("data/owid_indicators")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    write_parquet(owid_indicators_df, "data/owid_indicators/owid_indicators.parquet")
 
 
 if __name__ == "__main__":
