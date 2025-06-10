@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := data
 
-PACKAGE_NAME := datadex
+DD := datadex
 
 .PHONY: .uv
 .uv:
@@ -12,13 +12,13 @@ setup: .uv
 
 data: .uv data/world_development_indicators.parquet data/owid_indicators.parquet
 
-data/world_development_indicators.parquet: $(PACKAGE_NAME)/wdi.py
+data/world_development_indicators.parquet: $(DD)/wdi.py
 	@echo "[run] wdi"
-	@uv run $(PACKAGE_NAME)/wdi.py
+	@uv run $(DD)/wdi.py
 
-data/owid_indicators.parquet: $(PACKAGE_NAME)/owid.py
+data/owid_indicators.parquet: $(DD)/owid.py
 	@echo "[run] owid"
-	@uv run $(PACKAGE_NAME)/owid.py
+	@uv run $(DD)/owid.py
 
 upload: data/owid_indicators.parquet data/world_development_indicators.parquet
 	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/owid_indicators data/owid_indicators.parquet data/owid_indicators.parquet --repo-type dataset
