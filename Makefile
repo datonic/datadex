@@ -1,6 +1,7 @@
 .DEFAULT_GOAL := data
 
 DD := datadex
+HF_COMMAND := uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} --repo-type dataset
 
 .PHONY: .uv
 .uv:
@@ -21,8 +22,8 @@ data/owid_indicators/owid_indicators.parquet: $(DD)/owid.py
 	@uv run $(DD)/owid.py
 
 upload: data
-	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/owid_indicators data/owid_indicators data --repo-type dataset
-	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/world_development_indicators data/world_development_indicators data --repo-type dataset
+	$(HF_COMMAND) datonic/owid_indicators data/owid_indicators data
+	$(HF_COMMAND) datonic/world_development_indicators data/world_development_indicators data
 
 .PHONY: web
 web:

@@ -29,7 +29,7 @@ if __name__ == "__main__":
     dep = pl.read_parquet("data/source.parquet")
     res = A(dep)
     Path("data").mkdir(exist_ok=True)
-    res.to_parquet("data/A.parquet")
+    res.write_parquet("data/A.parquet", complression="zstd", statistics=True)
     print("✅ A.parquet written")
 ```
 
