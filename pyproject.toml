@@ -10,6 +10,7 @@ dependencies = [
     "huggingface-hub[hf-xet]>=0.32.4",
     "polars>=1.30.0",
     "pyarrow>=20.0.0",
+    "py3createtorrent>=1.2.0",
 ]
 
 [project.urls]

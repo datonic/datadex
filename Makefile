@@ -25,6 +25,10 @@ upload: data
 	$(HF_COMMAND) datonic/owid_indicators data/owid_indicators data
 	$(HF_COMMAND) datonic/world_development_indicators data/world_development_indicators data
 
+torrents: data
+	@echo "[run] Creating torrents with HuggingFace webseeds"
+	@uv run python create_torrents.py
+
 .PHONY: web
 web:
 	python -m http.server 8000 --directory web
@@ -33,4 +37,4 @@ api:
 	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/api --repo-type=space --delete "*" ./api .
 
 clean:
-	rm -rf data/world_development_indicators data/owid_indicators
+	rm -rf data/world_development_indicators data/owid_indicators torrents
