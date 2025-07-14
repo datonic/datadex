@@ -11,7 +11,11 @@ HF_COMMAND := uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} --repo-
 setup: .uv
 	uv sync --frozen
 
-data: .uv data/world_development_indicators/world_development_indicators.parquet data/owid_indicators/owid_indicators.parquet
+data: .uv data/world_development_indicators/world_development_indicators.parquet data/owid_indicators/owid_indicators.parquet torrents
+
+torrents: data/world_development_indicators/world_development_indicators.parquet data/owid_indicators/owid_indicators.parquet
+	@echo "[run] torrents"
+	@uv run $(DD)/torrents.py
 
 data/world_development_indicators/world_development_indicators.parquet: $(DD)/wdi.py
 	@echo "[run] wdi"
