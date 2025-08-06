@@ -1,5 +1,6 @@
-import polars as pl
 from pathlib import Path
+
+import polars as pl
 
 
 def owid_energy_data() -> pl.DataFrame:

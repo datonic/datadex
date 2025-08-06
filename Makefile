@@ -21,6 +21,7 @@ data/owid_indicators/owid_indicators.parquet: $(DD)/owid.py
 	@echo "[run] owid"
 	@uv run $(DD)/owid.py
 
+.PHONY: upload
 upload: data
 	$(HF_COMMAND) datonic/owid_indicators data/owid_indicators data
 	$(HF_COMMAND) datonic/world_development_indicators data/world_development_indicators data
@@ -29,8 +30,15 @@ upload: data
 web:
 	python -m http.server 8000 --directory web
 
+.PHONY: api
 api:
 	uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} datonic/api --repo-type=space --delete "*" ./api .
 
+.PHONY: clean
 clean:
 	rm -rf data/world_development_indicators data/owid_indicators
+
+.PHONY: lint
+lint:
+	uvx ruff check
+	uvx ty check

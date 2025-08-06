@@ -57,7 +57,7 @@ def main() -> None:
     df.write_parquet(
         "data/world_development_indicators/world_development_indicators.parquet",
         compression="zstd",
-        statistics=True
+        statistics=True,
     )
 
 
