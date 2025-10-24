@@ -8,149 +8,239 @@
     <meta name="description" content="The Open Data Platform for your Community's Data" />
     <meta name="theme-color" content="#fbbf24" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="canonical" href="https://datadex.datonic.io" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap"
+        rel="stylesheet" />
 
     <style>
         :root {
-            --text-color: #222;
-            --heading-color: #333;
-            --border-color: #fbbf24;
-            --hover-color: #fbbf24;
-            --max-width: clamp(360px, 90vw, 900px);
-            --bg-color: #fff;
-            --logo-primary-color: #0a0a0a;
+            --bg: #ffffff;
+            --text: #222;
+            --heading: #111;
+            --accent: #fbbf24;
+            --surface: #fafafa;
+            --hairline: rgba(0, 0, 0, .08);
+            --logo-primary: #0a0a0a;
+            --radius: 10px;
+            --measure: 72ch;
+            /* Comfortable reading width */
         }
 
         :root.dark {
-            --text-color: #e5e5e5;
-            --heading-color: #fff;
-            --bg-color: #1a1a1a;
-            --logo-primary-color: #ffffff;
+            --bg: #1a1a1a;
+            --text: #e5e5e5;
+            --heading: #fff;
+            --surface: #151515;
+            --hairline: rgba(255, 255, 255, .14);
+            --logo-primary: #ffffff;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
         }
 
         body {
-            font-family: "Source Code Pro", monospace;
-            font-size: 1.1rem;
-            line-height: 1.4;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            max-width: var(--max-width);
-            margin: 1.8rem auto;
-            padding: 0 0.625rem;
+            margin: 0;
+            color: var(--text);
+            background: var(--bg);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 1.0625rem;
+            /* ~17px */
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .wrap {
+            max-width: var(--measure);
+            margin-inline: auto;
+            padding-inline: 1rem;
         }
 
         h1,
+        h2,
         h3 {
-            color: var(--heading-color);
+            color: var(--heading);
+            line-height: 1.2;
+            margin: 0;
         }
 
         h1 {
-            margin: 0.5rem 0 0;
-            font-size: 2.6em;
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin-top: .75rem;
         }
 
         h3 {
-            margin: 2rem 0 1rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
+            margin: 2.25rem 0 1rem;
+            font: 600 .95rem/1.2 "JetBrains Mono", monospace;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             text-align: center;
         }
 
-        main>*+* {
-            margin-top: 1.5rem;
+        p {
+            margin: 0.75rem 0;
         }
 
+        main>*+* {
+            margin-top: 1.25rem;
+        }
+
+        /* Inline links: clean underline */
         a {
             color: inherit;
-            text-decoration: none;
-            border-bottom: 1px solid var(--border-color);
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: .2em;
+            text-decoration-thickness: 2px;
         }
 
-        a:hover {
-            background-color: var(--hover-color);
-            color: #222;
+        a:hover,
+        a:focus-visible {
+            text-decoration-thickness: 3px;
         }
 
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        /* Hero */
         .hero {
             text-align: center;
+            padding-block: 2rem 1rem;
         }
 
         .logo {
-            margin-bottom: 0.5rem;
+            margin-bottom: .75rem;
         }
 
         .logo path {
-            transition: fill 0.2s ease-in-out;
+            transition: fill .2s ease-in-out;
         }
 
         .logo-primary {
-            fill: var(--logo-primary-color);
+            fill: var(--logo-primary);
         }
 
         .logo-accent {
-            fill: var(--hover-color);
+            fill: var(--accent);
         }
 
+        /* Button group */
         .links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.75rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: .75rem;
+            margin-top: 1rem;
         }
 
         .links a {
-            padding: 0.625rem 0.875rem;
-            border: 2px solid var(--border-color);
-            border-radius: 5px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: .65rem .9rem;
+            border: 2px solid var(--accent);
+            border-radius: var(--radius);
+            text-decoration: none;
+            background: transparent;
+            transition: background-color .15s ease, transform .05s ease;
         }
 
         .links a:hover {
-            background-color: var(--hover-color);
+            background: var(--accent);
+            color: #222;
+        }
+
+        .links a:active {
+            transform: translateY(1px);
         }
 
         .principles {
-            list-style: none;
-            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
             margin: 0;
+            padding: 0;
         }
 
-        .principles li {
-            padding: 0.5rem;
+        .principles dt {
+            font-weight: 700;
+            font-size: .95rem;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--heading);
+        }
+
+        .principles dd {
+            margin: .25rem 0 0;
+            padding: .85rem 1rem;
+            background: var(--surface);
+            border-left: 4px solid var(--accent);
+            border-radius: 6px;
+        }
+
+        .principles dd+dt {
+            margin-top: .5rem;
+        }
+
+        @media (min-width: 760px) {
+            .principles {
+                grid-template-columns: 220px minmax(0, 1fr);
+                gap: .75rem 1rem;
+            }
+
+            .principles dt {
+                grid-column: 1;
+                text-align: right;
+                padding-top: .55rem;
+            }
+
+            .principles dd {
+                grid-column: 2;
+                margin: 0;
+            }
+        }
+
+        code {
+            padding: .1em .35em;
+            border-radius: 4px;
+            background: rgba(125, 125, 125, .12);
         }
 
         footer {
             text-align: center;
-            padding: 1rem 0;
+            padding: 2rem 0 2.5rem;
+            border-top: 1px solid var(--hairline);
             margin-top: 2rem;
         }
 
+        /* Theme toggle */
         .theme-toggle {
             position: fixed;
-            top: 1rem;
-            right: 1rem;
+            top: .75rem;
+            right: .75rem;
             z-index: 1;
             border: 0;
             background: none;
             cursor: pointer;
-            padding: 0.5rem;
+            padding: .5rem;
+            border-radius: 50%;
         }
 
         .theme-toggle:hover {
-            opacity: 0.6;
-        }
-
-        .theme-toggle:focus {
-            outline: 2px solid var(--border-color);
+            opacity: .7;
         }
 
         .theme-toggle svg {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
         }
 
         .sun {
@@ -170,19 +260,18 @@
         }
     </style>
 
-    <!-- Set theme before first paint to avoid flash -->
+    <!-- Prevent theme flash -->
     <script>
         (function () {
-            const storedTheme = typeof localStorage === "undefined" ? null : localStorage.getItem("theme");
+            const stored = typeof localStorage === "undefined" ? null : localStorage.getItem("theme");
             const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            const theme = storedTheme || (prefersDark ? "dark" : "light");
-            document.documentElement.classList.toggle("dark", theme === "dark");
+            document.documentElement.classList.toggle("dark", (stored || (prefersDark ? "dark" : "light")) === "dark");
         })();
     </script>
 </head>
 
 <body>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
             <path class="sun" fill-rule="evenodd"
                 d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 1.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm12-7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1 0-1.6h2.4a.8.8 0 0 1 .8.8zM4 12a.8.8 0 0 1-.8.8H.8a.8.8 0 0 1 0-1.6h2.5a.8.8 0 0 1 .8.8zm16.5-8.5a.8.8 0 0 1 0 1l-1.8 1.8a.8.8 0 0 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM6.3 17.7a.8.8 0 0 1 0 1l-1.7 1.8a.8.8 0 1 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM12 0a.8.8 0 0 1 .8.8v2.5a.8.8 0 0 1-1.6 0V.8A.8.8 0 0 1 12 0zm0 20a.8.8 0 0 1 .8.8v2.4a.8.8 0 0 1-1.6 0v-2.4a.8.8 0 0 1 .8-.8zM3.5 3.5a.8.8 0 0 1 1 0l1.8 1.8a.8.8 0 1 1-1 1L3.5 4.6a.8.8 0 0 1 0-1zm14.2 14.2a.8.8 0 0 1 1 0l1.8 1.7a.8.8 0 0 1-1 1l-1.8-1.7a.8.8 0 0 1 0-1z">
@@ -193,7 +282,7 @@
         </svg>
     </button>
 
-    <header class="hero">
+    <header class="hero wrap">
         <div class="logo">
             <svg width="100" height="100" viewBox="0 0 24 24" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true">
@@ -209,7 +298,7 @@
         <p>The Open Data Platform for your Community's Data.</p>
     </header>
 
-    <main>
+    <main class="wrap">
         <nav class="links">
             <a href="https://huggingface.co/datonic" rel="noopener noreferrer">Get the Data</a>
             <a href="https://github.com/datonic/datadex" rel="noopener noreferrer">Contribute</a>
@@ -226,34 +315,47 @@
 
         <h3>Principles</h3>
 
-        <ul class="principles">
-            <li>
-                <strong>Open</strong>: Code, standards, infrastructure, and data, all public and open source. Rely on
+        <dl class="principles">
+            <dt>Open</dt>
+            <dd>
+                Code, standards, infrastructure, and data, all public and open source. Rely on
                 open source tools, standards, public infrastructure, and
                 <a href="https://voltrondata.com/codex/a-new-frontier" rel="noopener noreferrer">accessible data
                     formats</a>.
-            </li>
-            <li>
-                <strong>Modular and Interoperable</strong>: Easy to replace, extend or remove components of the pattern.
-                Environment flexibility (your laptop, in a cluster, or from the browser) when running and when deploying
-                (S3 + GH Pages, IPFS, Hugging Face).
-            </li>
-            <li>
-                <strong>Permissionless</strong>: Any improvement is one Pull Request away. Update pipelines, add
-                datasets, or improve documentation. When consuming, there are no API limits, just plain files.
-            </li>
-            <li>
-                <strong>Data as Code</strong>: Reproducible datasets with declarative stateless transformations tracked
+            </dd>
+
+            <dt>Modular and Interoperable</dt>
+            <dd>
+                Easy to replace, extend or remove components of the pattern.
+                Environment flexibility (laptop, cluster, browser) when running and when deploying (S3 + GH Pages, IPFS,
+                Hugging Face).
+            </dd>
+
+            <dt>Permissionless</dt>
+            <dd>
+                Any improvement is one Pull Request away. Update pipelines, add
+                datasets, or improve documentation. No API limits, just plain open files.
+            </dd>
+
+            <dt>Simple</dt>
+            <dd>
+                Static assets, batch jobs.
+            </dd>
+
+            <dt>Data as Code</dt>
+            <dd>
+                Reproducible datasets with declarative stateless transformations tracked
                 in <code>git</code>. Data is versioned alongside the code. Models are reusable, packaged, and versioned.
-            </li>
-            <li>
-                <strong>Glue</strong>: Be a bridge between tools and approaches. E.g: Use software engineering good
-                practices like types, tests, materialized views, and more.
-            </li>
-        </ul>
+            </dd>
+
+            <dt>Glue</dt>
+            <dd>
+                Be a bridge between tools and approaches. Follow UNIX philosophy.
+            </dd>
+        </dl>
     </main>
 
-    <footer>
+    <footer class="wrap">
         <p>
             <a href="mailto:davidgasquez@gmail.com">Reach Out</a> or explore the project
             <a href="https://github.com/datonic/datadex" rel="noopener noreferrer">on GitHub</a>.
@@ -261,11 +363,21 @@
     </footer>
 
     <script>
-        document.getElementById("themeToggle").addEventListener("click", () => {
+        // Persisted theme toggle with accessibility
+        (function () {
+            const toggle = document.getElementById("themeToggle");
             const root = document.documentElement;
-            const isDark = root.classList.toggle("dark");
-            localStorage.setItem("theme", isDark ? "dark" : "light");
-        });
+
+            const setPressed = () => toggle.setAttribute("aria-pressed", root.classList.contains("dark"));
+
+            toggle.addEventListener("click", () => {
+                const isDark = root.classList.toggle("dark");
+                localStorage.setItem("theme", isDark ? "dark" : "light");
+                setPressed();
+            });
+
+            setPressed(); // initial state
+        })();
     </script>
 </body>
 
