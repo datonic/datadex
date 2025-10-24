@@ -27,7 +27,7 @@ Datadex is a pattern, not only a project. Check [real-world production Open Data
 
 ## 💡 Principles
 
-> [Make working with open data easy and accessible by using modern tooling and approaches](https://handbook.davidgasquez.com/Open+Data).
+> [Make working with open data easy and accessible by using modern tooling and approaches](https://davidgasquez.com/handbook/open-data/).
 
 - **Open**: Code, standards, infrastructure, and data, all public and open source. Rely on open source tools, standards, public infrastructure, and [accessible data formats](https://voltrondata.com/codex/a-new-frontier).
 - **Modular and Interoperable**: Easy to replace, extend or remove components of the pattern. Environment flexibility (laptop, cluster, browser) when running and when deploying (S3 + GH Pages, IPFS, Hugging Face).
