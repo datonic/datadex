@@ -1,6 +1,5 @@
 .DEFAULT_GOAL := data
 
-DD := datadex
 HF_COMMAND := uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} --repo-type dataset
 
 .PHONY: .uv
@@ -11,15 +10,15 @@ HF_COMMAND := uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} --repo-
 setup: .uv
 	uv sync --frozen
 
-data: .uv data/world_development_indicators/world_development_indicators.parquet data/owid_indicators/owid_indicators.parquet
+data: .uv data/wdi/world_development_indicators.parquet data/owid/owid_indicators.parquet
 
-data/world_development_indicators/world_development_indicators.parquet: $(DD)/wdi.py
-	@echo "[run] wdi"
-	@uv run $(DD)/wdi.py
+data/wdi/world_development_indicators.parquet: datasets/wdi.py
+	@echo "[dx] world_development_indicators"
+	@uv run dx --force world_development_indicators
 
-data/owid_indicators/owid_indicators.parquet: $(DD)/owid.py
-	@echo "[run] owid"
-	@uv run $(DD)/owid.py
+data/owid/owid_indicators.parquet: datasets/owid.py
+	@echo "[dx] owid_indicators"
+	@uv run dx --force owid_indicators
 
 .PHONY: upload
 upload: data
@@ -36,7 +35,7 @@ api:
 
 .PHONY: clean
 clean:
-	rm -rf data/world_development_indicators data/owid_indicators
+	rm -rf data/wdi data/owid
 
 .PHONY: lint
 lint:

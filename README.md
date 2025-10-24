@@ -32,7 +32,7 @@ Datadex is a pattern, not only a project. Check [real-world production Open Data
 - **Open**: Code, standards, infrastructure, and data, all public and open source. Rely on open source tools, standards, public infrastructure, and [accessible data formats](https://voltrondata.com/codex/a-new-frontier).
 - **Modular and Interoperable**: Easy to replace, extend or remove components of the pattern. Environment flexibility (laptop, cluster, browser) when running and when deploying (S3 + GH Pages, IPFS, Hugging Face).
 - **Permissionless**: Any improvement is one Pull Request away. Update pipelines, add datasets, or improve documentation. No API limits, just plain open files.
-- **Simple**: Static assets, batch jobs.
+- **Simple**: Static assets, batch jobs. No global state, no framework knowledge required.
 - **Data as Code**: Reproducible datasets with declarative stateless transformations tracked in `git`. Data is versioned alongside the code.
 - **Glue**: Be a bridge between tools and approaches. Follow UNIX philosophy.
 
@@ -66,6 +66,33 @@ You can use [VSCode Remote Containers](https://code.visualstudio.com/docs/remote
 The development environment can also run in your browser thanks to GitHub Codespaces!
 
 [![badge](https://github.com/codespaces/badge.svg)](https://codespaces.new/davidgasquez/datadex)
+
+## 🚀 Quickstart
+
+To make your first Datadex dataset, create a file like this one.
+
+```python
+# datasets/owid.py
+import polars as pl
+from datadex.dx import dataset
+
+@dataset
+def owid_co2_data() -> pl.DataFrame:
+    """
+    Raw CO2 data from Our World in Data.
+    """
+    url = "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
+    return pl.read_csv(url)
+
+@dataset
+def owid_energy_data(owid_co2_data: pl.DataFrame) -> pl.DataFrame:
+    """
+    Energy-related subset of OWID data.
+    """
+    return owid_co2_data.select(["country", "year", "energy_per_capita"])
+```
+
+You can now run `dtdx datasets/owid.py` and it'll get properly materialized. The CLI will resolve any dependencies automatically (checks if a parameter name matches another dataset function and uses the cached version if it exists).
 
 ## 📜 License
 

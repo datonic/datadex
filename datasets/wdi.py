@@ -1,11 +1,13 @@
 import io
 import zipfile
-from pathlib import Path
 
 import httpx
 import polars as pl
 
+from datadex import dataset
 
+
+@dataset
 def world_development_indicators() -> pl.DataFrame:
     """
     World Development Indicators (WDI) is the World Bank's premier compilation of cross-country comparable data on development.
@@ -43,23 +45,3 @@ def world_development_indicators() -> pl.DataFrame:
     df = df.drop_nulls(subset=["indicator_value"])
 
     return df
-
-
-def main() -> None:
-    df = world_development_indicators()
-    # Sort by country_code, year, and indicator_code for optimal query performance
-    df = df.sort(["country_code", "year", "indicator_code"])
-
-    # Create the output directory if it doesn't exist
-    output_dir = Path("data/world_development_indicators")
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    df.write_parquet(
-        "data/world_development_indicators/world_development_indicators.parquet",
-        compression="zstd",
-        statistics=True,
-    )
-
-
-if __name__ == "__main__":
-    main()

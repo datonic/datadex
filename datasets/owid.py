@@ -1,8 +1,9 @@
-from pathlib import Path
-
 import polars as pl
 
+from datadex import dataset
 
+
+@dataset
 def owid_energy_data() -> pl.DataFrame:
     """
     Raw Energy data from Our World in Data.
@@ -16,6 +17,7 @@ def owid_energy_data() -> pl.DataFrame:
     ).shrink_to_fit()
 
 
+@dataset
 def owid_co2_data() -> pl.DataFrame:
     """
     Raw CO2 data from Our World in Data.
@@ -27,6 +29,7 @@ def owid_co2_data() -> pl.DataFrame:
     return pl.read_csv(co2_owid_url)
 
 
+@dataset
 def owid_indicators(
     owid_energy_data: pl.DataFrame, owid_co2_data: pl.DataFrame
 ) -> pl.DataFrame:
@@ -39,28 +42,3 @@ def owid_indicators(
     )
 
     return df
-
-
-def write_parquet(df: pl.DataFrame, path: str) -> None:
-    """
-    Write a DataFrame to a parquet file using Parquet version 2.0
-    and sorted by iso_code and year for optimal query performance.
-    """
-    df = df.sort(["iso_code", "year"])
-    df.write_parquet(path, compression="zstd", statistics=True)
-
-
-def main() -> None:
-    owid_energy_df = owid_energy_data()
-    owid_co2_df = owid_co2_data()
-    owid_indicators_df = owid_indicators(owid_energy_df, owid_co2_df)
-
-    # Create the output directory if it doesn't exist
-    output_dir = Path("data/owid_indicators")
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    write_parquet(owid_indicators_df, "data/owid_indicators/owid_indicators.parquet")
-
-
-if __name__ == "__main__":
-    main()
