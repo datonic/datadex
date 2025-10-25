@@ -1,10 +1,9 @@
 import io
 import zipfile
-from pathlib import Path
 
-import httpx
 import polars as pl
 
+from datadex.core import fetch_bytes, materialize
 
 def world_development_indicators() -> pl.DataFrame:
     """
@@ -13,14 +12,13 @@ def world_development_indicators() -> pl.DataFrame:
     Bulk data download is available at https://datatopics.worldbank.org/world-development-indicators/
     """
 
-    url = "https://databankfiles.worldbank.org/public/ddpext_download/WDI_CSV.zip"
+    url = "https://databank.worldbank.org/data/download/WDI_CSV.zip"
 
-    response = httpx.get(url)
+    archive_bytes = fetch_bytes(url, timeout=300.0)
 
-    zipfile.ZipFile(io.BytesIO(response.content)).extractall(path="/tmp/")
-
-    # Load the WDICSV.csv file as a DataFrame
-    df = pl.read_csv("/tmp/WDICSV.csv")
+    with zipfile.ZipFile(io.BytesIO(archive_bytes)) as archive:
+        with archive.open("WDICSV.csv") as csv_file:
+            df = pl.read_csv(csv_file)
 
     # Reshape the dataframe
     df = df.unpivot(
@@ -42,23 +40,11 @@ def world_development_indicators() -> pl.DataFrame:
 
     df = df.drop_nulls(subset=["indicator_value"])
 
-    return df
+    return df.sort(["country_code", "year", "indicator_code"])
 
 
 def main() -> None:
-    df = world_development_indicators()
-    # Sort by country_code, year, and indicator_code for optimal query performance
-    df = df.sort(["country_code", "year", "indicator_code"])
-
-    # Create the output directory if it doesn't exist
-    output_dir = Path("data/world_development_indicators")
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    df.write_parquet(
-        "data/world_development_indicators/world_development_indicators.parquet",
-        compression="zstd",
-        statistics=True,
-    )
+    materialize(world_development_indicators)
 
 
 if __name__ == "__main__":
