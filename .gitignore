@@ -125,9 +125,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Ignore everything under data except datasets/.gitkeep
-data/**
-!data/.gitkeep
+# Ignore parquet datasets
+datasets/**/*.parquet
 
 # Environment
 .env
