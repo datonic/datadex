@@ -4,26 +4,26 @@ HF_COMMAND := uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} --repo-
 
 .PHONY: .uv
 .uv:
-	@uv --version || echo 'Please install uv: https://docs.astral.sh/uv/getting-started/installation/'
+	@uv --version >/dev/null || echo 'Please install uv: https://docs.astral.sh/uv/getting-started/installation/'
 
 .PHONY: setup
 setup: .uv
 	uv sync --frozen
 
-data: .uv data/wdi/world_development_indicators.parquet data/owid/owid_indicators.parquet
+data: .uv datasets/world_development_indicators/data/world_development_indicators.parquet datasets/owid_indicators/data/owid_indicators.parquet
 
-data/wdi/world_development_indicators.parquet: datasets/wdi.py
+datasets/world_development_indicators/data/world_development_indicators.parquet: datasets/world_development_indicators/wdi.py
 	@echo "[run] wdi"
-	@uv run datasets/wdi.py
+	@uv run datasets/world_development_indicators/wdi.py
 
-data/owid/owid_indicators.parquet: datasets/owid.py
+datasets/owid_indicators/data/owid_indicators.parquet: datasets/owid_indicators/owid.py
 	@echo "[run] owid"
-	@uv run datasets/owid.py
+	@uv run datasets/owid_indicators/owid.py
 
 .PHONY: upload
 upload: data
-	$(HF_COMMAND) datonic/owid_indicators data/owid data
-	$(HF_COMMAND) datonic/world_development_indicators data/wdi data
+	$(HF_COMMAND) datonic/owid_indicators datasets/owid_indicators
+	$(HF_COMMAND) datonic/world_development_indicators datasets/world_development_indicators
 
 .PHONY: web
 web:
@@ -35,7 +35,7 @@ api:
 
 .PHONY: clean
 clean:
-	rm -rf data/wdi data/owid
+	rm -rf datasets/*/data
 
 .PHONY: lint
 lint:
