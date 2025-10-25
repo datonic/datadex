@@ -1,0 +1,4 @@
+name: world_development_indicators
+resources:
+  - format: parquet
+    path: data/world_development_indicators.parquet

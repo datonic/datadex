@@ -1,0 +1,4 @@
+name: owid_indicators
+resources:
+  - format: parquet
+    path: data/owid_indicators.parquet
