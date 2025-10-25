@@ -1,6 +1,5 @@
 .DEFAULT_GOAL := data
 
-DD := datadex
 HF_COMMAND := uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} --repo-type dataset
 
 .PHONY: .uv
@@ -13,13 +12,13 @@ setup: .uv
 
 data: .uv data/wdi/world_development_indicators.parquet data/owid/owid_indicators.parquet
 
-data/wdi/world_development_indicators.parquet: $(DD)/wdi.py
+data/wdi/world_development_indicators.parquet: datasets/wdi.py
 	@echo "[run] wdi"
-	@uv run $(DD)/wdi.py
+	@uv run datasets/wdi.py
 
-data/owid/owid_indicators.parquet: $(DD)/owid.py
+data/owid/owid_indicators.parquet: datasets/owid.py
 	@echo "[run] owid"
-	@uv run $(DD)/owid.py
+	@uv run datasets/owid.py
 
 .PHONY: upload
 upload: data

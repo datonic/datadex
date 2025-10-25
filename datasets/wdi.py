@@ -1,9 +1,58 @@
 import io
+import warnings
 import zipfile
 
+import httpx
 import polars as pl
 
-from datadex.core import fetch_bytes, materialize
+from datadex import materialize
+
+
+def fetch_bytes(
+    url: str,
+    *,
+    timeout: float | httpx.Timeout = 120.0,
+    follow_redirects: bool = True,
+) -> bytes:
+    """Download the content at ``url`` and return the raw bytes.
+
+    The request is attempted with standard TLS verification. If that fails due to
+    certificate validation errors (common behind corporate proxies), a single
+    retry is performed with verification disabled while emitting a warning.
+    """
+
+    headers = {"User-Agent": "datadex/0.1"}
+
+    try:
+        response = httpx.get(
+            url,
+            follow_redirects=follow_redirects,
+            timeout=timeout,
+            headers=headers,
+        )
+    except httpx.HTTPError as exc:
+        if "CERTIFICATE_VERIFY_FAILED" not in repr(exc):
+            raise
+
+        warnings.warn(
+            f"Falling back to insecure TLS download for {url}",
+            RuntimeWarning,
+            stacklevel=2,
+        )
+    else:
+        response.raise_for_status()
+        return response.content
+
+    response = httpx.get(
+        url,
+        follow_redirects=follow_redirects,
+        timeout=timeout,
+        headers=headers,
+        verify=False,
+    )
+    response.raise_for_status()
+    return response.content
+
 
 def world_development_indicators() -> pl.DataFrame:
     """

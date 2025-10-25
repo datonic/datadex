@@ -1,11 +1,9 @@
 from __future__ import annotations
 
 import inspect
-import warnings
 from collections.abc import Callable
 from pathlib import Path
 
-import httpx
 import polars as pl
 
 
@@ -29,52 +27,6 @@ def materialize(dataset_fn: Callable[[], pl.DataFrame]) -> Path:
 
     dataframe.write_parquet(dataset_path, compression="zstd", statistics=True)
     return dataset_path
-
-
-def fetch_bytes(
-    url: str,
-    *,
-    timeout: float | httpx.Timeout = 120.0,
-    follow_redirects: bool = True,
-) -> bytes:
-    """Download the content at ``url`` and return the raw bytes.
-
-    The request is attempted with standard TLS verification. If that fails due to
-    certificate validation errors (common behind corporate proxies), a single
-    retry is performed with verification disabled while emitting a warning.
-    """
-
-    headers = {"User-Agent": "datadex/0.1"}
-
-    try:
-        response = httpx.get(
-            url,
-            follow_redirects=follow_redirects,
-            timeout=timeout,
-            headers=headers,
-        )
-    except httpx.HTTPError as exc:
-        if "CERTIFICATE_VERIFY_FAILED" not in repr(exc):
-            raise
-
-        warnings.warn(
-            f"Falling back to insecure TLS download for {url}",
-            RuntimeWarning,
-            stacklevel=2,
-        )
-    else:
-        response.raise_for_status()
-        return response.content
-
-    response = httpx.get(
-        url,
-        follow_redirects=follow_redirects,
-        timeout=timeout,
-        headers=headers,
-        verify=False,
-    )
-    response.raise_for_status()
-    return response.content
 
 
 def _output_path(dataset_fn: Callable[[], pl.DataFrame]) -> Path:
