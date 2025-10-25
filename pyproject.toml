@@ -17,9 +17,6 @@ Changelog = "https://github.com/datonic/datadex/commits/main/"
 Issues = "https://github.com/datonic/datadex/issues"
 CI = "https://github.com/datonic/datadex/actions"
 
-[project.scripts]
-dx = "datadex:main"
-
 [build-system]
 requires = ["uv_build>=0.9.5,<0.10.0"]
 build-backend = "uv_build"
