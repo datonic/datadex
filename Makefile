@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := data
 
-HF_COMMAND := uv run huggingface-cli upload --token=${HUGGINGFACE_TOKEN} --repo-type dataset
+HF_COMMAND := uv run hf upload --token=${HUGGINGFACE_TOKEN} --repo-type dataset
 
 .PHONY: .uv
 .uv:
