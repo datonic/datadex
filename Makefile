@@ -1,6 +1,11 @@
 .DEFAULT_GOAL := data
 
+PYTHON ?= uv run
 HF_COMMAND := uv run hf upload --token=${HUGGINGFACE_TOKEN} --repo-type dataset
+
+DATASET_SCRIPTS := $(sort $(wildcard datasets/*/*.py))
+DATASET_DIRS := $(sort $(patsubst %/,%,$(dir $(DATASET_SCRIPTS))))
+DATASET_NAMES := $(notdir $(DATASET_DIRS))
 
 .PHONY: .uv
 .uv:
@@ -10,20 +15,19 @@ HF_COMMAND := uv run hf upload --token=${HUGGINGFACE_TOKEN} --repo-type dataset
 setup: .uv
 	uv sync --frozen
 
-data: .uv datasets/world_development_indicators/data/world_development_indicators.parquet datasets/owid_indicators/data/owid_indicators.parquet
-
-datasets/world_development_indicators/data/world_development_indicators.parquet: datasets/world_development_indicators/wdi.py
-	@echo "[run] wdi"
-	@uv run datasets/world_development_indicators/wdi.py
-
-datasets/owid_indicators/data/owid_indicators.parquet: datasets/owid_indicators/owid.py
-	@echo "[run] owid"
-	@uv run datasets/owid_indicators/owid.py
+.PHONY: data
+data: .uv
+	@for script in $(DATASET_SCRIPTS); do \
+		echo "[run] $$script"; \
+		$(PYTHON) $$script; \
+	done
 
 .PHONY: upload
 upload: data
-	$(HF_COMMAND) datonic/owid_indicators datasets/owid_indicators
-	$(HF_COMMAND) datonic/world_development_indicators datasets/world_development_indicators
+	@for name in $(DATASET_NAMES); do \
+		echo "[upload] $$name"; \
+		$(HF_COMMAND) datonic/$$name datasets/$$name; \
+	done
 
 .PHONY: web
 web:
@@ -35,7 +39,7 @@ api:
 
 .PHONY: clean
 clean:
-	rm -rf datasets/*/data
+	rm -rf $(addsuffix /data,$(DATASET_DIRS))
 
 .PHONY: lint
 lint:
