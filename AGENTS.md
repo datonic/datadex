@@ -1,8 +1,4 @@
-# Contributing
-
-Guidance when contributing to the Datadex project.
-
-## Development
+# Repository Guidelines
 
 Check the [README](README.md) for how to get started. The [Makefile](Makefile) contains common commands to run, lint, test, etc.
 
@@ -12,14 +8,7 @@ Datadex is a minimalistic and functional open data platform to help communities 
 
 ### Principles
 
-- Simple and functional.
-- Low abstractions, no frameworks.
-- UNIX philosophy.
-- One file, one dataset.
-- Datasets are stored in the `data/` directory.
-
-## Key Dependencies
-
-- `uv`: Python environment management and runner.
-- `polars`: Data processing library.
-- `httpx`: HTTP client for data fetching.
+- Simple and functional
+- Low abstractions, no frameworks
+- UNIX philosophy
+- One dataset, one folder
