@@ -7,7 +7,7 @@ authors = [{ name = "David Gasquez", email = "davidgasquez@gmail.com" }]
 requires-python = ">=3.14"
 dependencies = [
     "httpx>=0.28.1",
-    "huggingface-hub[hf-xet]>=1.2.2",
+    "huggingface-hub[hf-xet]>=1.2.3",
     "polars>=1.36.1",
 ]
 
