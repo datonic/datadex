@@ -78,14 +78,16 @@ def world_development_indicators() -> pl.DataFrame:
 
     df = df.with_columns(pl.col("Year").cast(pl.Int32))
 
-    df = df.rename({
-        "Country Name": "country_name",
-        "Country Code": "country_code",
-        "Indicator Name": "indicator_name",
-        "Indicator Code": "indicator_code",
-        "Year": "year",
-        "Indicator Value": "indicator_value",
-    })
+    df = df.rename(
+        {
+            "Country Name": "country_name",
+            "Country Code": "country_code",
+            "Indicator Name": "indicator_name",
+            "Indicator Code": "indicator_code",
+            "Year": "year",
+            "Indicator Value": "indicator_value",
+        }
+    )
 
     df = df.drop_nulls(subset=["indicator_value"])
 
